@@ -1,0 +1,424 @@
+/* =========================================================
+   ENCHANTING MADHYA PRADESH
+   CENTRALIZED NAVBAR THEME
+   =========================================================
+
+   FUTURE ME NAVBAR CHANGE KARNE KE LIYE MAINLY
+   SIRF :root KE VARIABLES CHANGE KARNA HAI.
+
+   VS CODE:
+   HEX COLOR KE LEFT SIDE JO COLOR SQUARE AAYEGA
+   US PAR CLICK KARKE DIRECT COLOR PICK KAR SAKTE HO.
+   ========================================================= */
+
+:root {
+  /* =====================================================
+     MAIN NAVBAR
+     ===================================================== */
+
+  /* Navbar main color
+     VS Code color square par click karke color select karo */
+  --nav-main-color: #ececec;
+
+  /* Transparency
+     1    = solid
+     0.90 = very light glass
+     0.75 = balanced glass
+     0.60 = strong glass
+     0    = completely transparent */
+  --nav-main-opacity: 0.5;
+
+  /* Glass blur */
+  --nav-main-blur: 30px;
+
+  /* Glass saturation */
+  --nav-main-saturate: 135%;
+
+  /* Main navbar text */
+  --nav-text: #171411;
+  --nav-text-muted: #5a544c;
+  --nav-text-hover: #1c3228;
+  --nav-text-active: #1c3228;
+
+  /* Navbar bottom border */
+  --nav-border-color: rgba(28, 50, 40, 0.10);
+
+  /* Navbar shadow */
+  --nav-shadow:
+    0 10px 30px -18px rgba(53, 33, 15, 0.45);
+
+
+  /* =====================================================
+     TOP UTILITY STRIP
+     ===================================================== */
+
+  /* Top black strip color */
+  --nav-utility-bg: #141210;
+
+  --nav-utility-text: #f6f1e8;
+
+  --nav-utility-muted:
+    rgba(246, 241, 232, 0.72);
+
+
+  /* =====================================================
+     NAVBAR BRAND
+     ===================================================== */
+
+  /* Enchanting */
+  --nav-brand-primary: #171411;
+
+  /* MADHYA PRADESH */
+  --nav-brand-secondary: #5a544c;
+
+  --nav-brand-primary-weight: 600;
+  --nav-brand-secondary-weight: 600;
+
+
+  /* =====================================================
+     ACTIVE / HOVER
+     ===================================================== */
+
+  --nav-active-line: #32261c;
+
+  --nav-hover-bg:
+    rgba(28, 50, 40, 0.055);
+
+
+  /* =====================================================
+     CREATE QUERY BUTTON
+     ===================================================== */
+
+  --nav-query-bg: #1c3228;
+  --nav-query-text: #fffdf8;
+  --nav-query-border: #1c3228;
+
+  --nav-query-hover-bg: #2a4536;
+
+
+  /* =====================================================
+     LIMITED TIME OFFERS BUTTON
+     ===================================================== */
+
+  --nav-offer-bg: #c17a38;
+  --nav-offer-text: #fffdf8;
+  --nav-offer-border: #c17a38;
+
+  --nav-offer-hover-bg: #a6662c;
+
+
+  /* =====================================================
+     DROPDOWN / MEGA MENU
+     ===================================================== */
+
+  /* Dropdown background color */
+  --nav-menu-color: #fffaf3;
+
+  /* Dropdown transparency */
+  --nav-menu-opacity: 0.90;
+
+  /* Dropdown blur */
+  --nav-menu-blur: 22px;
+
+  --nav-menu-border:
+    rgba(23, 20, 17, 0.08);
+
+  --nav-menu-shadow:
+    0 20px 50px -18px
+    rgba(23, 20, 17, 0.24);
+}
+
+
+/* =========================================================
+   MAIN NAVBAR GLASS SURFACE
+   ========================================================= */
+
+.nav-main-surface {
+  /*
+    Converts the HEX variable into a transparent RGB color.
+    Chrome / modern browsers support relative color syntax.
+  */
+  background-color:
+    rgb(
+      from var(--nav-main-color)
+      r g b /
+      var(--nav-main-opacity)
+    ) !important;
+
+  background-image: none !important;
+
+  backdrop-filter:
+    blur(var(--nav-main-blur))
+    saturate(var(--nav-main-saturate)) !important;
+
+  -webkit-backdrop-filter:
+    blur(var(--nav-main-blur))
+    saturate(var(--nav-main-saturate)) !important;
+
+  border-color:
+    var(--nav-border-color) !important;
+
+  box-shadow:
+    var(--nav-shadow) !important;
+
+  color:
+    var(--nav-text) !important;
+
+  position: relative;
+
+  isolation: isolate;
+
+  transition:
+    background-color 220ms ease,
+    backdrop-filter 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+
+/* =========================================================
+   UTILITY / TOP STRIP
+   ========================================================= */
+
+.nav-utility-surface {
+  background:
+    var(--nav-utility-bg) !important;
+
+  color:
+    var(--nav-utility-text) !important;
+}
+
+.nav-utility-muted {
+  color:
+    var(--nav-utility-muted) !important;
+}
+
+.nav-utility-avatar {
+  background:
+    rgba(246, 241, 232, 0.15) !important;
+
+  color:
+    var(--nav-utility-text) !important;
+}
+
+
+/* =========================================================
+   NAVBAR TEXT
+   ========================================================= */
+
+.nav-text {
+  color:
+    var(--nav-text) !important;
+}
+
+.nav-text-muted {
+  color:
+    var(--nav-text-muted) !important;
+}
+
+.nav-text-hover:hover {
+  color:
+    var(--nav-text-hover) !important;
+}
+
+.nav-text-active {
+  color:
+    var(--nav-text-active) !important;
+}
+
+
+/* =========================================================
+   ACTIVE UNDERLINE
+   ========================================================= */
+
+.nav-underline::after {
+  background:
+    var(--nav-active-line) !important;
+}
+
+
+/* =========================================================
+   GENERIC HOVER
+   ========================================================= */
+
+.nav-hover-bg:hover {
+  background:
+    var(--nav-hover-bg) !important;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.nav-brand-primary {
+  color:
+    var(--nav-brand-primary) !important;
+
+  font-weight:
+    var(--nav-brand-primary-weight) !important;
+}
+
+.nav-brand-secondary {
+  color:
+    var(--nav-brand-secondary) !important;
+
+  font-weight:
+    var(--nav-brand-secondary-weight) !important;
+}
+
+
+/* =========================================================
+   CREATE QUERY BUTTON
+   ========================================================= */
+
+.nav-query-button {
+  background:
+    var(--nav-query-bg) !important;
+
+  border-color:
+    var(--nav-query-border) !important;
+
+  color:
+    var(--nav-query-text) !important;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.nav-query-button:hover {
+  background:
+    var(--nav-query-hover-bg) !important;
+
+  border-color:
+    var(--nav-query-hover-bg) !important;
+}
+
+
+/* =========================================================
+   LIMITED TIME OFFERS BUTTON
+   ========================================================= */
+
+.nav-offer-button {
+  background:
+    var(--nav-offer-bg) !important;
+
+  border-color:
+    var(--nav-offer-border) !important;
+
+  color:
+    var(--nav-offer-text) !important;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.nav-offer-button:hover {
+  background:
+    var(--nav-offer-hover-bg) !important;
+
+  border-color:
+    var(--nav-offer-hover-bg) !important;
+}
+
+
+/* =========================================================
+   DROPDOWN / MEGA MENU GLASS SURFACE
+   ========================================================= */
+
+.nav-menu-surface {
+  background-color:
+    rgb(
+      from var(--nav-menu-color)
+      r g b /
+      var(--nav-menu-opacity)
+    ) !important;
+
+  background-image: none !important;
+
+  backdrop-filter:
+    blur(var(--nav-menu-blur))
+    saturate(125%) !important;
+
+  -webkit-backdrop-filter:
+    blur(var(--nav-menu-blur))
+    saturate(125%) !important;
+
+  border-color:
+    var(--nav-menu-border) !important;
+
+  box-shadow:
+    var(--nav-menu-shadow) !important;
+}
+
+
+/* =========================================================
+   MENU HOVER
+   ========================================================= */
+
+.nav-menu-hover:hover {
+  background:
+    var(--nav-hover-bg) !important;
+}
+
+
+/* =========================================================
+   MENU TEXT
+   ========================================================= */
+
+.nav-menu-surface .text-ink {
+  color:
+    var(--nav-text) !important;
+}
+
+.nav-menu-surface .text-ink-muted,
+.nav-menu-surface .text-ink-soft {
+  color:
+    var(--nav-text-muted) !important;
+}
+
+.nav-menu-surface .text-forest,
+.nav-menu-surface .text-forest-deep {
+  color:
+    var(--nav-text-active) !important;
+}
+
+
+/* =========================================================
+   MENU BORDERS
+   ========================================================= */
+
+.nav-menu-surface .border-line {
+  border-color:
+    var(--nav-menu-border) !important;
+}
+
+
+/* =========================================================
+   MENU ITEM HOVER BACKGROUNDS
+   ========================================================= */
+
+.nav-menu-surface .bg-ivory,
+.nav-menu-surface .bg-cream,
+.nav-menu-surface a:hover,
+.nav-menu-surface button:hover {
+  background:
+    var(--nav-hover-bg) !important;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-main-surface,
+  .nav-query-button,
+  .nav-offer-button {
+    transition: none !important;
+  }
+}

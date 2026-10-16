@@ -1,0 +1,605 @@
+.living-map-drawer {
+  /* ==================================================
+     LIVING MAP DRAWER — MASTER CONTROLS
+     Edit values here to customize all desktop & mobile
+     geometry, appearance, typography, and motion.
+     ================================================== */
+
+  /* ── 1. PANEL COLOR / GLASS ── */
+  --lmd-panel-color: #8a9793;
+  --lmd-panel-opacity: 0.7;
+  --lmd-panel-blur: 1px;
+  --lmd-panel-saturation: 120%;
+
+  --lmd-panel-border-color: rgba(255, 255, 255, 0.14);
+  --lmd-panel-shadow-color: rgba(10, 32, 25, 0.42);
+
+  /* ── 2. ACCENT COLORS ── */
+  --lmd-accent-color: #c17a38;
+  --lmd-primary-text-color: #fffdf8;
+  --lmd-secondary-text-color: rgba(255, 253, 248, 0.72);
+  --lmd-muted-text-color: rgba(255, 253, 248, 0.48);
+
+  /* ── 3. LOGO MASTER CONTROLS ── */
+  --lmd-logo-size: 0px;
+  --lmd-logo-radius: 0px;
+  --lmd-logo-padding: 0px;
+  --lmd-logo-bg: #eeb422;
+  --lmd-logo-border-color: rgba(255, 255, 255, 0.38);
+  --lmd-logo-image-scale: 0;
+
+  /* ── 4. BRAND TEXT BESIDE LOGO ── */
+  --lmd-brand-gap: 0px;
+
+  --lmd-brand-title-color: #ffffff;
+  --lmd-brand-title-size: 0px;
+  --lmd-brand-title-weight: 00;
+  --lmd-brand-title-spacing: 0.0em;
+  --lmd-brand-title-line-height: 0;
+
+  --lmd-brand-subtitle-color: rgba(255, 255, 255, 0.92);
+  --lmd-brand-subtitle-size: 0px;
+  --lmd-brand-subtitle-weight: 00;
+  --lmd-brand-subtitle-spacing: 0em;
+  --lmd-brand-subtitle-margin-top: 0px;
+
+  /* ── 5. DESKTOP POSITION & OFFSETS ── */
+  --lmd-left-offset: 0.5px;
+  --lmd-center-offset-y: 0px;
+
+  /* ── 6. COLLAPSED BOX (DESKTOP) ── */
+  --lmd-collapsed-width: 45px;
+  --lmd-collapsed-height: 420px;
+  --lmd-collapsed-radius: 26px;
+
+  /* ── 7. EXPANDED PANEL (DESKTOP) ── */
+  --lmd-expanded-width: 296px;
+  --lmd-expanded-max-height: calc(100dvh - var(--lmd-header-bottom, 80px) - 36px);
+  --lmd-expanded-radius: 26px;
+
+  /* ── 8. HOVER PREVIEW CARD ── */
+  --lmd-preview-width: 300px;
+  --lmd-preview-gap: 16px;
+  --lmd-preview-image-height: 144px;
+  --lmd-preview-radius: 22px;
+  --lmd-preview-border-width: 1px;
+  --lmd-preview-border-color: rgba(28, 50, 40, 0.1);
+  --lmd-preview-bg: var(--lmd-primary-text-color);
+  --lmd-preview-shadow: 0 24px 48px -20px rgba(23, 20, 17, 0.35);
+
+  /* ── 9. TYPOGRAPHY ── */
+  --lmd-collapsed-label-size: 10px;
+  --lmd-collapsed-label-spacing: 0.14em;
+  --lmd-nav-text-size: 13.5px;
+  --lmd-nav-line-height: 1.35;
+  --lmd-preview-kicker-size: 10px;
+  --lmd-preview-title-size: 20px;
+  --lmd-preview-desc-size: 13px;
+  --lmd-preview-cta-size: 11px;
+
+  /* ── 10. SPACING & PADDING ── */
+  --lmd-brand-padding-top: 28px;
+  --lmd-brand-padding-x: 16px;
+  --lmd-collapsed-label-margin-top: 20px;
+  --lmd-collapsed-label-padding-bottom: 24px;
+  --lmd-divider-margin-top: 20px;
+  --lmd-nav-padding: 16px 12px;
+  --lmd-item-padding: 10px 12px;
+  --lmd-item-gap: 12px;
+  --lmd-item-radius: 12px;
+  --lmd-dot-size: 5px;
+  --lmd-active-indicator-width: 2px;
+  --lmd-active-indicator-height: 16px;
+  --lmd-footer-padding: 16px 20px;
+  --lmd-preview-padding: 16px 20px;
+
+  /* ── 11. MONOGRAM WATERMARK ── */
+  --lmd-monogram-font-size: calc(var(--lmd-logo-size) * 0.38);
+  --lmd-monogram-watermark-opacity: 0.2;
+
+  /* ── 12. COLOR DERIVATIONS & COMPATIBILITY ── */
+  --lmd-panel-bg: color-mix(in srgb, var(--lmd-panel-color) calc(var(--lmd-panel-opacity) * 100%), transparent);
+  --lmd-panel-border-width: 1px;
+  --lmd-panel-shadow: 0 18px 50px -15px var(--lmd-panel-shadow-color);
+  --lmd-green: var(--lmd-panel-color);
+  --lmd-cream: var(--lmd-primary-text-color);
+  --lmd-accent: var(--lmd-accent-color);
+  --lmd-text: var(--lmd-secondary-text-color);
+  --lmd-text-muted: var(--lmd-muted-text-color);
+  --lmd-collapsed-text: var(--lmd-muted-text-color);
+  --lmd-divider-color: rgba(255, 253, 248, 0.1);
+  --lmd-item-hover-bg: rgba(255, 253, 248, 0.1);
+
+  /* ── 13. MOTION & TRANSITIONS ── */
+  --lmd-expand-duration: 260ms;
+  --lmd-fade-duration: 180ms;
+  --lmd-item-duration: 180ms;
+
+  /* ── 14. MOBILE DRAWER CONTROLS ── */
+  --lmd-mobile-trigger-bottom: 24px;
+  --lmd-mobile-trigger-right: 20px;
+  --lmd-mobile-sheet-max-height: 78vh;
+  --lmd-mobile-sheet-radius: 28px 28px 0 0;
+  --lmd-mobile-overlay-bg: rgba(28, 50, 40, 0.52);
+
+  /* Aliases for backwards-compatibility */
+  --drawer-green: var(--lmd-panel-color);
+  --drawer-cream: var(--lmd-primary-text-color);
+  --drawer-accent: var(--lmd-accent-color);
+}
+
+/* ==================================================
+   DESKTOP FLOATING DRAWER CONTAINER
+   ================================================== */
+.living-map-drawer--desktop {
+  position: fixed;
+  left: var(--lmd-left-offset);
+  top: calc(var(--lmd-header-bottom, 0px) + (100dvh - var(--lmd-header-bottom, 0px)) / 2 + var(--lmd-center-offset-y, 0px));
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  height: auto;
+}
+
+.living-map-drawer__panel,
+.living-map-drawer__preview {
+  pointer-events: auto;
+}
+
+/* ==================================================
+   PANEL — COMPACT COLLAPSED & EXPANDED
+   ================================================== */
+.living-map-drawer__panel {
+  display: flex;
+  width: var(--lmd-collapsed-width);
+  height: var(--lmd-collapsed-height);
+  flex-direction: column;
+  overflow: hidden;
+  border: var(--lmd-panel-border-width) solid var(--lmd-panel-border-color);
+  border-radius: var(--lmd-collapsed-radius);
+  background: radial-gradient(130% 90% at 0 0, rgba(193, 122, 56, 0.16), transparent 55%), var(--lmd-panel-bg);
+  box-shadow: var(--lmd-panel-shadow);
+  backdrop-filter: blur(var(--lmd-panel-blur)) saturate(var(--lmd-panel-saturation));
+  -webkit-backdrop-filter: blur(var(--lmd-panel-blur)) saturate(var(--lmd-panel-saturation));
+  transition: width var(--lmd-expand-duration) var(--ease-nav),
+              border-radius var(--lmd-expand-duration) var(--ease-nav);
+}
+
+.living-map-drawer__panel.is-expanded {
+  width: var(--lmd-expanded-width);
+  height: auto;
+  max-height: var(--lmd-expanded-max-height);
+  border-radius: var(--lmd-expanded-radius);
+}
+
+/* ==================================================
+   BRAND & MONOGRAM
+   ================================================== */
+.living-map-drawer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--lmd-brand-gap);
+  padding: var(--lmd-brand-padding-top) var(--lmd-brand-padding-x) 0;
+  flex-shrink: 0;
+}
+
+.living-map-drawer__monogram {
+  position: relative;
+  display: none;
+  width: var(--lmd-logo-size);
+  height: var(--lmd-logo-size);
+  flex: 0 0 var(--lmd-logo-size);
+  place-items: center;
+  border-radius: var(--lmd-logo-radius);
+  padding: var(--lmd-logo-padding);
+  background: var(--lmd-logo-bg);
+  border: 1px solid var(--lmd-logo-border-color);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.living-map-drawer__monogram img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(var(--lmd-logo-image-scale));
+  opacity: var(--lmd-monogram-watermark-opacity);
+  pointer-events: none;
+}
+
+.living-map-drawer__monogram b {
+  position: relative;
+  color: var(--lmd-accent-color);
+  font-family: var(--font-display);
+  font-size: var(--lmd-monogram-font-size);
+  font-style: italic;
+  line-height: 1;
+}
+
+.living-map-drawer__brand-copy {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity var(--lmd-fade-duration) ease 80ms;
+}
+
+.is-expanded .living-map-drawer__brand-copy {
+  opacity: 1;
+}
+
+.living-map-drawer__brand-copy strong {
+  display: block;
+  color: var(--lmd-brand-title-color);
+  font-family: var(--font-display);
+  font-size: var(--lmd-brand-title-size);
+  font-weight: var(--lmd-brand-title-weight);
+  letter-spacing: var(--lmd-brand-title-spacing);
+  line-height: var(--lmd-brand-title-line-height);
+  font-style: italic;
+}
+
+.living-map-drawer__brand-copy span {
+  display: block;
+  color: var(--lmd-brand-subtitle-color);
+  font-size: var(--lmd-brand-subtitle-size);
+  font-weight: var(--lmd-brand-subtitle-weight);
+  letter-spacing: var(--lmd-brand-subtitle-spacing);
+  margin-top: var(--lmd-brand-subtitle-margin-top);
+  text-transform: uppercase;
+}
+
+/* ==================================================
+   COLLAPSED VERTICAL LABEL
+   ================================================== */
+.living-map-drawer__collapsed-label {
+  position: relative;
+  top: 44%;
+  left: calc(50% + 10px);
+  margin: 0;
+  padding: 0;
+
+ writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+/* ==================================================
+   EXPANDED CONTENT & LIST
+   ================================================== */
+.living-map-drawer__divider {
+  height: 1px;
+  margin: var(--lmd-divider-margin-top) var(--lmd-brand-padding-x) 0;
+  background: var(--lmd-divider-color);
+  flex-shrink: 0;
+}
+
+.living-map-drawer__list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--lmd-nav-padding);
+}
+
+.living-map-drawer__item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--lmd-item-gap);
+  border: 0;
+  border-radius: var(--lmd-item-radius);
+  padding: var(--lmd-item-padding);
+  color: var(--lmd-text);
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  font-size: var(--lmd-nav-text-size);
+  line-height: var(--lmd-nav-line-height);
+  cursor: pointer;
+  transition: color var(--lmd-item-duration) ease, background var(--lmd-item-duration) ease;
+}
+
+.living-map-drawer__item:hover,
+.living-map-drawer__item.is-hovered {
+  background: var(--lmd-item-hover-bg);
+  color: var(--lmd-cream);
+}
+
+.living-map-drawer__item.is-active {
+  color: var(--lmd-cream);
+}
+
+.living-map-drawer__item.is-active::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--lmd-active-indicator-width);
+  height: var(--lmd-active-indicator-height);
+  border-radius: 999px;
+  background: var(--lmd-accent);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.living-map-drawer__dot {
+  width: var(--lmd-dot-size);
+  height: var(--lmd-dot-size);
+  flex: 0 0 var(--lmd-dot-size);
+  border-radius: 50%;
+  background: rgb(246 241 232 / 0.25);
+}
+
+.is-active .living-map-drawer__dot {
+  background: var(--lmd-accent);
+}
+
+.living-map-drawer__footer {
+  border-top: 1px solid var(--lmd-divider-color);
+  margin: 0;
+  padding: var(--lmd-footer-padding);
+  color: var(--lmd-muted-text-color);
+  font-size: var(--lmd-brand-subtitle-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ==================================================
+   HOVER PREVIEW CARD
+   ================================================== */
+.living-map-drawer__preview {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: var(--lmd-preview-width);
+  margin-left: var(--lmd-preview-gap);
+  overflow: hidden;
+  border: var(--lmd-preview-border-width) solid var(--lmd-preview-border-color);
+  border-radius: var(--lmd-preview-radius);
+  padding: 0;
+  background: var(--lmd-preview-bg);
+  box-shadow: var(--lmd-preview-shadow);
+  text-align: left;
+  cursor: pointer;
+  transform: translateY(-50%);
+  animation: living-map-preview-in var(--lmd-fade-duration) ease both;
+}
+
+.living-map-drawer__preview-image {
+  position: relative;
+  height: var(--lmd-preview-image-height);
+  overflow: hidden;
+}
+
+.living-map-drawer__preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.living-map-drawer__preview-image::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(28 50 40 / .65), transparent 65%);
+  content: "";
+}
+
+.living-map-drawer__preview-image span {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  z-index: 1;
+  color: var(--lmd-cream);
+  font-size: var(--lmd-preview-kicker-size);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.living-map-drawer__preview-copy {
+  padding: var(--lmd-preview-padding);
+}
+
+.living-map-drawer__preview-copy h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--lmd-preview-title-size);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.living-map-drawer__preview-copy p {
+  margin: 6px 0 0;
+  color: var(--color-ink-muted);
+  font-size: var(--lmd-preview-desc-size);
+  line-height: 1.5;
+}
+
+.living-map-drawer__preview-copy > span {
+  display: block;
+  margin-top: 12px;
+  color: var(--lmd-accent);
+  font-size: var(--lmd-preview-cta-size);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.living-map-drawer__mobile {
+  display: none;
+}
+
+@keyframes living-map-preview-in {
+  from {
+    opacity: 0;
+    transform: translate(-8px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .living-map-drawer__panel,
+  .living-map-drawer__brand-copy {
+    transition: none;
+  }
+  .living-map-drawer__preview {
+    animation: none;
+  }
+}
+
+/* ==================================================
+   MOBILE RESPONSIVE BEHAVIOR
+   ================================================== */
+@media (max-width: 1023px) {
+  .living-map-drawer--desktop {
+    display: none;
+  }
+
+  .living-map-drawer__mobile {
+    display: block;
+  }
+
+  .living-map-drawer__mobile-trigger {
+    position: fixed;
+    right: var(--lmd-mobile-trigger-right);
+    bottom: var(--lmd-mobile-trigger-bottom);
+    z-index: 40;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 18px;
+    color: var(--color-ivory);
+    background: var(--color-forest-deep);
+    box-shadow: 0 14px 30px -10px rgb(28 50 40 / .6);
+    font: inherit;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .living-map-drawer__mobile-trigger span {
+    margin-right: 7px;
+    color: var(--lmd-accent);
+  }
+
+  .living-map-drawer__mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: flex-end;
+    background: var(--lmd-mobile-overlay-bg);
+  }
+
+  .living-map-drawer__mobile-sheet {
+    width: 100%;
+    max-height: var(--lmd-mobile-sheet-max-height);
+    overflow: hidden;
+    border-radius: var(--lmd-mobile-sheet-radius);
+    background: var(--color-ivory);
+    box-shadow: 0 -20px 50px -15px rgb(28 50 40 / .45);
+  }
+
+  .living-map-drawer__mobile-sheet > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-line);
+    padding: 18px 22px;
+  }
+
+  .living-map-drawer__mobile-sheet > header > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .living-map-drawer__mobile-sheet header strong,
+  .living-map-drawer__mobile-sheet header small {
+    display: block;
+  }
+
+  .living-map-drawer__mobile-sheet header strong {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  .living-map-drawer__mobile-sheet header small {
+    margin-top: 3px;
+    color: var(--color-ink-muted);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .living-map-drawer__mobile-sheet header > button {
+    border: 0;
+    background: transparent;
+    color: var(--color-ink-muted);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .living-map-drawer__mobile-sheet nav {
+    max-height: calc(var(--lmd-mobile-sheet-max-height) - 84px);
+    overflow-y: auto;
+    padding: 10px 12px 18px;
+  }
+
+  .living-map-drawer__mobile-sheet nav button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    border: 0;
+    border-radius: 16px;
+    padding: 9px;
+    background: transparent;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .living-map-drawer__mobile-sheet nav button:active {
+    background: rgb(23 20 17 / .05);
+  }
+
+  .living-map-drawer__mobile-sheet nav img {
+    width: 56px;
+    height: 46px;
+    flex: 0 0 56px;
+    border-radius: 11px;
+    object-fit: cover;
+  }
+
+  .living-map-drawer__mobile-sheet nav span {
+    flex: 1;
+    color: var(--color-ink-muted);
+    font-size: 14px;
+  }
+
+  .living-map-drawer__mobile-sheet nav span.is-active {
+    color: var(--color-forest);
+    font-weight: 600;
+  }
+
+  .living-map-drawer__mobile-sheet nav i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .living-map-drawer__mobile-sheet nav i.is-active {
+    background: var(--lmd-accent);
+  }
+}

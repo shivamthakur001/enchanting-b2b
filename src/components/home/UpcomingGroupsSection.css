@@ -1,0 +1,688 @@
+/* ==========================================================================
+   UpcomingGroupsSection — scoped styles (ug-* namespace)
+   Uses MASTER design tokens exclusively. No external font imports.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* Section shell                                                               */
+/* -------------------------------------------------------------------------- */
+
+.ug-section {
+  position: relative;
+  isolation: isolate;
+  background: var(--home-page-bg);
+  padding: var(--home-section-padding-y) 0 1.5rem;
+  overflow: hidden;
+}
+
+.ug-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+/* Screen-reader only live region */
+.ug-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Spotlight card                                                              */
+/*                                                                            */
+/* PremiumTilt wraps the outer .ug-spotlight-tilt.                            */
+/* .ug-spotlight (inner) holds the visual card: bg, border, radius, overflow. */
+/* This split prevents the image from escaping the rounded corners.           */
+/* -------------------------------------------------------------------------- */
+
+.ug-spotlight-tilt {
+  /* No visual styles here — just the tilt wrapper */
+  display: block;
+}
+
+.ug-spotlight {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--color-paper, #fffcf7);
+  border: 1px solid var(--color-line, #e4dcd0);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 60px -25px rgba(23, 20, 17, 0.28),
+    0 10px 28px -16px rgba(23, 20, 17, 0.16);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Media pane (image)                                                         */
+/* -------------------------------------------------------------------------- */
+
+.ug-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--color-sand, #e9e1d4);
+  overflow: hidden;
+}
+
+.ug-media__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0;
+  transition: opacity 0.75s var(--ease-nav, cubic-bezier(0.22, 1, 0.36, 1));
+  pointer-events: none;
+}
+
+.ug-media__img.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Subtle bottom gradient on image pane */
+.ug-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(23, 20, 17, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ug-media__index {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.05rem;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.14em;
+  color: var(--color-ivory, #f6f1e8);
+  text-shadow: 0 1px 8px rgba(20, 16, 12, 0.35);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Panel (right-side content)                                                 */
+/* -------------------------------------------------------------------------- */
+
+.ug-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.5rem 1.5rem;
+  min-width: 0;
+}
+
+.ug-panel__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  animation: ug-panel-in 0.5s var(--ease-nav, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.ug-panel__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Guaranteed / Fixed Departure badge */
+.ug-badge {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-forest, #2a4536);
+}
+
+.ug-badge::before {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.55rem;
+  margin-bottom: 0.08rem;
+  border: 1px solid var(--color-saffron, #c17a38);
+  transform: rotate(45deg);
+  vertical-align: middle;
+}
+
+.ug-panel__count {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-soft, #8a8378);
+  white-space: nowrap;
+}
+
+/* Tour code */
+.ug-code {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+/* Tour title */
+.ug-tour-title {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+  color: var(--color-forest-deep, #1c3228);
+}
+
+/* Duration / group type meta */
+.ug-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.1rem;
+  margin: 0 0 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--color-ink-muted, #5a544c);
+}
+
+.ug-meta__item {
+  margin: 0;
+}
+
+.ug-meta__dot {
+  display: inline-block;
+  margin: 0 0.45rem;
+  color: var(--color-saffron, #c17a38);
+  opacity: 0.7;
+}
+
+/* Route */
+.ug-route {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-ink-muted, #5a544c);
+}
+
+.ug-route__sep {
+  display: inline;
+  margin: 0 0.35em;
+  font-style: normal;
+  color: var(--color-saffron, #c17a38);
+  opacity: 0.85;
+}
+
+/* Summary */
+.ug-summary {
+  margin: 0 0 1rem;
+  max-width: 36em;
+  font-family: var(--font-sans);
+  font-size: 0.93rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-ink-muted, #5a544c);
+}
+
+/* Starting price */
+.ug-price {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-ink, #171411);
+}
+
+.ug-price__from {
+  display: block;
+  margin-bottom: 0.12rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+.ug-price__value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-forest-deep, #1c3228);
+}
+
+.ug-price__note {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Departure date cards                                                        */
+/* -------------------------------------------------------------------------- */
+
+.ug-departures {
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.ug-departures__label {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink, #171411);
+}
+
+.ug-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* Date selection cards — NO tilt; these are interactive controls */
+.ug-date {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 1 1 5.2rem;
+  max-width: 7.2rem;
+  min-width: 5rem;
+  min-height: 5.75rem;
+  margin: 0;
+  padding: 0.65rem 0.7rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--color-line, #e4dcd0);
+  border-radius: 12px;
+  color: inherit;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.ug-date:hover {
+  border-color: var(--color-ink-soft, #8a8378);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ug-date.is-selected {
+  background: rgba(193, 122, 56, 0.09);
+  border-color: var(--color-saffron, #c17a38);
+}
+
+.ug-date.is-sold {
+  opacity: 0.58;
+}
+
+.ug-date.is-sold.is-selected {
+  opacity: 0.88;
+}
+
+.ug-date__day {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-ink, #171411);
+}
+
+.ug-date__month {
+  display: block;
+  margin-top: 0.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+.ug-date__status {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+.ug-date.is-selected .ug-date__status {
+  font-weight: 600;
+}
+
+/* Status colours mapped to master palette */
+.ug-date[data-status="available"] .ug-date__status {
+  color: var(--color-forest, #2a4536);
+}
+
+.ug-date[data-status="few-seats"] .ug-date__status {
+  color: var(--color-saffron-deep, #a6662c);
+}
+
+.ug-date[data-status="sold-out"] .ug-date__status {
+  color: var(--color-ink-soft, #8a8378);
+}
+
+.ug-date[data-status="on-request"] .ug-date__status {
+  color: var(--color-ink-muted, #5a544c);
+}
+
+/* Seat availability note */
+.ug-seats {
+  margin: 0.65rem 0 0;
+  min-height: 1.2em;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-ink-muted, #5a544c);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Actions row (View Tour + Create Query)                                     */
+/* -------------------------------------------------------------------------- */
+
+.ug-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--color-line, #e4dcd0);
+}
+
+/* Button base */
+.ug-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ug-btn__arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-nav, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.ug-btn:hover .ug-btn__arrow,
+.ug-btn:focus-visible .ug-btn__arrow {
+  transform: translateX(4px);
+}
+
+/* Ghost (View Tour) — master underline-link style */
+.ug-btn--ghost {
+  position: relative;
+  color: var(--color-forest-deep, #1c3228);
+  padding-bottom: 0.18rem;
+}
+
+.ug-btn--ghost::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+  transform: scaleX(0.4);
+  transform-origin: left;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.ug-btn--ghost:hover::after {
+  transform: scaleX(1);
+  opacity: 0.65;
+}
+
+/* Primary (Create Query) — matches master rounded-md buttons */
+.ug-btn--primary {
+  padding: 0.7rem 1.4rem;
+  background: var(--color-forest, #2a4536);
+  color: var(--color-ivory, #f6f1e8);
+  border-radius: 6px;
+  min-width: 10rem;
+}
+
+.ug-btn--primary:hover {
+  background: var(--color-forest-deep, #1c3228);
+}
+
+.ug-btn--primary:active {
+  transform: translateY(1px);
+}
+
+/* Focus styles — master forest outline */
+.ug-btn:focus-visible,
+.ug-date:focus-visible,
+.ug-pick:focus-visible {
+  outline: 2px solid var(--color-forest, #2a4536);
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Other Fixed Tours picker                                                   */
+/* -------------------------------------------------------------------------- */
+
+.ug-picker {
+  margin-top: 1.65rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line, #e4dcd0);
+}
+
+.ug-picker__label {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft, #8a8378);
+}
+
+.ug-picker__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem 0.1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 0.3rem;
+}
+
+.ug-pick {
+  appearance: none;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.5rem 0.9rem 0.55rem 0.1rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--color-ink-soft, #8a8378);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.ug-pick__num {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--color-saffron, #c17a38);
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.ug-pick__name {
+  font-size: 0.93rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.ug-pick:hover {
+  color: var(--color-ink, #171411);
+}
+
+.ug-pick:hover .ug-pick__num {
+  opacity: 1;
+}
+
+.ug-pick.is-selected {
+  color: var(--color-ink, #171411);
+  border-bottom-color: var(--color-saffron, #c17a38);
+}
+
+.ug-pick.is-selected .ug-pick__num {
+  opacity: 1;
+}
+
+.ug-pick.is-selected .ug-pick__name {
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Keyframes                                                                  */
+/* -------------------------------------------------------------------------- */
+
+@keyframes ug-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Desktop — two-column spotlight                                             */
+/* -------------------------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .ug-spotlight {
+    grid-template-columns: 1.08fr 0.92fr;
+    min-height: 38rem;
+  }
+
+  .ug-media {
+    aspect-ratio: auto;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .ug-panel {
+    padding: 2.2rem 2.4rem 1.75rem 2.1rem;
+  }
+
+  .ug-actions {
+    margin-top: 1.4rem;
+  }
+}
+
+@media (min-width: 1180px) {
+  .ug-panel {
+    padding: 2.5rem 2.65rem 1.95rem 2.4rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mobile                                                                     */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 639px) {
+  .ug-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0.4rem;
+  }
+
+  .ug-btn--primary {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ug-btn--ghost {
+    justify-content: flex-start;
+  }
+
+  .ug-date {
+    min-height: 5.9rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reduced-motion                                                              */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ug-panel__body {
+    animation: none !important;
+  }
+
+  .ug-media__img,
+  .ug-btn,
+  .ug-btn__arrow,
+  .ug-btn--ghost::after,
+  .ug-date,
+  .ug-pick {
+    transition: none !important;
+  }
+}

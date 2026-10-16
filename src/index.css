@@ -1,0 +1,1387 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #171411;
+  --color-ink-muted: #5a544c;
+  --color-ink-soft: #8a8378;
+  --color-forest: #2a4536;
+  --color-forest-mid: #3d5c4a;
+  --color-forest-deep: #1c3228;
+  --color-saffron: #c17a38;
+  --color-saffron-deep: #a6662c;
+  --color-gold: #a67c42;
+  --color-ivory: #f6f1e8;
+  --color-sand: #e9e1d4;
+  --color-cream: #fbf8f3;
+  --color-paper: #fffcf7;
+  --color-line: #e4dcd0;
+  --color-utility: #141210;
+  --color-offer: #b56a2b;
+
+  --shadow-menu: 0 18px 48px -14px rgb(23 20 17 / 0.18), 0 0 0 1px rgb(23 20 17 / 0.05);
+  --shadow-soft: 0 10px 28px -14px rgb(23 20 17 / 0.14);
+  --shadow-lift: 0 8px 18px -10px rgb(23 20 17 / 0.22);
+
+  --radius-menu: 18px;
+
+  --ease-nav: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --section-eyebrow-size: 1rem;
+  --section-script-size: clamp(4rem, 3vw, 4rem);
+  --section-title-size: clamp(4rem, 4vw, 4rem);
+  --section-intro-size: clamp(0.5rem, 1.15vw, 1.18rem);
+  --section-title-line-height: 0.8;
+  --section-script-line-height: 1;
+  --section-script-rotate: -0.8deg;
+  --section-script-y: 0px;
+  --home-section-padding-y: clamp(0.25rem, 2.2vw, 4.5rem);
+  --home-section-gap-tight: clamp(1.75rem, 1.5vw, 1.75rem);
+  --home-page-bg: #fdf5e2;
+  --home-luxury-bg: #fddcb4;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --home-section-padding-y: clamp(2rem, 7vw, 3rem);
+  }
+}
+
+.mp-highlights-section,
+.home-cta-section {
+  padding-top: var(--home-section-padding-y);
+  padding-bottom: var(--home-section-padding-y);
+}
+
+.home-page {
+  background: var(--home-page-bg);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    font-feature-settings: "ss01" on, "cv11" on;
+  }
+
+  ::selection {
+    background: #2a4536;
+    color: #f6f1e8;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2a4536;
+    outline-offset: 3px;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  [role="menuitem"]:focus-visible,
+  [role="tab"]:focus-visible {
+    outline: 2px solid #2a4536;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .nav-underline {
+    position: relative;
+  }
+
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms var(--ease-nav);
+  }
+
+  .nav-underline[data-active="true"]::after,
+  .nav-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-underline::after {
+      transition: none;
+    }
+  }
+
+  /* Discover Mega Menu Carousel Progress */
+  @keyframes dmcProgress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .dmc-thumb-progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--color-saffron, #c17a38);
+  }
+
+  .dmc-thumb-progress.is-active {
+    animation: dmcProgress 3000ms linear forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dmc-thumb-progress {
+      animation: none !important;
+      transform: scaleX(1) !important;
+    }
+  }
+}
+
+/* Know Madhya Pradesh editorial reveal */
+.know-mp {
+  --know-ivory: #f3eee4;
+  --know-ink: #1a1612;
+  --know-body: #2e2822;
+  --know-copper: #b06a3c;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--home-page-bg);
+  padding: var(--home-section-padding-y) 0;
+  scroll-margin-top: 4.75rem;
+}
+
+.know-mp-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 2.75rem));
+  margin: 0 auto;
+}
+
+.know-heading-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.know-map {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 0;
+  width: min(640px, 96%);
+  height: auto;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+.know-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.know-script {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-bottom: -0.34em;
+  margin-left: -0.06em;
+  line-height: 1;
+  transform: translateY(var(--section-script-y)) rotate(var(--section-script-rotate));
+  transform-origin: left bottom;
+}
+
+.know-script-text {
+  display: inline-block;
+  color: var(--know-copper);
+  font-family: "Pinyon Script", "Snell Roundhand", cursive;
+  font-size: var(--section-script-size);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: var(--section-script-line-height);
+  clip-path: inset(0 105% 0 -8%);
+}
+
+.know-underline {
+  display: block;
+  width: 1.55em;
+  height: 0.28em;
+  margin-top: -0.02em;
+  margin-left: 0.12em;
+  color: var(--know-copper);
+  overflow: visible;
+}
+
+.know-underline path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.know-title {
+  display: block;
+  max-width: 100%;
+  color: var(--know-ink);
+  font-family: var(--font-display);
+  font-size: var(--section-title-size);
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-weight: 700;
+  letter-spacing: -0.032em;
+  line-height: var(--section-title-line-height);
+  overflow-wrap: break-word;
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+.know-subtitle {
+  position: relative;
+  z-index: 1;
+  max-width: 36em;
+  margin: 1.35rem 0 0;
+  color: #3f382f;
+  font-family: var(--font-display);
+  font-size: var(--section-intro-size);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.know-rule {
+  width: 48px;
+  height: 1px;
+  margin: 2.05rem auto 0;
+  background: linear-gradient(90deg, transparent, rgb(176 106 60 / 0.55), transparent);
+  opacity: 0;
+  transform: scaleX(0.4);
+}
+
+.know-body {
+  margin-top: 2.05rem;
+}
+
+.know-body strong,
+.know-em {
+  color: var(--know-ink);
+  font-weight: 600;
+}
+
+.know-lead,
+.know-columns p {
+  color: var(--know-body);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.know-lead {
+  max-width: 72rem;
+  margin: 0 auto;
+  font-size: clamp(1.0625rem, 0.25vw + 1rem, 1.1875rem);
+}
+
+.know-lead::first-letter {
+  float: left;
+  padding: 0.1em 0.1em 0 0;
+  color: var(--know-ink);
+  font-family: var(--font-display);
+  font-size: 3.05em;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 0.74;
+}
+
+.know-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem 4.25rem;
+  max-width: 72rem;
+  margin: 2.25rem auto 0;
+}
+
+.know-columns p {
+  margin: 0;
+  font-size: clamp(1.03rem, 0.2vw + 0.98rem, 1.125rem);
+}
+
+.know-columns p:first-child {
+  animation-delay: 0.74s;
+}
+
+.know-columns p:last-child {
+  animation-delay: 0.86s;
+}
+
+.know-final {
+  max-width: 56rem;
+  margin: 4.15rem auto 0;
+  color: var(--know-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.15vw + 1rem, 2rem);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.know-close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.05rem;
+  margin-top: 2.1rem;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.know-close-rule {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 1px;
+  background: var(--know-copper);
+  opacity: 0.55;
+}
+
+.know-close-rule::before,
+.know-close-rule::after {
+  position: absolute;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--know-copper);
+  background: var(--know-ivory);
+  content: "";
+  opacity: 0.7;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.know-close-rule::before {
+  left: -10px;
+}
+
+.know-close-rule::after {
+  right: -10px;
+}
+
+.know-close p {
+  margin: 0;
+  color: var(--know-copper);
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 0.45vw + 1rem, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.know-mp.is-visible .know-script-text {
+  animation: knowWrite 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.know-mp.is-visible .know-underline path {
+  animation: knowStroke 0.62s cubic-bezier(0.33, 0.1, 0.2, 1) 0.32s forwards;
+}
+
+.know-mp.is-visible .know-title {
+  animation: knowRise 0.82s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+.know-mp.is-visible .know-subtitle {
+  animation: knowRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.48s forwards;
+}
+
+.know-mp.is-visible .know-rule {
+  animation: knowRule 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.58s forwards;
+}
+
+.know-mp.is-visible .know-lead {
+  animation: knowRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.62s forwards;
+}
+
+.know-mp.is-visible .know-columns p:nth-child(1) {
+  animation: knowRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.74s forwards;
+}
+
+.know-mp.is-visible .know-columns p:nth-child(2) {
+  animation: knowRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.86s forwards;
+}
+
+.know-mp.is-visible .know-final {
+  animation: knowRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.98s forwards;
+}
+
+.know-mp.is-visible .know-close {
+  animation: knowRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.12s forwards;
+}
+
+@keyframes knowWrite {
+  from {
+    clip-path: inset(0 105% 0 -8%);
+  }
+
+  to {
+    clip-path: inset(0 -8% 0 -8%);
+  }
+}
+
+@keyframes knowStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes knowRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes knowRule {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .know-mp {
+    padding: var(--home-section-padding-y) 0;
+  }
+
+  .know-mp-inner {
+    width: calc(100% - 2.5rem);
+  }
+
+  .know-heading {
+    align-items: flex-start;
+  }
+
+  .know-script {
+    margin-bottom: 0.02em;
+    margin-left: 0;
+    transform: translateY(var(--section-script-y)) rotate(var(--section-script-rotate));
+  }
+
+  .know-script-text {
+    font-size: var(--section-script-size);
+  }
+
+  .know-title {
+    font-size: var(--section-title-size);
+    line-height: var(--section-title-line-height);
+    letter-spacing: -0.028em;
+  }
+
+  .know-lead::first-letter {
+    padding-top: 0.08em;
+    font-size: 2.45em;
+    line-height: 0.8;
+  }
+
+  .know-body {
+    margin-top: 1.65rem;
+  }
+
+  .know-columns {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+    margin-top: 1.5rem;
+  }
+
+  .know-final {
+    margin-top: 2.85rem;
+    font-size: 1.35rem;
+  }
+
+  .know-map {
+    width: 108%;
+    opacity: 0.035;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .know-mp .know-script-text,
+  .know-mp .know-title,
+  .know-mp .know-subtitle,
+  .know-mp .know-rule,
+  .know-mp .know-lead,
+  .know-mp .know-columns p,
+  .know-mp .know-final,
+  .know-mp .know-close,
+  .know-mp.is-visible .know-script-text,
+  .know-mp.is-visible .know-title,
+  .know-mp.is-visible .know-subtitle,
+  .know-mp.is-visible .know-rule,
+  .know-mp.is-visible .know-lead,
+  .know-mp.is-visible .know-columns p,
+  .know-mp.is-visible .know-final,
+  .know-mp.is-visible .know-close {
+    animation: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .know-mp .know-underline path,
+  .know-mp.is-visible .know-underline path {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   Madhya Pradesh Highlights Carousel — scoped styles only
+   These classes are namespaced (mp-hl-*) and do NOT affect global theme.
+   ========================================================================== */
+
+.mp-hl-track {
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes mp-hl-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mp-hl-enter {
+  animation: mp-hl-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-hl-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Map Section — ALL styles namespaced under mp-map-* / mp-marker* / map-popup*
+   Zero impact on any other section or global theme.
+   ========================================================================== */
+
+/* ── Section shell ──────────────────────────────────────────────────────────── */
+
+.mp-map-section {
+  position: relative;
+  background: var(--home-page-bg);
+  padding: var(--home-section-padding-y) 0;
+  overflow: hidden;
+  /* STEP 1: one-viewport fitting — anchor lands below sticky header */
+  scroll-margin-top: clamp(64px, 7vh, 92px);
+  /* availableMapHeight ≈ 100dvh - header(64-96px) - heading(~150px) - spacing */
+}
+
+.mp-map-rule {
+  width: min(520px, 70%);
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(160, 140, 100, 0.32), transparent);
+}
+
+.mp-map-inner {
+  /* STEP 1: map stage uses 90-96% of available section width */
+  width: min(1680px, calc(100% - clamp(16px, 2.2vw, 32px) * 2));
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .mp-map-inner {
+    width: min(1760px, calc(100% - 3vw));
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mp-map-inner {
+    width: min(1840px, calc(100% - 2.6vw));
+    max-width: 100%;
+  }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+
+.mp-map-header {
+  text-align: center;
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mp-map-header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-map-header {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.mp-map-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--section-eyebrow-size);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #a07840;
+  margin-bottom: 0.7rem;
+}
+
+.mp-map-heading {
+  font-family: var(--font-display);
+  font-size: var(--section-title-size);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: var(--section-title-line-height);
+  color: #1c1810;
+  margin: 0 0 0.8rem;
+}
+
+.mp-map-subtitle {
+  font-family: var(--font-display);
+  font-size: var(--section-intro-size);
+  font-style: italic;
+  font-weight: 400;
+  color: #5a5040;
+  line-height: 1.55;
+  max-width: 42em;
+  margin: 0 auto;
+}
+
+/* ── Map stage (holds parchment background + interactive map) ───────────────── */
+
+.mp-map-stage,
+.mp-paper-wrap {
+  position: relative;
+  width: 100%;
+  /* entrance animation */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.mp-map-stage--visible,
+.mp-paper-wrap--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-map-stage,
+  .mp-paper-wrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Parchment background layer (from parchment-page.html) ─────────────────── */
+/* Sits underneath map content with pointer-events: none. Never blocks interaction. */
+
+.mp-map-parchment {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  filter: drop-shadow(0 8px 18px rgba(80, 45, 10, 0.22));
+}
+
+/* Paper body: ageing gradients, stains, crease lines, burnt edges, torn filter */
+.mp-map-parchment__paper {
+  position: absolute;
+  inset: clamp(10px, 1.5vw, 18px);
+  background:
+    /* subtle stains / spots */
+    radial-gradient(ellipse 18% 14% at 22% 30%, rgba(160, 105, 45, 0.16), transparent 70%),
+    radial-gradient(ellipse 16% 12% at 74% 62%, rgba(160, 105, 45, 0.14), transparent 70%),
+    radial-gradient(ellipse 12% 10% at 58% 18%, rgba(255, 245, 220, 0.35), transparent 70%),
+    radial-gradient(ellipse 20% 16% at 36% 78%, rgba(150, 95, 40, 0.12), transparent 70%),
+    /* crease (silwat) lines */
+    linear-gradient(112deg, transparent 46.6%, rgba(120, 75, 30, 0.13) 46.8%, rgba(255, 245, 220, 0.25) 47.1%, transparent 47.4%),
+    linear-gradient(64deg,  transparent 61.6%, rgba(120, 75, 30, 0.10) 61.8%, rgba(255, 245, 220, 0.22) 62.1%, transparent 62.4%),
+    linear-gradient(158deg, transparent 33.6%, rgba(120, 75, 30, 0.10) 33.8%, rgba(255, 245, 220, 0.20) 34.1%, transparent 34.4%),
+    linear-gradient(8deg,   transparent 71.6%, rgba(120, 75, 30, 0.09) 71.8%, rgba(255, 245, 220, 0.20) 72.1%, transparent 72.4%),
+    /* light center -> medium aged -> darker edges */
+    radial-gradient(ellipse at 50% 48%, #f3dfb9 0%, #f3dfb9 38%, #e6c48f 72%, #c78f4c 100%);
+  box-shadow:
+    inset 0 0 28px 6px rgba(138, 84, 32, 0.55),   /* burnt edge */
+    inset 0 0 90px 10px rgba(160, 100, 40, 0.35); /* deep ageing */
+  filter: url(#parchment-torn-edge);              /* SVG displaced torn edge */
+}
+
+/* Paper fibre/noise texture */
+.mp-map-parchment__paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.12  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 400px 400px;
+  pointer-events: none;
+}
+
+/* Blotchy ageing (large gentle patches) */
+.mp-map-parchment__paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='520'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.016' numOctaves='4' seed='7'/><feColorMatrix values='0 0 0 0 0.62  0 0 0 0 0.4  0 0 0 0 0.15  0 0 0 1.1 -0.25'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>");
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* ── Map content wrapper (sits cleanly above parchment) ───────────────────── */
+
+.mp-map-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Decorative geography must not participate in the interactive map layout. */
+.mp-neighbor-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── Hint text ──────────────────────────────────────────────────────────────── */
+
+.mp-map-hint {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #9a8e78;
+  margin-top: 1rem;
+}
+
+@media (max-width: 767px) {
+  .mp-map-hint {
+    display: none;
+  }
+}
+
+/* ── SVG map container ──────────────────────────────────────────────────────── */
+/* Proportions driven by donor SVG viewBox (0 0 800 529) — xMidYMid meet */
+
+.mp-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: clamp(840px, calc(100svh - 6rem), 1200px);  padding: clamp(38px, 4vw, 54px) clamp(16px, 2.5vw, 40px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.mp-map-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: visible;
+  object-fit: contain;
+}
+
+/* ── Narmada flow animation ──────────────────────────────────────────────── */
+/* dasharray = "200 55" → period = 255 units along the path.                  */
+/* One full animation cycle shifts the offset by −255, creating smooth flow. */
+
+.narmada-flow {
+  animation: narmada-flow 12s linear infinite;
+}
+
+.narmada-flow--lower {
+  animation-duration: 17s;
+  animation-delay: -5.5s;
+}
+
+@keyframes narmada-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -255;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .narmada-flow {
+    animation: none;
+  }
+}
+
+/* ── Neighboring-state decorative backdrop ─────────────────────────────────── */
+/*
+ * TUNING — edit these custom properties to adjust all neighbor states at once:
+ *   --neighbor-outline-opacity  : stroke visibility   (default: 0.55)
+ *   --neighbor-outline-width    : stroke thickness     (default: 1.5px)
+ *   --neighbor-label-opacity    : label text opacity   (default: 0.55)
+ *   --neighbor-label-size       : label font size      (default: 14px)
+ *
+ * Per-state classes for individual override:
+ *   .neighbor-state--rajasthan        .neighbor-label--rajasthan
+ *   .neighbor-state--gujarat          .neighbor-label--gujarat
+ *   .neighbor-state--uttar-pradesh    .neighbor-label--uttar-pradesh
+ *   .neighbor-state--chhattisgarh     .neighbor-label--chhattisgarh
+ *   .neighbor-state--maharashtra      .neighbor-label--maharashtra
+ */
+
+.mp-neighbor-backdrop {
+  --neighbor-outline-opacity: 0.75;
+  --neighbor-outline-width: 0.5;
+  --neighbor-label-opacity: 0.8;
+  --neighbor-label-size: 10;
+  pointer-events: none;
+}
+
+/* ── Outlines ── */
+.mp-neighbor-outline {
+  fill: transparent;
+  stroke: rgba(105, 82, 56, var(--neighbor-outline-opacity));
+  stroke-width: var(--neighbor-outline-width);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* ── Labels ── */
+.mp-neighbor-label {
+  font-family: Georgia, "Times New Roman", var(--font-display, serif);
+  font-size: var(--neighbor-label-size);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: rgba(90, 70, 48, var(--neighbor-label-opacity));
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Per-state classes (override individually as needed) ── */
+.neighbor-state--rajasthan,
+.neighbor-state--gujarat,
+.neighbor-state--uttar-pradesh,
+.neighbor-state--chhattisgarh,
+.neighbor-state--maharashtra {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+
+/* Rajasthan */
+.neighbor-state--rajasthan {
+  transform: translate(0px, 0px) scale(0);
+}
+
+
+/* Gujarat */
+.neighbor-state--gujarat {
+  transform: translate(0px, 0px) scale(0);
+}
+
+
+/* Uttar Pradesh */
+.neighbor-state--uttar-pradesh {
+  transform: translate(0px, 0px) scale(0);
+}
+
+
+/* Chhattisgarh */
+.neighbor-state--chhattisgarh {
+  transform: translate(0px, 0px) scale(0);
+}
+
+
+/* Maharashtra */
+.neighbor-state--maharashtra {
+  transform: translate(0px, 0px) scale(0);
+} 
+
+/* Independent outline controls — these affect only the border path group. */
+.neighbor-label--rajasthan { }
+.neighbor-outline--gujarat       { }
+.neighbor-outline--uttar-pradesh { }
+.neighbor-outline--chhattisgarh  { }
+.neighbor-outline--maharashtra   { }
+
+/* Independent label controls — these affect only the state name text. */
+.neighbor-label--rajasthan       { transform: translate(-20px, -10px); }
+.neighbor-label--gujarat         { transform: translate(-35px, -20px); }
+.neighbor-label--uttar-pradesh   { transform: translate(0px, 55px); }
+.neighbor-label--chhattisgarh    { transform: translate(0px, 0px); }
+.neighbor-label--maharashtra     { transform: translate(0px, -10px); }
+
+
+/* ── Markers ─────────────────────────────────────────────────────────────────── */
+
+.mp-marker {
+  outline: none;
+}
+
+.mp-marker:focus-visible circle:first-of-type {
+  outline: 2px solid #a07840;
+  outline-offset: 3px;
+}
+
+/* ── Circuit + Narmada legend ─────────────────────────────────────────────── */
+
+.mp-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 252, 244, 0.72);
+  border: 1px solid rgba(160, 140, 100, 0.14);
+  border-radius: 3px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.mp-map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: #5a5040;
+}
+
+
+/* ── Popup card ──────────────────────────────────────────────────────────────── */
+
+.map-popup {
+  position: absolute;
+  z-index: 50;
+  background: rgba(253, 250, 245, 0.97);
+  border-radius: 10px;
+  box-shadow:
+    0 3px 5px rgba(0, 0, 0, 0.03),
+    0 10px 24px rgba(44, 40, 24, 0.12),
+    0 0 0 1px rgba(61, 50, 35, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+  animation: popup-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-popup {
+    animation: none;
+  }
+}
+
+/* Image area */
+.map-popup-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: #e8dfc8;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.map-popup-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.35s ease;
+}
+
+.map-popup-img--active {
+  opacity: 1;
+}
+
+.map-popup-img--hidden {
+  opacity: 0;
+}
+
+.map-popup-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8dfc8, #d4c8aa);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: #a08858;
+  opacity: 0.6;
+}
+
+/* Image dots */
+.map-popup-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+}
+
+.map-popup-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.map-popup-dot--active {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Category badge */
+.map-popup-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 7px;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.92;
+}
+
+/* Close button */
+.map-popup-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #4a3c2c;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s;
+}
+
+.map-popup-close:hover {
+  background: #fff;
+}
+
+.map-popup-close svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Body content */
+.map-popup-body {
+  padding: 10px 13px 12px;
+}
+
+.map-popup-region {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a8060;
+  margin: 0 0 3px;
+}
+
+.map-popup-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1610;
+  margin: 0 0 5px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.map-popup-summary {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.65;
+  color: #5a5040;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.map-popup-cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #a07840;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 639px) {
+  .mp-map-inner {
+    width: calc(100% - 1rem);
+  }
+
+  .mp-map-header {
+    margin-bottom: 2rem;
+  }
+
+  .mp-map-heading {
+    font-size: var(--section-title-size);
+  }
+
+
+  .mp-map-legend {
+    gap: 0.38rem 0.85rem;
+    font-size: 9.5px;
+    padding: 0.55rem 0.8rem;
+  }
+
+  .map-popup {
+    width: 250px !important;
+  }
+
+  .map-popup-img-wrap {
+    height: 118px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .map-popup {
+    width: 240px !important;
+  }
+}
+
+/* ── Premium 3D Tilt Interaction ────────────────────────────────────────── */
+.premium-tilt {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+@media (hover: none),
+(pointer: coarse) {
+  .premium-tilt {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-tilt {
+    transform: none !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* ── Full-Screen Cinematic Limited Offer Hero ────────────────────────────── */
+@keyframes hero-kenburns {
+  0% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: scale(1.10) translate3d(-1.2%, -0.6%, 0);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-saffron {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(193, 122, 56, 0.55);
+  }
+
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 5px rgba(193, 122, 56, 0);
+  }
+}
+
+.hero-kenburns {
+  animation: hero-kenburns 18s ease-out forwards;
+}
+
+.hero-content-enter>* {
+  animation: hero-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-content-enter>*:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.hero-content-enter>*:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.hero-content-enter>*:nth-child(3) {
+  animation-delay: 0.20s;
+}
+
+.hero-content-enter>*:nth-child(4) {
+  animation-delay: 0.28s;
+}
+
+.hero-content-enter>*:nth-child(5) {
+  animation-delay: 0.36s;
+}
+
+.saffron-pulse {
+  animation: pulse-saffron 2.4s ease-in-out infinite;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero-content-enter>* {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .saffron-pulse {
+    animation: none !important;
+  }
+}

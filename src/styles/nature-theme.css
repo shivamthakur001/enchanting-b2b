@@ -1,0 +1,6110 @@
+/* ============================================================
+   NATURE PAGE - QUICK MANUAL CONTROL GUIDE
+
+   1) Full page green background:
+      --nature-leaf-bg-base
+
+   2) Center glow of the background:
+      --nature-leaf-bg-glow
+
+   3) Complete background strength:
+      --nature-leaf-bg-opacity
+      0 = hidden, 1 = fully visible
+
+   4) Leaf drawing visibility:
+      --nature-leaf-pattern-opacity
+
+   5) Grain / paper texture:
+      --nature-leaf-grain-opacity
+
+   6) Final "Build a Nature Journey" section:
+      --nature-final-cta-surface-opacity
+      --nature-final-cta-image-opacity
+      --nature-final-cta-overlay-opacity
+
+      All three = 0  -> same continuous leaf background is visible.
+      Increase image opacity if you want the old CTA photo back.
+
+   7) Destination card horizontal / vertical gap:
+      --nature-destination-column-gap
+      --nature-destination-row-gap
+
+   8) Destination card height / radius:
+      --nature-destination-card-min-height
+      --nature-destination-card-radius
+
+   9) Package card width:
+      --nature-package-card-min-width
+
+   All editable colors below use HEX so VS Code shows a color picker.
+   ============================================================ */
+
+/* =====================================================
+
+   NATURE BACKGROUND MASTER CONTROLS
+
+   Edit only these values later.
+
+   ===================================================== */
+
+:root {
+
+  
+  /* FULL NATURE PAGE BACKGROUND COLOR */
+
+  --nature-leaf-bg-base: #01411e;
+
+  /* BACKGROUND CENTER GLOW COLOR */
+
+  --nature-leaf-bg-glow: #0d3a20;
+
+  /* COMPLETE BACKGROUND OPACITY: 0 hidden / 1 full */
+
+  --nature-leaf-bg-opacity: 0.5;
+
+  /* LEAF PATTERN OPACITY */
+
+  --nature-leaf-pattern-opacity: 0.3;
+
+  /* GRAIN TEXTURE OPACITY */
+
+  --nature-leaf-grain-opacity: 0.08;
+
+  --nature-leaf-brightness: 1;
+
+  --nature-leaf-saturation: 1;
+
+  --nature-leaf-dark: #0c3d1f;
+
+  --nature-leaf-mid: #14572b;
+
+  --nature-leaf-bright: #3f9a3a;
+
+  --nature-fern-color: #4e9a3a;
+
+  --nature-leaf-sway-speed: 8s;
+
+  --nature-section-surface: transparent;
+
+  /* =====================================================
+     FINAL CTA TRANSPARENCY CONTROLS
+     0 = continuous leaf background visible
+     1 = original CTA layer fully visible
+     ===================================================== */
+
+  /* FINAL CTA SOLID BACKGROUND COLOR OPACITY */
+  --nature-final-cta-surface-opacity: 0;
+
+  /* FINAL CTA BACKGROUND PHOTO OPACITY */
+  --nature-final-cta-image-opacity: 0;
+
+  /* FINAL CTA DARK OVERLAY OPACITY */
+  --nature-final-cta-overlay-opacity: 0;
+
+
+}
+
+
+
+/* ======================================================
+
+   NATURE PAGE MASTER CONTROLS
+
+   Edit values here to visually tune the entire Nature page.
+
+   ====================================================== */
+
+
+
+
+
+
+
+:root {
+
+
+
+  /* 01 COLORS */
+
+
+
+  --nature-page-bg: var(--nature-leaf-bg-base); /* Linked to the single Nature background */
+
+
+
+  --nature-forest: #b5d4ca;
+
+
+
+  --nature-forest-deep: #c6cfcc;
+
+
+
+  --nature-forest-darkest: #0a6d17;
+
+
+
+  --nature-forest-canopy: #1f4739;
+
+
+
+  --nature-moss: #69765b;
+
+
+
+  --nature-moss-deep: #47533d;
+
+
+
+  --nature-sage: #a6ae93;
+
+
+
+  --nature-sage-light: #c8cfb9;
+
+
+
+  --nature-river: #627f86;
+
+
+
+  --nature-river-deep: #3b555c;
+
+
+
+  --nature-river-light: #8daab1;
+
+
+
+  --nature-mist: #dce1d8;
+
+
+
+  --nature-mist-dim: #dce1d81f;
+
+
+
+  --nature-mist-soft: #dce1d873;
+
+
+
+  --nature-stone: #b6ad9d;
+
+
+
+  --nature-stone-dark: #3a352c;
+
+
+
+  --nature-stone-light: #e4ded4;
+
+
+
+  --nature-ivory: #f3efe5;
+
+
+
+  --nature-ivory-warm: #faf7f0;
+
+
+
+  --nature-ink: #17201b;
+
+
+
+  --nature-ink-soft: #27342d;
+
+
+
+  --nature-copper: #b6753e;
+
+
+
+  --nature-copper-glow: #d68f54;
+
+
+
+  --nature-border-subtle: #dce1d824;
+
+
+
+  --nature-border-medium: #dce1d840;
+
+
+
+  --nature-card-bg: #0d241cd9;
+
+
+
+  --nature-deep: #0d241c;
+
+
+
+  --nature-forest-soft: #1f4739;
+
+
+
+  --nature-white: #fffdf8;
+
+
+
+  --nature-body: #4a514a;
+
+
+
+  --nature-muted: #777d76;
+
+
+
+  --nature-accent: #b6753e;
+
+
+
+  --nature-border: #17382d29;
+
+
+
+
+
+
+
+  /* Section backgrounds — recolor a complete section by changing one value. */
+
+
+
+  /* HERO BACKGROUND COLOR */
+
+  --nature-hero-bg: #071510;
+
+
+
+  /* INTRO SECTION BACKGROUND COLOR */
+
+  --nature-intro-bg: #071510;
+
+
+
+  /* FOUR NATURAL EXPRESSIONS BACKGROUND COLOR */
+
+  --nature-expressions-bg: #071510;
+
+
+
+  /* EXPLORE NATURE DESTINATIONS BACKGROUND COLOR */
+
+  --nature-destinations-bg: #071510;
+
+
+
+  /* NATURE PROGRAMMES BACKGROUND COLOR */
+
+  --nature-programmes-bg: #10291f;
+
+
+
+  /* FINAL CTA BACKGROUND COLOR */
+
+  --nature-final-cta-bg: #081813;
+
+
+
+
+
+
+
+  /* 02 GLOBAL SPACING */
+
+
+
+  /* SECTION TOP SPACING - smaller value = less gap */
+
+  --nature-section-space-top: clamp(3.75rem, 6vw, 5.5rem);
+
+
+
+  /* SECTION BOTTOM SPACING - smaller value = less gap */
+
+  --nature-section-space-bottom: clamp(3.75rem, 6vw, 5.5rem);
+
+
+
+  --nature-section-space-y: clamp(3.75rem, 6vw, 5.5rem);
+
+
+
+  --nature-intro-space-top: var(--nature-section-space-top);
+
+
+
+  --nature-intro-space-bottom: var(--nature-section-space-bottom);
+
+
+
+  --nature-expressions-space-top: var(--nature-section-space-top);
+
+
+
+  --nature-expressions-space-bottom: var(--nature-section-space-bottom);
+
+
+
+  --nature-destinations-space-top: var(--nature-section-space-top);
+
+
+
+  --nature-destinations-space-bottom: var(--nature-section-space-bottom);
+
+
+
+  --nature-programmes-space-top: var(--nature-section-space-top);
+
+
+
+  --nature-programmes-space-bottom: var(--nature-section-space-bottom);
+
+
+
+  --nature-cta-space-top: var(--nature-section-space-top);
+
+
+
+  --nature-cta-space-bottom: var(--nature-section-space-bottom);
+
+
+
+  --nature-content-max-width: 1440px;
+
+
+
+  --nature-content-padding-x: clamp(1.5rem, 4vw, 3rem);
+
+
+
+
+
+
+
+  /* 03 HERO — change image position Y to move the crop vertically. */
+
+
+
+  /* HERO HEIGHT - increase for a taller banner */
+
+  --nature-hero-height-desktop: 88vh; /* Increase = taller desktop hero */
+
+
+
+  --nature-hero-height-tablet: 72vh;
+
+
+
+  --nature-hero-height-mobile: 68vh;
+
+
+
+  --nature-hero-min-height: 72vh;
+
+
+
+  --nature-hero-image-scale: 1.1;
+
+
+
+  --nature-hero-image-position-x: 50%;
+
+
+
+  /* HERO PHOTO UP/DOWN - increase to show more lower area */
+
+  --nature-hero-image-position-y: 42%; /* Increase = show more lower image */
+
+
+
+  --nature-hero-overlay-opacity: 1;
+
+
+
+  --nature-hero-overlay-color: var(--nature-forest-darkest);
+
+
+
+  --nature-hero-overlay-background: linear-gradient(
+
+    180deg,
+
+    #071510ad 0%,
+
+    #0d241c66 30%,
+
+    #0d241cb8 70%,
+
+    #071510f5 100%
+
+  );
+
+
+
+  --nature-hero-content-max-width: var(--nature-content-max-width);
+
+
+
+  --nature-hero-content-left: var(--nature-content-padding-x);
+
+
+
+  --nature-hero-content-bottom: 4.5rem;
+
+
+
+  --nature-hero-radius: 0px;
+
+
+
+  --nature-hero-inline-gap: 0px;
+
+
+
+
+
+
+
+  /* 04 TYPOGRAPHY */
+
+
+
+  --nature-eyebrow-size: 0.75rem;
+
+
+
+  --nature-heading-size: clamp(2rem, 3.8vw, 3.4rem);
+
+
+
+  --nature-heading-line-height: 1.05;
+
+
+
+  --nature-subheading-size: clamp(1rem, 1.2vw, 1.15rem);
+
+
+
+  --nature-body-size: 0.95rem;
+
+
+
+  --nature-body-line-height: 1.7;
+
+
+
+  --nature-section-title-gap: 0.75rem;
+
+
+
+  --nature-heading-max-width: 820px;
+
+
+
+
+
+
+
+  /* 05 BUTTONS */
+
+
+
+  --nature-btn-height: 3rem;
+
+
+
+  --nature-btn-padding-x: 1.75rem;
+
+
+
+  --nature-btn-radius: 4px;
+
+
+
+  --nature-btn-font-size: 0.8rem;
+
+
+
+  --nature-btn-letter-spacing: 0.14em;
+
+
+
+  --nature-btn-primary-bg: #b6753e;
+
+
+
+  --nature-btn-primary-text: #ffffff;
+
+
+
+  --nature-btn-primary-hover: #d68f54;
+
+
+
+  --nature-btn-secondary-bg: #dce1d81a;
+
+
+
+  --nature-btn-secondary-text: #f3efe5;
+
+
+
+  --nature-btn-secondary-border: #dce1d840;
+
+
+
+  --nature-btn-secondary-hover: #dce1d82e;
+
+
+
+  --nature-btn-gap: 0.5rem;
+
+
+
+
+
+
+
+  /* 06 THEME SWITCHER */
+
+
+
+  --nature-theme-nav-gap: 0.5rem;
+
+
+
+  --nature-theme-nav-size: 0.85rem;
+
+
+
+  --nature-theme-nav-active-color: #f3efe5;
+
+
+
+  --nature-theme-nav-inactive-color: #b6ad9d;
+
+
+
+  --nature-theme-nav-line-width: 2px;
+
+
+
+  --nature-theme-nav-line-height: 1.4rem;
+
+
+
+
+
+
+
+  /* 07 EXPRESSIONS */
+
+
+
+  --nature-expression-image-width: 66%;
+
+
+
+  --nature-expression-panel-width: 34%;
+
+
+
+  /* FOUR NATURAL EXPRESSIONS HEIGHT */
+
+  --nature-expression-height: 620px;
+
+
+
+  --nature-expression-gap: 2rem;
+
+
+
+  --nature-expression-image-radius: 10px;
+
+
+
+  --nature-expression-item-padding: 1.35rem 1.5rem;
+
+
+
+  --nature-expression-item-gap: 0.85rem;
+
+
+
+  --nature-expression-active-bg: #1f4739d9;
+
+
+
+  --nature-expression-inactive-bg: #0d241c99;
+
+
+
+  --nature-expression-active-border: #b6753e;
+
+
+
+  --nature-expression-muted-opacity: 0.7;
+
+
+
+  --nature-expression-transition-speed: 300ms;
+
+
+
+
+
+
+
+  /* 08 DESTINATIONS */
+
+
+
+  --nature-destination-columns-desktop: 3;
+
+
+
+  --nature-destination-columns-tablet: 2;
+
+
+
+  --nature-destination-columns-mobile: 1;
+
+
+
+  /* DESTINATION CARD HORIZONTAL GAP */
+
+  --nature-destination-column-gap: 4rem;
+
+
+
+/* DESTINATION CARD VERTICAL GAP */
+
+  --nature-destination-row-gap: 1.5rem;
+
+
+
+  --nature-destination-card-radius: 20px;
+
+
+
+  --nature-destination-card-border: #dce1d824;
+
+
+
+  --nature-destination-card-shadow: var(--nature-shadow-card);
+
+
+
+  /* DESTINATION CARD HEIGHT */
+
+  --nature-destination-card-min-height: 360px; /* Increase = taller destination cards */
+
+
+
+  --nature-destination-card-aspect-ratio: 4 / 3;
+
+
+
+  --nature-destination-card-gap: 50px;
+
+
+
+  --nature-destination-card-image-scale: 1;
+
+
+
+  --nature-destination-card-hover-scale: 1.035;
+
+
+
+  --nature-destination-card-overlay-start: #07151026;
+
+
+
+  --nature-destination-card-overlay-mid: #07151073;
+
+
+
+  --nature-destination-card-overlay-end: #071510f0;
+
+
+
+  --nature-destination-card-hover-overlay-start: #07151014;
+
+
+
+  --nature-destination-card-hover-overlay-mid: #07151061;
+
+
+
+  --nature-destination-card-hover-overlay-end: #071510f5;
+
+
+
+  --nature-destination-card-title-size: clamp(1.6rem, 2.2vw, 2.2rem);
+
+
+
+  --nature-destination-card-text-size: 0.88rem;
+
+
+
+  --nature-destination-card-padding: 1.75rem;
+
+
+
+  --nature-destination-card-hover-y: -3px;
+
+
+
+  --nature-card-large-height: 320px;
+
+
+
+  --nature-card-medium-height: 320px;
+
+
+
+  --nature-card-small-height: 320px;
+
+
+
+  --nature-card-wide-height: 360px;
+
+
+
+  --nature-card-tall-height: 360px;
+
+
+
+
+
+
+
+  /* 09 PROGRAMMES — min width controls cards per row. */
+
+
+
+  /* PACKAGE CARD MIN WIDTH - smaller = more cards per row */
+
+  --nature-package-card-min-width: 200px; /* Smaller = more cards per row */
+
+
+
+  --nature-package-grid-gap: 1.5rem;
+
+
+
+  --nature-package-card-radius: 10px;
+
+
+
+  --nature-package-card-bg: #f3efe5;
+
+
+
+  --nature-package-card-border: #dce1d833;
+
+
+
+  --nature-package-card-shadow: var(--nature-shadow-card);
+
+
+
+  /* PACKAGE PHOTO HEIGHT */
+
+  --nature-package-image-height-desktop: 230px; /* Controls package photo height */
+
+
+
+  --nature-package-image-height-mobile: 220px;
+
+
+
+  --nature-package-image-aspect-ratio: 16 / 10;
+
+
+
+  --nature-package-image-position-x: 50%;
+
+
+
+  --nature-package-image-position-y: 50%;
+
+
+
+  --nature-package-card-padding: 1.75rem;
+
+
+
+  --nature-package-title-size: 1.65rem;
+
+
+
+  --nature-package-meta-size: 0.78rem;
+
+
+
+  --nature-package-price-size: 1.25rem;
+
+
+
+  --nature-package-hover-y: -5px;
+
+
+
+  --nature-package-hover-scale: 1.04;
+
+
+
+  --nature-package-btn-bg: #17382d;
+
+
+
+  --nature-package-btn-text: #f3efe5;
+
+
+
+  --nature-package-btn-hover: #1f4739;
+
+
+
+  --nature-package-btn-radius: 4px;
+
+
+
+
+
+
+
+  /* 10 CLOSING CTA */
+
+
+
+  /* FINAL CTA HEIGHT */
+
+  --nature-final-cta-height: 580px;
+
+
+
+  --nature-final-cta-min-height: 520px;
+
+
+
+  --nature-final-cta-image-position-x: 50%;
+
+
+
+  --nature-final-cta-image-position-y: 45%;
+
+
+
+  --nature-final-cta-overlay: #071510bf;
+
+
+
+  --nature-final-cta-overlay-background: radial-gradient(
+
+    circle at 50% 50%,
+
+    #0d241cd9 0%,
+
+    #071510f2 100%
+
+  );
+
+
+
+  --nature-final-cta-title-size: clamp(2.5rem, 5.5vw, 4.5rem);
+
+
+
+  --nature-final-cta-content-width: 820px;
+
+
+
+  --nature-final-cta-content-align: center;
+
+
+
+
+
+
+
+  /* 12 MOTION */
+
+
+
+  --nature-motion-fast: 220ms;
+
+
+
+  --nature-motion-medium: 300ms;
+
+
+
+  --nature-motion-slow: 900ms;
+
+
+
+  --nature-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+
+
+  --nature-hover-scale: 1.04;
+
+
+
+
+
+
+
+  /* 11 RADII / SHADOWS */
+
+
+
+  --nature-radius-xs: 4px;
+
+
+
+  --nature-radius-sm: 6px;
+
+
+
+  --nature-radius-md: 8px;
+
+
+
+  --nature-radius-lg: 18px;
+
+
+
+  --nature-shadow-soft: 0 10px 28px -14px rgba(7, 21, 16, 0.3);
+
+
+
+  --nature-border-soft: rgba(220, 225, 216, 0.14);
+
+
+
+
+
+
+
+  /* Typography */
+
+
+
+  --nature-font-display: "Cormorant Garamond", "Times New Roman", serif;
+
+
+
+  --nature-font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+
+
+  --nature-font-script: "Pinyon Script", "Snell Roundhand", cursive;
+
+
+
+
+
+
+
+  /* Atmospheric Transitions & Shadows */
+
+
+
+  --nature-shadow-card: 0 16px 36px -12px rgba(7, 21, 16, 0.55), 0 0 0 1px rgba(220, 225, 216, 0.08);
+
+
+
+  --nature-shadow-hover: 0 24px 48px -12px rgba(7, 21, 16, 0.75), 0 0 0 1px rgba(182, 117, 62, 0.35);
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   MASTER WRAPPER & SEAMLESS BACKGROUND FLOW
+
+
+
+   Forest -> Mist/Moss -> River/Stone -> Deep Forest
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-page-wrapper {
+
+  color: var(--nature-ivory);
+
+  background: var(--nature-leaf-bg-base);
+
+  font-family: var(--nature-font-sans);
+
+  overflow-x: hidden;
+
+  position: relative;
+
+  isolation: isolate;
+
+}
+
+
+
+.nature-leaf-background {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  opacity: var(--nature-leaf-bg-opacity);
+
+  filter: brightness(var(--nature-leaf-brightness)) saturate(var(--nature-leaf-saturation));
+
+  background: radial-gradient(
+
+    ellipse at 50% 40%,
+
+    var(--nature-leaf-bg-glow) 0%,
+
+    var(--nature-leaf-bg-base) 100%
+
+  );
+
+}
+
+
+
+.nature-leaf-background svg {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  opacity: var(--nature-leaf-pattern-opacity);
+
+}
+
+
+
+.nature-leaf-background::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: var(--nature-leaf-grain-opacity);
+
+  mix-blend-mode: overlay;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http\://www\.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='nature-grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nature-grain)'/%3E%3C/svg%3E");
+
+}
+
+
+
+.nature-page-wrapper > :not(.nature-leaf-background) {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+
+.nature-leaf-body {
+
+  fill: var(--nature-leaf-base);
+
+}
+
+
+
+.nature-leaf-light-vein {
+
+  stroke: var(--nature-leaf-light);
+
+  stroke-width: 6;
+
+  opacity: 0.45;
+
+}
+
+
+
+.nature-leaf-dark-vein {
+
+  stroke: var(--nature-leaf-dark);
+
+  stroke-width: 1.5;
+
+}
+
+
+
+.nature-leaf-outline {
+
+  fill: none;
+
+  stroke: var(--nature-leaf-dark);
+
+  stroke-width: 3;
+
+}
+
+
+
+.nature-leaf-midrib {
+
+  fill: none;
+
+  stroke: var(--nature-leaf-light);
+
+  stroke-width: 3.5;
+
+}
+
+
+
+.nature-fern-stem {
+
+  fill: none;
+
+  stroke: var(--nature-fern-fill);
+
+  stroke-width: 2;
+
+}
+
+
+
+.nature-fern-leaf {
+
+  fill: var(--nature-fern-fill);
+
+}
+
+
+
+.nature-leaf-sway {
+
+  transform-box: fill-box;
+
+  transform-origin: 50% 100%;
+
+  animation: natureLeafSway var(--nature-leaf-sway-speed) ease-in-out infinite alternate;
+
+}
+
+
+
+@keyframes natureLeafSway {
+
+  from {
+
+    transform: rotate(-2.2deg);
+
+  }
+
+  to {
+
+    transform: rotate(2.2deg);
+
+  }
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .nature-leaf-sway {
+
+    animation: none;
+
+  }
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   HERO SECTION & CINEMATIC MOTION
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-hero {
+
+
+
+  position: relative;
+
+
+
+  min-height: var(--nature-hero-min-height);
+
+
+
+  height: var(--nature-hero-height-desktop);
+
+
+
+  max-height: 920px;
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  justify-content: flex-end;
+
+
+
+  overflow: hidden;
+
+
+
+  background-color: var(--nature-hero-bg);
+
+
+
+  border-radius: var(--nature-hero-radius);
+
+
+
+  margin-inline: var(--nature-hero-inline-gap);
+
+
+
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+
+
+  .nature-hero {
+
+
+
+    min-height: var(--nature-hero-height-mobile);
+
+
+
+    height: var(--nature-hero-height-mobile);
+
+
+
+    padding-bottom: 3rem;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__image-layer {
+
+
+
+  position: absolute;
+
+
+
+  inset: -5% -5%;
+
+
+
+  width: 110%;
+
+
+
+  height: 110%;
+
+
+
+  object-fit: cover;
+
+
+
+  object-position: var(--nature-hero-image-position-x) var(--nature-hero-image-position-y);
+
+
+
+  animation: natureHeroZoom 22s ease-in-out infinite alternate;
+
+
+
+  will-change: transform;
+
+
+
+}
+
+
+
+
+
+
+
+@keyframes natureHeroZoom {
+
+
+
+  0% {
+
+
+
+    transform: scale(var(--nature-hero-image-scale)) translate3d(0, 0, 0);
+
+
+
+  }
+
+
+
+  100% {
+
+
+
+    transform: scale(calc(var(--nature-hero-image-scale) + 0.05)) translate3d(0, -1.2%, 0);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+/* Dark forest, mist & vignette overlay */
+
+
+
+.nature-hero__overlay {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: var(--nature-hero-overlay-background);
+
+
+
+  opacity: var(--nature-hero-overlay-opacity);
+
+
+
+  z-index: 2;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__mist-drift {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: radial-gradient(ellipse 90% 50% at 50% 100%, rgba(98, 127, 134, 0.22) 0%, transparent 75%);
+
+
+
+  animation: natureMistDrift 16s ease-in-out infinite alternate;
+
+
+
+  pointer-events: none;
+
+
+
+  z-index: 3;
+
+
+
+}
+
+
+
+
+
+
+
+@keyframes natureMistDrift {
+
+
+
+  0% {
+
+
+
+    opacity: 0.55;
+
+
+
+    transform: translateY(0);
+
+
+
+  }
+
+
+
+  100% {
+
+
+
+    opacity: 0.85;
+
+
+
+    transform: translateY(-12px);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__content {
+
+
+
+  position: relative;
+
+
+
+  z-index: 4;
+
+
+
+  width: 100%;
+
+
+
+  max-width: var(--nature-hero-content-max-width);
+
+
+
+  margin: 0 auto;
+
+
+
+  padding: 0 var(--nature-hero-content-left) var(--nature-hero-content-bottom);
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1024px) {
+
+
+
+  .nature-hero__content {
+
+
+
+    padding: 0 var(--nature-hero-content-left) var(--nature-hero-content-bottom);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__eyebrow {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.75rem;
+
+
+
+  font-size: 0.75rem;
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: 0.28em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+  margin-bottom: 1rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__eyebrow::before {
+
+
+
+  content: "";
+
+
+
+  display: inline-block;
+
+
+
+  width: 24px;
+
+
+
+  height: 1px;
+
+
+
+  background-color: var(--nature-copper);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__title {
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: clamp(2.75rem, 6.5vw, 5.75rem);
+
+
+
+  line-height: 0.95;
+
+
+
+  font-weight: 500;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  letter-spacing: -0.01em;
+
+
+
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__title-accent {
+
+
+
+  font-style: italic;
+
+
+
+  font-weight: 400;
+
+
+
+  color: var(--nature-mist);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__subtitle {
+
+
+
+  margin-top: 1.25rem;
+
+
+
+  max-width: 580px;
+
+
+
+  font-size: var(--nature-subheading-size);
+
+
+
+  line-height: var(--nature-body-line-height);
+
+
+
+  color: var(--nature-stone-light);
+
+
+
+  font-weight: 300;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__actions {
+
+
+
+  margin-top: 2rem;
+
+
+
+  display: flex;
+
+
+
+  flex-wrap: wrap;
+
+
+
+  align-items: center;
+
+
+
+  gap: 1rem;
+
+
+
+}
+
+
+
+
+
+
+
+/* Premium Buttons */
+
+
+
+.nature-btn,
+
+
+
+.nature-btn-primary,
+
+
+
+.nature-btn-secondary {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: var(--nature-btn-gap);
+
+
+
+  min-height: var(--nature-btn-height);
+
+
+
+  font-size: var(--nature-btn-font-size);
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: var(--nature-btn-letter-spacing);
+
+
+
+  text-transform: uppercase;
+
+
+
+  padding: 0 var(--nature-btn-padding-x);
+
+
+
+  border-radius: var(--nature-btn-radius);
+
+
+
+  transition: all var(--nature-motion-medium) var(--nature-motion-ease);
+
+
+
+  text-decoration: none;
+
+
+
+  cursor: pointer;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-btn--primary,
+
+
+
+.nature-btn-primary {
+
+
+
+  background-color: var(--nature-btn-primary-bg);
+
+
+
+  color: var(--nature-btn-primary-text);
+
+
+
+  box-shadow: 0 4px 18px rgba(182, 117, 62, 0.35);
+
+
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-btn--primary:hover,
+
+
+
+.nature-btn-primary:hover {
+
+
+
+  background-color: var(--nature-btn-primary-hover);
+
+
+
+  transform: translateY(-2px);
+
+
+
+  box-shadow: 0 8px 24px rgba(182, 117, 62, 0.45);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-btn--secondary,
+
+
+
+.nature-btn-secondary {
+
+
+
+  background-color: var(--nature-btn-secondary-bg);
+
+
+
+  color: var(--nature-btn-secondary-text);
+
+
+
+  text-transform: uppercase;
+
+
+
+  border: 1px solid var(--nature-btn-secondary-border);
+
+
+
+  backdrop-filter: blur(8px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-btn--secondary:hover,
+
+
+
+.nature-btn-secondary:hover {
+
+
+
+  background-color: var(--nature-btn-secondary-hover);
+
+
+
+  border-color: var(--nature-sage);
+
+
+
+  color: #fff;
+
+
+
+  transform: translateY(-2px);
+
+
+
+}
+
+
+
+
+
+
+
+/* Scroll to explore badge */
+
+
+
+.nature-hero__scroll {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.6rem;
+
+
+
+  font-size: 0.7rem;
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: 0.22em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+  margin-top: 1.5rem;
+
+
+
+  opacity: 0.85;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__scroll-line {
+
+
+
+  width: 32px;
+
+
+
+  height: 1px;
+
+
+
+  background-color: var(--nature-sage);
+
+
+
+  position: relative;
+
+
+
+  overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__scroll-line::after {
+
+
+
+  content: "";
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: var(--nature-copper);
+
+
+
+  animation: natureScrollLine 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+
+
+
+}
+
+
+
+
+
+
+
+@keyframes natureScrollLine {
+
+
+
+  0% {
+
+
+
+    transform: translateX(-100%);
+
+
+
+  }
+
+
+
+  100% {
+
+
+
+    transform: translateX(100%);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   THEME NAVIGATOR / SWITCHER
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-theme-nav {
+
+
+
+  position: relative;
+
+
+
+  z-index: 10;
+
+
+
+  border-top: 1px solid rgba(220, 225, 216, 0.12);
+
+
+
+  border-bottom: 1px solid rgba(220, 225, 216, 0.12);
+
+
+
+  background: linear-gradient(180deg, rgba(7, 21, 16, 0.98) 0%, rgba(13, 36, 28, 0.95) 100%);
+
+
+
+  backdrop-filter: blur(16px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__container {
+
+
+
+  max-width: 1440px;
+
+
+
+  margin: 0 auto;
+
+
+
+  padding: 0 1.5rem;
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  justify-content: space-between;
+
+
+
+  overflow-x: auto;
+
+
+
+  scrollbar-width: none;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__container::-webkit-scrollbar {
+
+
+
+  display: none;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__label {
+
+
+
+  font-size: 0.72rem;
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: 0.24em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-moss);
+
+
+
+  padding-right: 1.5rem;
+
+
+
+  white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__list {
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.5rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item {
+
+
+
+  position: relative;
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.5rem;
+
+
+
+  padding: 1.1rem 1.4rem;
+
+
+
+  font-size: 0.85rem;
+
+
+
+  font-weight: 500;
+
+
+
+  letter-spacing: 0.1em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-stone);
+
+
+
+  transition: all 220ms ease;
+
+
+
+  white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item:hover {
+
+
+
+  color: var(--nature-ivory);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item--active {
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  font-weight: 600;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item--active::after {
+
+
+
+  content: "";
+
+
+
+  position: absolute;
+
+
+
+  bottom: 0;
+
+
+
+  left: 1.4rem;
+
+
+
+  right: 1.4rem;
+
+
+
+  height: 2px;
+
+
+
+  background: var(--nature-copper);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__badge {
+
+
+
+  display: inline-block;
+
+
+
+  font-size: 0.65rem;
+
+
+
+  font-weight: 700;
+
+
+
+  letter-spacing: 0.15em;
+
+
+
+  color: var(--nature-copper);
+
+
+
+  background: rgba(182, 117, 62, 0.15);
+
+
+
+  border: 1px solid rgba(182, 117, 62, 0.35);
+
+
+
+  padding: 0.1rem 0.45rem;
+
+
+
+  border-radius: 999px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   SECTION 4: INTRO - THE LANDSCAPE STORY
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-intro-section {
+
+
+
+  position: relative;
+
+
+
+  padding: var(--nature-intro-space-top) 0 var(--nature-intro-space-bottom);
+
+
+
+  background: var(--nature-section-surface);
+
+
+
+  border-bottom: 1px solid rgba(220, 225, 216, 0.08);
+
+
+
+  overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+/* Topographic Contour SVG Pattern Overlay */
+
+
+
+.nature-topography-bg {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  pointer-events: none;
+
+
+
+  opacity: 0.06;
+
+
+
+  background-repeat: repeat;
+
+
+
+  background-size: 600px 600px;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-intro-grid {
+
+
+
+  display: grid;
+
+
+
+  grid-template-columns: 1fr;
+
+
+
+  gap: 2.5rem;
+
+
+
+  align-items: baseline;
+
+
+
+  position: relative;
+
+
+
+  z-index: 2;
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1024px) {
+
+
+
+  .nature-intro-grid {
+
+
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+
+
+    gap: 5rem;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+.nature-intro__statement {
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: var(--nature-heading-size);
+
+
+
+  line-height: var(--nature-heading-line-height);
+
+
+
+  font-weight: 500;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  letter-spacing: -0.01em;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-intro__narrative {
+
+
+
+  font-size: var(--nature-body-size);
+
+
+
+  line-height: var(--nature-body-line-height);
+
+
+
+  color: var(--nature-stone-light);
+
+
+
+  font-weight: 300;
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  gap: 1.25rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-intro__pill-row {
+
+
+
+  display: flex;
+
+
+
+  flex-wrap: wrap;
+
+
+
+  gap: 0.75rem;
+
+
+
+  margin-top: 1rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-intro__pill {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.45rem;
+
+
+
+  font-size: 0.75rem;
+
+
+
+  letter-spacing: 0.08em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+  background: rgba(166, 174, 147, 0.08);
+
+
+
+  border: 1px solid rgba(166, 174, 147, 0.18);
+
+
+
+  padding: 0.35rem 0.85rem;
+
+
+
+  border-radius: 999px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   SECTION 5: NATURE LANDSCAPE CHAPTERS
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-landscapes-section {
+
+
+
+  position: relative;
+
+
+
+  padding: var(--nature-expressions-space-top) 0 var(--nature-expressions-space-bottom);
+
+
+
+  background: var(--nature-section-surface);
+
+
+
+  border-bottom: 1px solid rgba(220, 225, 216, 0.08);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-landscapes-layout {
+
+
+
+  display: grid;
+
+
+
+  grid-template-columns: 1fr;
+
+
+
+  gap: 2rem;
+
+
+
+  margin-top: 3.5rem;
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1024px) {
+
+
+
+  .nature-landscapes-layout {
+
+
+
+    grid-template-columns: 1.45fr 0.95fr;
+
+
+
+    gap: 3rem;
+
+
+
+    align-items: stretch;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+/* Large Active Showcase Panel */
+
+
+
+.nature-showcase-panel {
+
+
+
+  position: relative;
+
+
+
+  min-height: 480px;
+
+
+
+  border-radius: var(--nature-expression-image-radius);
+
+
+
+  overflow: hidden;
+
+
+
+  box-shadow: var(--nature-shadow-card);
+
+
+
+  border: 1px solid var(--nature-border-subtle);
+
+
+
+  background-color: var(--nature-forest-darkest);
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1024px) {
+
+
+
+  .nature-landscapes-layout {
+
+
+
+    grid-template-columns: var(--nature-expression-image-width) var(--nature-expression-panel-width);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1024px) {
+
+
+
+  .nature-showcase-panel {
+
+
+
+    min-height: 580px;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__image {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  width: 100%;
+
+
+
+  height: 100%;
+
+
+
+  object-fit: cover;
+
+
+
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel:hover .nature-showcase-panel__image {
+
+
+
+  transform: scale(1.03);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__overlay {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: linear-gradient(
+
+
+
+    180deg,
+
+
+
+    rgba(7, 21, 16, 0.25) 0%,
+
+
+
+    rgba(7, 21, 16, 0.6) 55%,
+
+
+
+    rgba(7, 21, 16, 0.95) 100%
+
+
+
+  );
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__content {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  justify-content: flex-end;
+
+
+
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+
+
+
+  z-index: 2;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__tag {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.5rem;
+
+
+
+  font-size: 0.72rem;
+
+
+
+  font-weight: 700;
+
+
+
+  letter-spacing: 0.24em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-copper-glow);
+
+
+
+  margin-bottom: 0.75rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__title {
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+
+
+
+  line-height: 1.05;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__desc {
+
+
+
+  margin-top: 1rem;
+
+
+
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+
+
+
+  line-height: 1.7;
+
+
+
+  color: var(--nature-stone-light);
+
+
+
+  max-width: 620px;
+
+
+
+  font-weight: 300;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel__meta-row {
+
+
+
+  margin-top: 1.5rem;
+
+
+
+  display: flex;
+
+
+
+  flex-wrap: wrap;
+
+
+
+  gap: 1.5rem;
+
+
+
+  padding-top: 1.25rem;
+
+
+
+  border-top: 1px solid rgba(220, 225, 216, 0.15);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-meta-item {
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-meta-label {
+
+
+
+  font-size: 0.68rem;
+
+
+
+  letter-spacing: 0.18em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-meta-val {
+
+
+
+  font-size: 0.9rem;
+
+
+
+  font-weight: 500;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  margin-top: 0.2rem;
+
+
+
+}
+
+
+
+
+
+
+
+/* Chapter Selectors (Accordion / List) */
+
+
+
+.nature-chapter-nav {
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  gap: var(--nature-expression-item-gap);
+
+
+
+  justify-content: center;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn {
+
+
+
+  text-align: left;
+
+
+
+  background: var(--nature-expression-inactive-bg);
+
+
+
+  border: 1px solid var(--nature-border-subtle);
+
+
+
+  border-radius: var(--nature-radius-sm);
+
+
+
+  padding: var(--nature-expression-item-padding);
+
+
+
+  transition: all var(--nature-expression-transition-speed) var(--nature-motion-ease);
+
+
+
+  cursor: pointer;
+
+
+
+  position: relative;
+
+
+
+  overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn:hover {
+
+
+
+  background: rgba(23, 56, 45, 0.7);
+
+
+
+  border-color: var(--nature-border-medium);
+
+
+
+  transform: translateX(4px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn--active {
+
+
+
+  background: var(--nature-expression-active-bg);
+
+
+
+  border-color: var(--nature-expression-active-border);
+
+
+
+  box-shadow: 0 10px 24px -8px rgba(7, 21, 16, 0.6);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn--active::before {
+
+
+
+  content: "";
+
+
+
+  position: absolute;
+
+
+
+  left: 0;
+
+
+
+  top: 0;
+
+
+
+  bottom: 0;
+
+
+
+  width: 3px;
+
+
+
+  background: var(--nature-copper);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-header {
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  justify-content: space-between;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-num {
+
+
+
+  font-size: 0.75rem;
+
+
+
+  font-weight: 700;
+
+
+
+  letter-spacing: 0.18em;
+
+
+
+  color: var(--nature-sage);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn--active .nature-chapter-num {
+
+
+
+  color: var(--nature-copper);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-name {
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: 1.45rem;
+
+
+
+  line-height: 1.15;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  font-weight: 500;
+
+
+
+  margin-top: 0.35rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-blurb {
+
+
+
+  margin-top: 0.5rem;
+
+
+
+  font-size: 0.84rem;
+
+
+
+  line-height: 1.5;
+
+
+
+  color: var(--nature-stone);
+
+
+
+  font-weight: 300;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   SECTION 6: NATURE DESTINATIONS SHOWCASE
+
+
+
+   Asymmetric Editorial Mosaic Layout
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-destinations-section {
+
+
+
+  position: relative;
+
+
+
+  padding: var(--nature-destinations-space-top) 0 var(--nature-destinations-space-bottom);
+
+
+
+  background: var(--nature-section-surface);
+
+
+
+  border-bottom: 1px solid rgba(220, 225, 216, 0.08);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destinations-mosaic {
+
+  margin-top: 3.5rem;
+
+  display: grid;
+
+  grid-template-columns: repeat(
+
+    var(--nature-destination-columns-mobile),
+
+    minmax(0, 1fr)
+
+  );
+
+
+
+  column-gap: var(--nature-destination-column-gap);
+
+  row-gap: var(--nature-destination-row-gap);
+
+}
+
+
+
+
+
+@media (min-width: 768px) {
+
+
+
+  .nature-destinations-mosaic {
+
+
+
+    grid-template-columns: repeat(var(--nature-destination-columns-tablet), minmax(0, 1fr));
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1120px) {
+
+
+
+  .nature-destinations-mosaic {
+
+
+
+    grid-template-columns: repeat(var(--nature-destination-columns-desktop), minmax(0, 1fr));
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+/* DESTINATION CARD SIZE / GRID
+
+   All Nature destination cards use the same size.
+
+   Pachmarhi is no longer oversized. */
+
+
+
+.nature-dest-card--featured,
+
+.nature-dest-card--secondary,
+
+.nature-dest-card--standard {
+
+  grid-column: span 1;
+
+  min-height: var(--nature-destination-card-min-height);
+
+}
+
+
+
+@media (min-width: 1120px) {
+
+  .nature-dest-card--featured,
+
+  .nature-dest-card--secondary,
+
+  .nature-dest-card--standard {
+
+    grid-column: span 1;
+
+    min-height: var(--nature-destination-card-min-height);
+
+  }
+
+}
+
+
+
+/* Card Styling */
+
+
+
+.nature-dest-card {
+
+
+
+  position: relative;
+
+
+
+  border-radius: var(--nature-destination-card-radius);
+
+
+
+  overflow: hidden;
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  justify-content: flex-end;
+
+
+
+  border: 1px solid var(--nature-destination-card-border);
+
+
+
+  background: var(--nature-forest-darkest);
+
+
+
+  box-shadow: var(--nature-destination-card-shadow);
+
+
+
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+
+  text-decoration: none;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover {
+
+
+
+  transform: translateY(var(--nature-destination-card-hover-y));
+
+
+
+  border-color: rgba(182, 117, 62, 0.45);
+
+
+
+  box-shadow: var(--nature-shadow-hover);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__media {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  width: 100%;
+
+
+
+  height: 100%;
+
+
+
+  object-fit: cover;
+
+
+
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover .nature-dest-card__media {
+
+
+
+  transform: scale(var(--nature-destination-card-hover-scale));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__overlay {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: linear-gradient(
+
+
+
+    180deg,
+
+
+
+    var(--nature-destination-card-overlay-start) 0%,
+
+
+
+    var(--nature-destination-card-overlay-mid) 45%,
+
+
+
+    var(--nature-destination-card-overlay-end) 100%
+
+
+
+  );
+
+
+
+  z-index: 1;
+
+
+
+  transition: opacity 300ms ease;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover .nature-dest-card__overlay {
+
+
+
+  background: linear-gradient(
+
+
+
+    180deg,
+
+
+
+    var(--nature-destination-card-hover-overlay-start) 0%,
+
+
+
+    var(--nature-destination-card-hover-overlay-mid) 45%,
+
+
+
+    var(--nature-destination-card-hover-overlay-end) 100%
+
+
+
+  );
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__content {
+
+
+
+  position: relative;
+
+
+
+  z-index: 2;
+
+
+
+  padding: var(--nature-destination-card-padding);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__region {
+
+
+
+  font-size: 0.72rem;
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: 0.2em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__title-row {
+
+
+
+  display: flex;
+
+
+
+  align-items: baseline;
+
+
+
+  justify-content: space-between;
+
+
+
+  gap: 1rem;
+
+
+
+  margin-top: 0.45rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__title {
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: var(--nature-destination-card-title-size);
+
+
+
+  line-height: 1.1;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__arrow {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  justify-content: center;
+
+
+
+  width: 32px;
+
+
+
+  height: 32px;
+
+
+
+  border-radius: 50%;
+
+
+
+  background: rgba(220, 225, 216, 0.12);
+
+
+
+  border: 1px solid var(--nature-border-subtle);
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  transition: all 260ms ease;
+
+
+
+  flex-shrink: 0;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover .nature-dest-card__arrow {
+
+
+
+  background: var(--nature-copper);
+
+
+
+  border-color: var(--nature-copper);
+
+
+
+  transform: translateX(4px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__summary {
+
+
+
+  margin-top: 0.65rem;
+
+
+
+  font-size: var(--nature-destination-card-text-size);
+
+
+
+  line-height: 1.6;
+
+
+
+  color: var(--nature-stone-light);
+
+
+
+  font-weight: 300;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   SECTION 8: NATURE PROGRAMMES (FOR THE TRADE)
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-programmes-section {
+
+
+
+  position: relative;
+
+
+
+  padding: var(--nature-programmes-space-top) 0 var(--nature-programmes-space-bottom);
+
+
+
+  background: var(--nature-section-surface);
+
+
+
+  border-bottom: 1px solid rgba(220, 225, 216, 0.08);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-programmes-grid {
+
+
+
+  margin-top: 3.5rem;
+
+
+
+  display: grid;
+
+
+
+  grid-template-columns: repeat(auto-fit, minmax(var(--nature-package-card-min-width), 1fr));
+
+
+
+  gap: var(--nature-package-grid-gap);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card {
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  background: var(--nature-ivory);
+
+
+
+  color: var(--nature-ink);
+
+
+
+  border-radius: var(--nature-package-card-radius);
+
+
+
+  overflow: hidden;
+
+
+
+  box-shadow: var(--nature-package-card-shadow);
+
+
+
+  border: 1px solid var(--nature-package-card-border);
+
+
+
+  transition: all 360ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card:hover {
+
+
+
+  transform: translateY(var(--nature-package-hover-y));
+
+
+
+  box-shadow: 0 24px 48px -12px rgba(7, 21, 16, 0.8), 0 0 0 1px var(--nature-copper);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__media-wrap {
+
+
+
+  position: relative;
+
+
+
+  aspect-ratio: var(--nature-package-image-aspect-ratio);
+
+
+
+  height: var(--nature-package-image-height-desktop);
+
+
+
+  overflow: hidden;
+
+
+
+  background: #17201b;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__img {
+
+
+
+  width: 100%;
+
+
+
+  height: 100%;
+
+
+
+  object-fit: cover;
+
+
+
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card:hover .nature-pkg-card__img {
+
+
+
+  transform: scale(var(--nature-package-hover-scale));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__badge {
+
+
+
+  position: absolute;
+
+
+
+  top: 1rem;
+
+
+
+  left: 1rem;
+
+
+
+  background: var(--nature-copper);
+
+
+
+  color: #fff;
+
+
+
+  font-size: 0.68rem;
+
+
+
+  font-weight: 700;
+
+
+
+  letter-spacing: 0.14em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  padding: 0.25rem 0.65rem;
+
+
+
+  border-radius: 4px;
+
+
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__body {
+
+
+
+  display: flex;
+
+
+
+  flex-direction: column;
+
+
+
+  flex: 1;
+
+
+
+  padding: var(--nature-package-card-padding);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__meta {
+
+
+
+  display: flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.5rem;
+
+
+
+  font-size: 0.78rem;
+
+
+
+  font-weight: 600;
+
+
+
+  color: var(--nature-forest);
+
+
+
+  text-transform: uppercase;
+
+
+
+  letter-spacing: 0.08em;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__title {
+
+
+
+  margin-top: 0.65rem;
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: var(--nature-package-title-size);
+
+
+
+  line-height: 1.2;
+
+
+
+  color: var(--nature-ink);
+
+
+
+  font-weight: 600;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__summary {
+
+
+
+  margin-top: 0.65rem;
+
+
+
+  font-size: 0.88rem;
+
+
+
+  line-height: 1.65;
+
+
+
+  color: #4f5b53;
+
+
+
+  flex: 1;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__footer {
+
+
+
+  margin-top: 1.75rem;
+
+
+
+  padding-top: 1.25rem;
+
+
+
+  border-top: 1px solid rgba(23, 56, 45, 0.12);
+
+
+
+  display: flex;
+
+
+
+  align-items: flex-end;
+
+
+
+  justify-content: space-between;
+
+
+
+  gap: 1rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__price-label {
+
+
+
+  font-size: 0.72rem;
+
+
+
+  color: #6c7870;
+
+
+
+  text-transform: uppercase;
+
+
+
+  letter-spacing: 0.08em;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__price-amount {
+
+
+
+  font-size: var(--nature-package-price-size);
+
+
+
+  font-weight: 700;
+
+
+
+  color: var(--nature-ink);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__enquire-btn {
+
+
+
+  display: inline-flex;
+
+
+
+  align-items: center;
+
+
+
+  gap: 0.4rem;
+
+
+
+  background-color: var(--nature-package-btn-bg);
+
+
+
+  color: var(--nature-package-btn-text);
+
+
+
+  font-size: 0.76rem;
+
+
+
+  font-weight: 600;
+
+
+
+  letter-spacing: 0.12em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  padding: 0.65rem 1.15rem;
+
+
+
+  border-radius: var(--nature-package-btn-radius);
+
+
+
+  transition: all 200ms ease;
+
+
+
+  text-decoration: none;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__enquire-btn:hover {
+
+
+
+  background-color: var(--nature-package-btn-hover);
+
+
+
+  color: #fff;
+
+
+
+  transform: translateY(-1px);
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   SECTION 9: FINAL NATURE CLOSING CTA
+
+
+
+   ========================================================================= */
+
+
+
+
+
+
+
+.nature-closing-cta {
+
+
+
+  position: relative;
+
+
+
+  min-height: var(--nature-final-cta-min-height);
+
+
+
+  height: var(--nature-final-cta-height);
+
+
+
+  padding: var(--nature-cta-space-top) 0 var(--nature-cta-space-bottom);
+
+
+
+  overflow: hidden;
+
+
+
+  background: transparent;
+
+
+
+  border-top: 1px solid rgba(220, 225, 216, 0.08);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* FINAL CTA OPTIONAL SOLID COLOR LAYER
+   Keep opacity at 0 for the continuous leaf background. */
+.nature-closing-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--nature-final-cta-bg);
+  opacity: var(--nature-final-cta-surface-opacity, 0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nature-closing-cta__bg {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  width: 100%;
+
+
+
+  height: 100%;
+
+
+
+  object-fit: cover;
+
+
+
+  object-position: var(--nature-final-cta-image-position-x) var(--nature-final-cta-image-position-y);
+
+
+
+  filter: brightness(0.65) saturate(1.1);
+
+
+
+  opacity: var(--nature-final-cta-image-opacity, 0);
+  z-index: 0;
+}
+
+
+
+
+
+
+
+.nature-closing-cta__overlay {
+
+
+
+  position: absolute;
+
+
+
+  inset: 0;
+
+
+
+  background: var(--nature-final-cta-overlay-background);
+
+
+
+  opacity: var(--nature-final-cta-overlay-opacity, 0);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+
+
+
+
+
+.nature-closing-cta__content {
+
+
+
+  position: relative;
+
+
+
+  z-index: 2;
+
+
+
+  max-width: var(--nature-final-cta-content-width);
+
+
+
+  margin: 0 auto;
+
+
+
+  text-align: center;
+
+
+
+  padding: 0 1.5rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__eyebrow {
+
+
+
+  font-size: 0.75rem;
+
+
+
+  font-weight: 700;
+
+
+
+  letter-spacing: 0.28em;
+
+
+
+  text-transform: uppercase;
+
+
+
+  color: var(--nature-sage);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__title {
+
+
+
+  margin-top: 1rem;
+
+
+
+  font-family: var(--nature-font-display);
+
+
+
+  font-size: var(--nature-final-cta-title-size);
+
+
+
+  line-height: 1.05;
+
+
+
+  color: var(--nature-ivory);
+
+
+
+  font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__title-script {
+
+
+
+  font-family: var(--nature-font-script);
+
+
+
+  font-size: clamp(3rem, 6vw, 5rem);
+
+
+
+  color: var(--nature-copper-glow);
+
+
+
+  display: block;
+
+
+
+  font-weight: 400;
+
+
+
+  margin-top: -0.25rem;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__copy {
+
+
+
+  margin: 1.5rem auto 0;
+
+
+
+  max-width: 620px;
+
+
+
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+
+
+
+  line-height: 1.7;
+
+
+
+  color: var(--nature-stone-light);
+
+
+
+  font-weight: 300;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__actions {
+
+
+
+  margin-top: 2.5rem;
+
+
+
+  display: flex;
+
+
+
+  flex-wrap: wrap;
+
+
+
+  align-items: center;
+
+
+
+  justify-content: center;
+
+
+
+  gap: 1.25rem;
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   REDUCED MOTION OVERRIDES
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+
+
+  .nature-hero__image-layer,
+
+
+
+  .nature-hero__mist-drift,
+
+
+
+  .nature-showcase-panel__image,
+
+
+
+  .nature-dest-card__media,
+
+
+
+  .nature-pkg-card__img,
+
+
+
+  .nature-hero__scroll-line::after {
+
+
+
+    animation: none !important;
+
+
+
+    transition: none !important;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+
+
+
+   CENTRALIZED CONTROL OVERRIDES
+
+
+
+   Semantic controls below intentionally come after legacy page rules so the
+
+
+
+   values above remain the single editing surface.
+
+
+
+   ========================================================================== */
+
+
+
+
+
+
+
+.nature-page-wrapper {
+
+
+
+  background: var(--nature-leaf-bg-base);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-page-wrapper > section > .mx-auto {
+
+
+
+  max-width: var(--nature-content-max-width);
+
+
+
+  padding-left: var(--nature-content-padding-x);
+
+
+
+  padding-right: var(--nature-content-padding-x);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-hero__eyebrow,
+
+
+
+.nature-closing-cta__eyebrow {
+
+
+
+  font-size: var(--nature-eyebrow-size);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__container {
+
+
+
+  max-width: var(--nature-content-max-width);
+
+
+
+  padding-left: var(--nature-content-padding-x);
+
+
+
+  padding-right: var(--nature-content-padding-x);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__list {
+
+
+
+  gap: var(--nature-theme-nav-gap);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item {
+
+
+
+  font-size: var(--nature-theme-nav-size);
+
+
+
+  color: var(--nature-theme-nav-inactive-color);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item--active {
+
+
+
+  color: var(--nature-theme-nav-active-color);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-theme-nav__item--active::after {
+
+
+
+  height: var(--nature-theme-nav-line-width);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-showcase-panel {
+
+
+
+  min-height: var(--nature-expression-height);
+
+
+
+  border-radius: var(--nature-expression-image-radius);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-nav {
+
+
+
+  gap: var(--nature-expression-item-gap);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn {
+
+
+
+  padding: var(--nature-expression-item-padding);
+
+
+
+  background: var(--nature-expression-inactive-bg);
+
+
+
+  transition-duration: var(--nature-expression-transition-speed);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-chapter-btn--active {
+
+
+
+  background: var(--nature-expression-active-bg);
+
+
+
+  border-color: var(--nature-expression-active-border);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card {
+
+
+
+  min-height: var(--nature-destination-card-min-height);
+
+
+
+  border-radius: var(--nature-destination-card-radius);
+
+
+
+  border-color: var(--nature-destination-card-border);
+
+
+
+  box-shadow: var(--nature-destination-card-shadow);
+
+
+
+  transition-duration: var(--nature-motion-slow);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__media {
+
+
+
+  transform: scale(var(--nature-destination-card-image-scale));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover {
+
+
+
+  transform: translateY(var(--nature-destination-card-hover-y));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card:hover .nature-dest-card__media {
+
+
+
+  transform: scale(var(--nature-destination-card-hover-scale));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__content {
+
+
+
+  padding: var(--nature-destination-card-padding);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-dest-card__title {
+
+
+
+  font-size: var(--nature-destination-card-title-size);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card,
+
+
+
+.nature-dest-card {
+
+
+
+  aspect-ratio: var(--nature-destination-card-aspect-ratio);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card--large,
+
+
+
+.nature-dest-card--featured {
+
+
+
+  min-height: var(--nature-card-large-height, 480px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card--medium,
+
+
+
+.nature-dest-card--secondary {
+
+
+
+  min-height: var(--nature-card-medium-height, 480px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card--small,
+
+
+
+.nature-dest-card--standard {
+
+
+
+  min-height: var(--nature-card-small-height, var(--nature-destination-card-min-height));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card--wide {
+
+
+
+  min-height: var(--nature-card-wide-height, 380px);
+
+
+
+  aspect-ratio: auto;
+
+
+
+}
+
+
+
+
+
+
+
+.nature-destination-card--tall {
+
+
+
+  min-height: var(--nature-card-tall-height, 480px);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card {
+
+
+
+  border-radius: var(--nature-package-card-radius);
+
+
+
+  background: var(--nature-package-card-bg);
+
+
+
+  border-color: var(--nature-package-card-border);
+
+
+
+  box-shadow: var(--nature-package-card-shadow);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card:hover {
+
+
+
+  transform: translateY(var(--nature-package-hover-y));
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__media-wrap {
+
+
+
+  aspect-ratio: var(--nature-package-image-aspect-ratio);
+
+
+
+  height: var(--nature-package-image-height-desktop);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__img {
+
+
+
+  object-position: var(--nature-package-image-position-x) var(--nature-package-image-position-y);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__body {
+
+
+
+  padding: var(--nature-package-card-padding);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__title {
+
+
+
+  font-size: var(--nature-package-title-size);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-pkg-card__price-amount {
+
+
+
+  font-size: var(--nature-package-price-size);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__bg {
+
+
+
+  object-position: var(--nature-final-cta-image-position-x) var(--nature-final-cta-image-position-y);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__content {
+
+
+
+  max-width: var(--nature-final-cta-content-width);
+
+
+
+  text-align: var(--nature-final-cta-content-align);
+
+
+
+}
+
+
+
+
+
+
+
+.nature-closing-cta__title {
+
+
+
+  font-size: var(--nature-final-cta-title-size);
+
+
+
+}
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+
+
+
+  :root {
+
+
+
+    --nature-content-padding-x: clamp(1.25rem, 4vw, 2.5rem);
+
+
+
+    --nature-hero-height-desktop: var(--nature-hero-height-tablet);
+
+
+
+    --nature-section-space-y: clamp(4rem, 7vw, 6rem);
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+@media (max-width: 767px) {
+
+
+
+  :root {
+
+
+
+    --nature-content-padding-x: 1rem;
+
+
+
+    --nature-hero-height-desktop: var(--nature-hero-height-mobile);
+
+
+
+    --nature-destination-card-radius: 6px;
+
+
+
+    --nature-package-card-min-width: 100%;
+
+
+
+  }
+
+
+
+
+
+
+
+  .nature-pkg-card__media-wrap {
+
+
+
+    height: var(--nature-package-image-height-mobile);
+
+
+
+  }
+
+
+
+
+}

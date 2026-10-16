@@ -1,0 +1,300 @@
+.td-section {
+  --td-forest: var(--color-forest, #2a4536);
+  --td-forest-deep: var(--color-forest-deep, #1c3228);
+  --td-copper: #c17a38;
+  --td-cream: var(--color-ivory, #f6f1e8);
+  --td-ink: var(--color-ink, #171411);
+  --td-muted: var(--color-ink-muted, #5a544c);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--home-section-padding-y) 0;
+  background: var(--home-page-bg);
+  color: var(--td-ink);
+}
+
+.td-section,
+.td-section * {
+  box-sizing: border-box;
+}
+
+
+.td-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1360px, calc(100% - clamp(2rem, 6vw, 5rem)));
+  margin-inline: auto;
+}
+
+/* Filters toolbar */
+.td-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1.05rem 0 1rem;
+  border-bottom: 1px solid rgb(42 69 54 / 0.11);
+}
+
+.td-filters {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.48rem;
+}
+
+.td-filter {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 0.95rem;
+  border: 1px solid rgb(42 69 54 / 0.21);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--td-forest-deep);
+  cursor: pointer;
+  font: 600 0.75rem/1.2 var(--font-sans);
+  letter-spacing: 0.115em;
+  text-transform: uppercase;
+  transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.td-filter:hover {
+  border-color: var(--td-forest);
+  background: rgb(42 69 54 / 0.06);
+  transform: translateY(-1px);
+}
+
+.td-filter[data-active="true"] {
+  border-color: var(--td-forest-deep);
+  background: var(--td-forest-deep);
+  color: var(--td-cream);
+}
+
+.td-result-count {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--td-muted);
+  font: 500 0.75rem/1.4 var(--font-sans);
+  letter-spacing: 0.15em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* Cards Presentation Container */
+.td-cards-container {
+  margin-top: clamp(1.4rem, 2.4vw, 2rem);
+  width: 100%;
+}
+
+/* Desktop 5-card flex row */
+.td-desktop-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  height: clamp(560px, 42vw, 620px);
+  min-height: 560px;
+}
+
+.td-desktop-card-slot {
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Mobile & Tablet Snap Rail */
+.td-mobile-rail {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.td-mobile-rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom Navigation Bar */
+.td-bottom-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.2rem, 2vw, 1.8rem);
+  padding-top: 1.15rem;
+  border-top: 1px solid rgb(42 69 54 / 0.12);
+}
+
+.td-editorial-note {
+  min-width: 0;
+  margin: 0;
+  color: var(--td-muted);
+  font: 500 0.75rem/1.55 var(--font-sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.td-pagination {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+}
+
+.td-page-button {
+  display: inline-flex;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgb(42 69 54 / 0.25);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--td-forest-deep);
+  cursor: pointer;
+  transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.td-page-button svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.td-page-button--previous svg {
+  transform: rotate(180deg);
+}
+
+.td-page-button:hover:not(:disabled) {
+  border-color: var(--td-forest);
+  background: var(--td-forest);
+  color: var(--td-cream);
+}
+
+.td-page-button:disabled {
+  border-color: rgb(42 69 54 / 0.12);
+  color: rgb(90 84 76 / 0.38);
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.td-page-position {
+  min-width: 4.5rem;
+  color: var(--td-muted);
+  font: 600 0.72rem/1.35 var(--font-sans);
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.td-all-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-self: end;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--td-copper);
+  color: var(--td-forest-deep);
+  font: 600 0.68rem/1.35 var(--font-sans);
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.td-all-link::after {
+  margin-left: 0.6rem;
+  color: var(--td-copper);
+  content: "↗";
+  font-size: 1rem;
+}
+
+.td-empty {
+  display: grid;
+  min-height: 18rem;
+  place-items: center;
+  padding: 2.5rem;
+  border: 1px dashed rgb(42 69 54 / 0.25);
+  border-radius: 1.125rem;
+  color: var(--td-muted);
+  font: italic clamp(1.45rem, 1.7vw, 2rem)/1.25 var(--font-display);
+  text-align: center;
+}
+
+.td-filter:focus-visible,
+.td-page-button:focus-visible,
+.td-all-link:focus-visible {
+  outline: 2px solid var(--td-copper);
+  outline-offset: 3px;
+}
+
+/* Tablet & Mobile responsive layout */
+@media (max-width: 1023px) {
+  .td-bottom-bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .td-editorial-note {
+    grid-column: 1 / -1;
+  }
+  .td-pagination {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 559px) {
+  .td-section {
+    padding: var(--home-section-padding-y) 0;
+  }
+  .td-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.78rem;
+    padding: 0.9rem 0 0.85rem;
+  }
+  .td-filters {
+    width: 100%;
+  }
+  .td-filter {
+    padding-inline: 0.78rem;
+  }
+  .td-result-count {
+    text-align: left;
+  }
+  .td-bottom-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1rem;
+    margin-top: 1rem;
+  }
+  .td-editorial-note {
+    width: 100%;
+  }
+  .td-pagination {
+    margin-right: auto;
+  }
+  .td-all-link {
+    justify-self: auto;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .td-desktop-card-slot {
+    transition: none !important;
+  }
+  .td-card {
+    transition: none !important;
+    transform: none !important;
+  }
+  .td-card * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .td-filter:hover {
+    transform: none !important;
+  }
+}

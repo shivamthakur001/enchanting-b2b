@@ -1,0 +1,528 @@
+/* ==========================================================================
+   TOP EXPERIENCES — Editorial Experience Mosaic
+   All selectors namespaced with `tx-` — nothing leaks into the host site.
+
+   Heading CSS (tx-heading*, tx-eyebrow, tx-subtitle, tx-sr-only) has been
+   removed; the heading is now rendered by the shared EditorialSectionHeading
+   component which carries its own scoped styles.
+   ========================================================================== */
+
+.tx-section {
+  /* Design tokens — use master project vars, fall back gracefully */
+  --tx-font-display: var(--font-display, "Cormorant Garamond", "Times New Roman", Georgia, serif);
+  --tx-font-sans:    var(--font-sans, "Outfit", ui-sans-serif, system-ui, sans-serif);
+
+  --tx-ink:        var(--color-forest-deep, #1c3228);
+  --tx-ink-soft:   var(--color-ink-muted, #5a544c);
+  --tx-copper:     var(--color-saffron, #c17a38);
+  --tx-line:       rgb(42 69 54 / 0.14);
+
+  --tx-ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --tx-ease-ink: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --tx-gap: 20px;
+  --tx-row: clamp(340px, 31vw, 410px);
+
+  position: relative;
+  /* Background matches the warm-ivory family used by Top Destinations and Top Activities */
+  background: var(--home-page-bg);
+  color: var(--tx-ink);
+  font-family: var(--tx-font-sans);
+  padding: var(--home-section-padding-y) 0;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.tx-section *,
+.tx-section *::before,
+.tx-section *::after {
+  box-sizing: border-box;
+}
+
+.tx-shell {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+/* ==========================================================================
+   MOSAIC — desktop layout
+   Hero spans full left column × 2 rows.
+   Wide fills upper-right × 2 cols.
+   Compact 03/04 fill lower-right cells.
+   ========================================================================== */
+
+.tx-mosaic {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.75fr) minmax(0, 0.75fr);
+  grid-template-rows: var(--tx-row) var(--tx-row);
+  gap: var(--tx-gap);
+}
+
+.tx-tile {
+  min-width: 0;
+  min-height: 0;
+}
+
+.tx-tile--hero {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.tx-tile--wide {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+.tx-tile:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.tx-tile:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.tx-card {
+  --tx-pad: clamp(20px, 2vw, 28px);
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #2b3a31;
+  color: #fbf7ef;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateY(0);
+  transition: transform 520ms var(--tx-ease);
+}
+
+.tx-card--hero {
+  border-radius: 24px;
+  --tx-pad: clamp(24px, 3vw, 40px);
+}
+
+.tx-card:focus-visible {
+  outline: 2px solid var(--tx-copper);
+  outline-offset: 4px;
+}
+
+/* Image */
+.tx-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.tx-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 700ms var(--tx-ease);
+  will-change: transform;
+}
+
+/* Fallback panel (image failed to load) */
+.tx-card__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-bottom: 18%;
+  background:
+    radial-gradient(120% 90% at 20% 10%, rgba(255, 244, 224, 0.2), transparent 55%),
+    linear-gradient(160deg, var(--tx-tone, #3d4a36), #1c261f);
+  color: rgba(251, 247, 239, 0.82);
+}
+
+.tx-card__fallback-number {
+  font-family: var(--tx-font-display);
+  font-style: italic;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1;
+  opacity: 0.35;
+}
+
+.tx-card__fallback-title {
+  font-family: var(--tx-font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+/* Cinematic overlay — kept light so photography stays natural */
+.tx-card__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(12, 18, 14, 0.34) 0%, rgba(12, 18, 14, 0) 24%),
+    linear-gradient(to top, rgba(12, 18, 14, 0.78) 0%, rgba(12, 18, 14, 0.4) 34%, rgba(12, 18, 14, 0) 66%);
+}
+
+.tx-card__veil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 11, 0.14);
+  opacity: 0;
+  transition: opacity 520ms var(--tx-ease);
+}
+
+.tx-card--hero .tx-card__veil {
+  background:
+    linear-gradient(to bottom, rgba(12, 18, 14, 0.34) 0%, rgba(12, 18, 14, 0) 22%),
+    linear-gradient(to top, rgba(12, 18, 14, 0.84) 0%, rgba(12, 18, 14, 0.5) 32%, rgba(12, 18, 14, 0) 64%);
+}
+
+/* Top row: category pill + number */
+.tx-card__top {
+  position: absolute;
+  top: var(--tx-pad);
+  left: var(--tx-pad);
+  right: var(--tx-pad);
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tx-card__category {
+  display: inline-block;
+  padding: 6px 12px 5px;
+  border: 1px solid rgba(251, 247, 239, 0.32);
+  border-radius: 999px;
+  background: rgba(251, 247, 239, 0.1);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #fbf7ef;
+}
+
+.tx-card__number {
+  font-family: var(--tx-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgba(251, 247, 239, 0.92);
+}
+
+.tx-card--hero .tx-card__number {
+  font-size: 2rem;
+}
+
+/* Bottom content block */
+.tx-card__content {
+  position: absolute;
+  left: var(--tx-pad);
+  right: var(--tx-pad);
+  bottom: var(--tx-pad);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tx-card__place {
+  margin: 0 0 10px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(251, 247, 239, 0.78);
+}
+
+.tx-card__title {
+  margin: 0;
+  font-family: var(--tx-font-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 2.3vw, 2.15rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #fffaf1;
+  transform: translateY(0);
+  transition: transform 520ms var(--tx-ease);
+}
+
+.tx-card--hero .tx-card__title {
+  font-size: clamp(2.5rem, 4.2vw, 3.9rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tx-card--wide .tx-card__title {
+  font-size: clamp(2.1rem, 3.2vw, 2.9rem);
+}
+
+.tx-card__caption {
+  margin: 12px 0 0;
+  max-width: 30ch;
+  font-family: var(--tx-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  color: rgba(251, 247, 239, 0.92);
+}
+
+.tx-card--hero .tx-card__caption {
+  max-width: 24ch;
+  margin-top: 16px;
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.tx-card--wide .tx-card__caption {
+  max-width: 44ch;
+  font-size: 1.2rem;
+}
+
+.tx-card__desc {
+  margin: 18px 0 0;
+  max-width: 42ch;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(251, 247, 239, 0.82);
+}
+
+/* CTA — editorial text link */
+.tx-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(251, 247, 239, 0.38);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fffaf1;
+  transition: border-color 520ms var(--tx-ease);
+}
+
+.tx-card--hero .tx-card__cta {
+  margin-top: 26px;
+}
+
+.tx-card__arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform 520ms var(--tx-ease);
+}
+
+/* ==========================================================================
+   HOVER (pointer devices only)
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .tx-card:hover .tx-card__image {
+    transform: scale(1.04);
+  }
+
+  .tx-card:hover .tx-card__veil::after {
+    opacity: 1;
+  }
+
+  .tx-card:hover .tx-card__title {
+    transform: translateY(-3px);
+  }
+
+  .tx-card:hover .tx-card__arrow {
+    transform: translateX(4px);
+  }
+
+  .tx-card:hover .tx-card__cta {
+    border-color: rgba(251, 247, 239, 0.8);
+  }
+}
+
+/* Keyboard users get the same gentle response */
+.tx-card:focus-visible .tx-card__image {
+  transform: scale(1.03);
+}
+
+.tx-card:focus-visible .tx-card__arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   SCROLL-ENTRY ANIMATION
+   Tiles stagger in; disabled for reduced-motion.
+   ========================================================================== */
+
+.tx-tile {
+  transition:
+    opacity 1000ms var(--tx-ease),
+    transform 1000ms var(--tx-ease);
+  transition-delay: calc(0.1s + var(--tx-i, 0) * 0.13s);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tx-section:not(.is-inview) .tx-tile {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-section *,
+  .tx-section *::before,
+  .tx-section *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation: none !important;
+  }
+
+  .tx-card:hover,
+  .tx-card:hover .tx-card__image,
+  .tx-card:hover .tx-card__title,
+  .tx-card:focus-visible .tx-card__image {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   TABLET  (≤ 1023px)
+   Hero full width · Wide full width · Two compact cards side by side
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .tx-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+
+  .tx-tile--hero,
+  .tx-tile--wide,
+  .tx-tile:nth-child(3),
+  .tx-tile:nth-child(4) {
+    grid-row: auto;
+  }
+
+  .tx-tile--hero,
+  .tx-tile--wide {
+    grid-column: 1 / -1;
+  }
+
+  .tx-tile:nth-child(3) {
+    grid-column: 1;
+  }
+
+  .tx-tile:nth-child(4) {
+    grid-column: 2;
+  }
+
+  .tx-tile--hero {
+    height: clamp(480px, 70vw, 600px);
+  }
+
+  .tx-tile--wide {
+    height: clamp(360px, 50vw, 440px);
+  }
+
+  .tx-tile--compact {
+    height: clamp(360px, 48vw, 420px);
+  }
+
+  .tx-card--hero .tx-card__title {
+    font-size: clamp(2.6rem, 6.4vw, 3.6rem);
+  }
+}
+
+/* ==========================================================================
+   MOBILE  (≤ 639px)
+   Single column: Hero → Wide → Compact 03 → Compact 04
+   ========================================================================== */
+
+@media (max-width: 639px) {
+  .tx-section {
+    --tx-gap: 16px;
+  }
+
+  .tx-mosaic {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tx-tile--hero,
+  .tx-tile--wide,
+  .tx-tile:nth-child(3),
+  .tx-tile:nth-child(4) {
+    grid-column: 1;
+  }
+
+  .tx-tile--hero {
+    height: clamp(460px, 128vw, 520px);
+  }
+
+  .tx-tile--wide,
+  .tx-tile--compact {
+    height: clamp(300px, 86vw, 360px);
+  }
+
+  .tx-card,
+  .tx-card--hero {
+    --tx-pad: 20px;
+    border-radius: 18px;
+  }
+
+  .tx-card--hero {
+    --tx-pad: 22px;
+  }
+
+  .tx-card--hero .tx-card__title {
+    font-size: 2.6rem;
+  }
+
+  .tx-card--wide .tx-card__title,
+  .tx-card__title {
+    font-size: 2rem;
+  }
+
+  .tx-card__caption,
+  .tx-card--wide .tx-card__caption {
+    font-size: 1.1rem;
+  }
+
+  .tx-card--hero .tx-card__caption {
+    font-size: 1.35rem;
+  }
+
+  .tx-card__desc {
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+}

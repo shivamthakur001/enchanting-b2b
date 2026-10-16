@@ -1,0 +1,51 @@
+.editorial-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: end;
+  gap: clamp(2.25rem, 7vw, 8rem);
+  padding-bottom: clamp(2rem, 3.5vw, 3.25rem);
+  border-bottom: 1px solid rgb(42 69 54 / 0.14);
+}
+
+.editorial-heading > div,
+.editorial-heading__intro { min-width: 0; }
+.editorial-heading__eyebrow { display: flex; align-items: center; gap: .8rem; margin: 0; color: var(--color-saffron-deep, #a6662c); font: 600 var(--section-eyebrow-size)/1.4 var(--font-sans); letter-spacing: .28em; text-transform: uppercase; }
+.editorial-heading__eyebrow::before { width: 2.35rem; height: 1px; flex: 0 0 auto; background: #c17a38; content: ""; opacity: .8; }
+.editorial-heading__title { display: flex; flex-direction: column; align-items: flex-start; margin: .7rem 0 0; color: var(--color-forest-deep, #1c3228); font-family: var(--font-display); font-weight: 600; letter-spacing: -.045em; line-height: var(--section-title-line-height); }
+.editorial-heading__script { display: inline-flex; flex-direction: column; align-items: flex-start; margin: 0 0 -.18em -.04em; transform: translateY(var(--section-script-y)) rotate(var(--section-script-rotate)); transform-origin: left bottom; }
+.editorial-heading__script-text { display: inline-block; color: #b06a3c; font-family: "Pinyon Script", "Snell Roundhand", cursive; font-size: var(--section-script-size); font-weight: 400; letter-spacing: .01em; line-height: var(--section-script-line-height); }
+.editorial-heading__underline { width: 1.55em; height: .28em; margin: -.02em 0 0 .12em; color: #b06a3c; overflow: visible; }
+.editorial-heading__underline path { fill: none; stroke: currentColor; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.editorial-heading__main { display: block; color: var(--color-forest-deep, #1c3228); font: 600 var(--section-title-size)/var(--section-title-line-height) var(--font-display); letter-spacing: -.045em; white-space: nowrap; overflow-wrap: normal; word-break: normal; }
+.editorial-heading__intro { justify-self: end; max-width: 31rem; margin: 0; color: var(--color-ink-muted, #5a544c); font: 400 var(--section-intro-size)/1.78 var(--font-sans); letter-spacing: .01em; }
+
+.editorial-heading--visible .editorial-heading__script-text { animation: editorialWrite .72s cubic-bezier(.22, 1, .36, 1) forwards; }
+.editorial-heading--visible .editorial-heading__underline path { animation: editorialStroke .62s cubic-bezier(.33, .1, .2, 1) .32s forwards; }
+.editorial-heading--visible .editorial-heading__main { animation: editorialRise .82s cubic-bezier(.22, 1, .36, 1) .2s both; }
+.editorial-heading--visible .editorial-heading__intro { animation: editorialRise .7s cubic-bezier(.22, 1, .36, 1) .48s both; }
+
+@keyframes editorialWrite { from { clip-path: inset(0 105% 0 -8%); } to { clip-path: inset(0 -8% 0 -8%); } }
+@keyframes editorialStroke { to { stroke-dashoffset: 0; } }
+@keyframes editorialRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 899px) {
+  .editorial-heading { grid-template-columns: 1fr; gap: 1.35rem; }
+  .editorial-heading__intro { justify-self: start; max-width: 40rem; }
+}
+
+@media (max-width: 559px) {
+  .editorial-heading { gap: 1.1rem; padding-bottom: 1.8rem; }
+  .editorial-heading__eyebrow { font-size: var(--section-eyebrow-size); letter-spacing: .22em; }
+  .editorial-heading__eyebrow::before { width: 1.7rem; }
+  .editorial-heading__title { margin-top: .72rem; }
+  .editorial-heading__script-text { font-size: var(--section-script-size); }
+  .editorial-heading__main { font-size: var(--section-title-size); line-height: var(--section-title-line-height); white-space: normal; overflow-wrap: normal; word-break: normal; }
+  .editorial-heading__intro { font-size: var(--section-intro-size); line-height: 1.68; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-heading__script-text,
+  .editorial-heading__main,
+  .editorial-heading__intro { animation: none !important; clip-path: none !important; opacity: 1 !important; transform: none !important; }
+  .editorial-heading__underline path { animation: none !important; stroke-dashoffset: 0 !important; }
+}

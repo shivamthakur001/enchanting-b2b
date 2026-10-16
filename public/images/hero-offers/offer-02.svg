@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 900">
+  <defs><linearGradient id="shade" x2="0" y2="1"><stop stop-color="#08120f" stop-opacity=".08"/><stop offset="1" stop-color="#08120f" stop-opacity=".8"/></linearGradient></defs>
+  <image xlink:href="../offer-seasonal.jpg" width="1600" height="900" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1600" height="900" fill="url(#shade)"/>
+  <g fill="#fffdf8" font-family="Arial, sans-serif"><text x="90" y="110" font-size="28" letter-spacing="8">LIMITED TIME OFFER · NATURE</text><text x="90" y="690" font-size="82" font-weight="700">STAY 3, PAY 2</text><text x="90" y="765" font-size="62" font-weight="700">PACHMARHI HILL LODGES</text><text x="90" y="825" font-size="28" letter-spacing="3">MIDWEEK STAYS · FIT &amp; SMALL GROUPS</text></g>
+</svg>

@@ -1,0 +1,673 @@
+/* ==========================================================================
+   FootprintsSection — Global Journey Timeline
+   Uses MASTER website tokens exclusively. No external font imports.
+   ========================================================================== */
+
+.fp-section {
+  --fp-ivory: var(--color-cream, #fbf8f3);
+  --fp-ivory-deep: #f5eedf;
+  --fp-parchment: #ece3d3;
+  --fp-paper: var(--color-paper, #fffcf7);
+  --fp-ink: var(--color-ink, #171411);
+  --fp-charcoal: var(--color-ink-muted, #5a544c);
+  --fp-muted: var(--color-ink-muted, #5a544c);
+  --fp-muted-2: var(--color-ink-soft, #8a8378);
+  --fp-bronze: var(--color-saffron-deep, #a6662c);
+  --fp-bronze-deep: #8a5322;
+  --fp-bronze-soft: #c17a38;
+  --fp-line: var(--color-line, #e4dcd0);
+  --fp-serif: var(--font-display, "Cormorant Garamond", "Times New Roman", serif);
+  --fp-sans: var(--font-sans, "Outfit", ui-sans-serif, system-ui, sans-serif);
+  --fp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--home-page-bg);
+  color: var(--fp-ink);
+  font-family: var(--fp-sans);
+  padding: var(--home-section-padding-y) 0;
+}
+
+.fp-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.fp-section::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--fp-line) 18%, var(--fp-line) 82%, transparent);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.fp-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - clamp(2rem, 6vw, 5rem)));
+  margin: 0 auto;
+}
+
+/* ---------------- Timeline rail ---------------- */
+
+.fp-timeline-wrap {
+  margin: clamp(2.5rem, 5vw, 4rem) 0 1.75rem;
+}
+
+.fp-timeline {
+  --year-count: 4;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--year-count), minmax(0, 1fr));
+  align-items: end;
+  padding: 0.35rem 0 0.15rem;
+}
+
+.fp-track {
+  position: absolute;
+  left: calc(100% / var(--year-count) / 2);
+  right: calc(100% / var(--year-count) / 2);
+  bottom: 8px;
+  height: 1px;
+  background: var(--fp-line);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fp-track-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--fp-progress, 0%);
+  background: linear-gradient(90deg, var(--fp-bronze-soft), var(--fp-bronze));
+  transform-origin: left center;
+  transition: width 0.7s var(--fp-ease);
+}
+
+.fp-year {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.05rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.35rem 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--fp-muted-2);
+  cursor: pointer;
+  font-family: inherit;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fp-year:focus {
+  outline: none;
+}
+
+.fp-year:focus-visible {
+  outline: 2px solid var(--fp-bronze);
+  outline-offset: 8px;
+  border-radius: 4px;
+}
+
+.fp-year-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  transition: color 0.35s var(--fp-ease), transform 0.35s var(--fp-ease);
+}
+
+.fp-year-node {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+}
+
+.fp-year-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--fp-bronze);
+  background: var(--fp-ivory);
+  box-shadow: 0 0 0 6px var(--fp-ivory);
+  transition:
+    width 0.35s var(--fp-ease),
+    height 0.35s var(--fp-ease),
+    background-color 0.35s var(--fp-ease),
+    box-shadow 0.35s var(--fp-ease),
+    border-color 0.35s var(--fp-ease);
+}
+
+.fp-year-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.4s var(--fp-ease), opacity 0.4s var(--fp-ease), border-color 0.4s ease;
+}
+
+.fp-year.is-multi .fp-year-dot {
+  box-shadow:
+    0 0 0 6px var(--fp-ivory),
+    0 0 0 1px rgba(166, 102, 44, 0.25);
+}
+
+.fp-year:hover .fp-year-label,
+.fp-year:hover .fp-year-dot {
+  color: var(--fp-charcoal);
+}
+
+.fp-year:hover .fp-year-dot {
+  background: var(--fp-bronze-soft);
+  border-color: var(--fp-bronze);
+}
+
+.fp-year[aria-selected="true"] {
+  color: var(--fp-bronze-deep);
+}
+
+.fp-year[aria-selected="true"] .fp-year-label {
+  color: var(--fp-bronze-deep);
+  font-weight: 600;
+  transform: translateY(-1px);
+}
+
+.fp-year[aria-selected="true"] .fp-year-dot {
+  width: 11px;
+  height: 11px;
+  background: var(--fp-bronze);
+  border-color: var(--fp-bronze);
+  box-shadow: 0 0 0 6px var(--fp-ivory);
+}
+
+.fp-year[aria-selected="true"] .fp-year-ring {
+  opacity: 1;
+  transform: scale(1);
+  border-color: rgba(166, 102, 44, 0.45);
+}
+
+/* ---------------- Event chapters (multi-event years) ---------------- */
+
+.fp-chapters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem 0.15rem;
+  min-height: 2.6rem;
+  margin: 0 0 clamp(1.8rem, 3.5vw, 2.75rem);
+  padding: 0;
+  list-style: none;
+}
+
+.fp-chapters[data-visible="false"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.fp-chapter {
+  margin: 0;
+}
+
+.fp-chapter-btn {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.45rem 1.15rem 0.55rem;
+  border: 0;
+  background: transparent;
+  color: var(--fp-muted-2);
+  cursor: pointer;
+  font-family: inherit;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fp-chapter-btn:focus {
+  outline: none;
+}
+
+.fp-chapter-btn:focus-visible {
+  outline: 2px solid var(--fp-bronze);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.fp-chapter-name {
+  font-family: var(--fp-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.fp-chapter-rule {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--fp-bronze);
+  transition: width 0.35s var(--fp-ease);
+}
+
+.fp-chapter-btn:hover .fp-chapter-name {
+  color: var(--fp-charcoal);
+}
+
+.fp-chapter-btn[aria-selected="true"] {
+  color: var(--fp-ink);
+}
+
+.fp-chapter-btn[aria-selected="true"] .fp-chapter-name {
+  color: var(--fp-ink);
+}
+
+.fp-chapter-btn[aria-selected="true"] .fp-chapter-rule {
+  width: 100%;
+}
+
+.fp-chapter + .fp-chapter .fp-chapter-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--fp-bronze-soft);
+  transform: translate(-50%, -70%);
+  opacity: 0.7;
+}
+
+/* ---------------- Event Stage & Visual ---------------- */
+
+.fp-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  gap: clamp(1.75rem, 4.5vw, 4.5rem);
+  align-items: center;
+}
+
+.fp-stage.is-fading .fp-visual-frame,
+.fp-stage.is-fading .fp-copy {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.fp-visual {
+  min-width: 0;
+}
+
+/* Master PremiumTilt wrapper */
+.fp-visual-tilt {
+  border-radius: 20px;
+}
+
+/* Soft card edges (18px-22px target: 20px desktop) */
+.fp-visual-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  background: var(--fp-parchment);
+  transform-origin: center center;
+  transition: opacity 0.38s var(--fp-ease);
+  box-shadow:
+    0 1px 0 rgba(23, 20, 17, 0.04),
+    0 20px 52px -28px rgba(23, 20, 17, 0.32);
+}
+
+.fp-visual-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(23, 20, 17, 0.1);
+  mix-blend-mode: multiply;
+}
+
+.fp-visual-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, transparent 58%, rgba(23, 20, 17, 0.32) 100%),
+    linear-gradient(90deg, rgba(23, 20, 17, 0.08), transparent 30%);
+}
+
+.fp-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform 1.2s var(--fp-ease);
+}
+
+.fp-visual-frame:hover .fp-image {
+  transform: scale(1.045);
+}
+
+.fp-image-caption {
+  position: absolute;
+  left: 1.15rem;
+  bottom: 1.05rem;
+  z-index: 2;
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--fp-paper);
+  text-shadow: 0 1px 12px rgba(23, 20, 17, 0.45);
+}
+
+/* ---------------- Event Details ---------------- */
+
+.fp-details {
+  position: relative;
+  min-width: 0;
+  padding: 0.4rem 0 0.4rem 0.15rem;
+}
+
+.fp-copy {
+  position: relative;
+  z-index: 1;
+  transition:
+    opacity 0.38s var(--fp-ease),
+    transform 0.38s var(--fp-ease);
+}
+
+.fp-year-ghost {
+  position: absolute;
+  top: -1.4rem;
+  right: -0.2rem;
+  z-index: 0;
+  font-family: var(--fp-serif);
+  font-size: clamp(5.5rem, 10vw, 8.25rem);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--fp-ink);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+}
+
+.fp-index {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.15rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fp-bronze);
+}
+
+.fp-index-rule {
+  display: block;
+  width: 1.65rem;
+  height: 1px;
+  background: var(--fp-bronze-soft);
+}
+
+.fp-place {
+  margin: 0 0 0.7rem;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--fp-muted);
+}
+
+.fp-event-name {
+  margin: 0 0 0.55rem;
+  font-family: var(--fp-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--fp-ink);
+}
+
+.fp-event-year {
+  margin: 0 0 1.25rem;
+  font-family: var(--fp-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--fp-bronze);
+}
+
+.fp-story {
+  margin: 0 0 1.75rem;
+  max-width: 28rem;
+  font-weight: 400;
+  font-size: 1.01rem;
+  line-height: 1.72;
+  color: var(--fp-muted);
+}
+
+.fp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0;
+  padding-bottom: 0.25rem;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  font-family: var(--fp-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fp-bronze-deep);
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease, gap 0.3s ease;
+}
+
+.fp-cta:hover {
+  color: var(--fp-ink);
+  border-bottom-color: var(--fp-bronze);
+  gap: 0.75rem;
+}
+
+.fp-cta:focus {
+  outline: none;
+}
+
+.fp-cta:focus-visible {
+  outline: 2px solid var(--fp-bronze);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+.fp-cta-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--fp-ease);
+}
+
+.fp-cta:hover .fp-cta-arrow {
+  transform: translateX(3px);
+}
+
+.fp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 960px) {
+  .fp-stage {
+    grid-template-columns: 1fr;
+    gap: 1.85rem;
+  }
+
+  .fp-visual-frame {
+    aspect-ratio: 16 / 10;
+  }
+
+  .fp-details {
+    padding: 0.15rem 0.1rem 0;
+  }
+
+  .fp-year-ghost {
+    top: -1.1rem;
+    right: 0;
+    font-size: 6.2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .fp-timeline-wrap {
+    margin-left: calc(-1 * clamp(1rem, 3vw, 1.5rem));
+    margin-right: calc(-1 * clamp(1rem, 3vw, 1.5rem));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .fp-timeline-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fp-timeline {
+    min-width: 32rem;
+    padding: 0.5rem 1.5rem 0.85rem;
+  }
+
+  .fp-year {
+    scroll-snap-align: center;
+  }
+
+  .fp-chapters {
+    margin-bottom: 1.85rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .fp-chapters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fp-chapter-btn {
+    white-space: nowrap;
+  }
+
+  .fp-visual-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .fp-visual-tilt {
+    border-radius: 16px;
+  }
+
+  .fp-visual-frame::after {
+    border-radius: 16px;
+  }
+
+  .fp-event-name {
+    font-size: clamp(1.85rem, 7vw, 2.35rem);
+  }
+
+  .fp-story {
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fp-year {
+    min-width: 4.8rem;
+    gap: 0.85rem;
+  }
+
+  .fp-year-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  .fp-year-ghost {
+    font-size: 4.6rem;
+    top: -0.6rem;
+  }
+
+  .fp-image-caption {
+    left: 0.85rem;
+    bottom: 0.8rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+/* ---------------- Reduced motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fp-track-fill,
+  .fp-year-label,
+  .fp-year-dot,
+  .fp-year-ring,
+  .fp-chapter-name,
+  .fp-chapter-rule,
+  .fp-visual-frame,
+  .fp-image,
+  .fp-copy,
+  .fp-cta,
+  .fp-cta-arrow {
+    transition: none !important;
+  }
+
+  .fp-stage.is-fading .fp-visual-frame,
+  .fp-stage.is-fading .fp-copy {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .fp-visual-frame:hover .fp-image {
+    transform: none !important;
+  }
+}
