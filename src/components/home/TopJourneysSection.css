@@ -1,11 +1,80 @@
 /* ==========================================================================
    TopJourneysSection — scoped styles (tj-* namespace)
-   Merged from approved donor (70% Left Spotlight / 30% Right Navigator).
+   Approved donor composition: ~66% Left Spotlight / ~34% Right Navigator.
    Exclusively uses MASTER design tokens and website typography.
    No external font imports.
-   ========================================================================== */
 
-/* ── Section Shell ───────────────────────────────────────────────────────────── */
+   ══════════════════════════════════════════════════════════════════════════
+   CENTRALIZED CONTROLS
+   ══════════════════════════════════════════════════════════════════════════
+   Every visual property is driven by a CSS custom property.
+   These properties are injected as inline styles on .tj-section by
+   TopJourneysSection.tsx via buildTJCSSVars(topJourneysConfig).
+
+   To change any visual property, edit src/config/topJourneysConfig.ts.
+   Do NOT hardcode values directly in this file.
+
+   PROPERTY INDEX (alphabetical within group)
+   ────────────────────────────────────────────
+   A. Layout
+      --tj-card-radius          card/spotlight border-radius
+      --tj-container-max-width  section max-width
+      --tj-layout-gap           gap between spotlight and navigator columns
+      --tj-list-col-width       right navigator column width expression
+      --tj-list-gap             gap between navigator rows
+      --tj-list-padding         inner padding of navigator panel
+      --tj-list-radius          navigator panel border-radius
+      --tj-spotlight-col-ratio  left column fr ratio
+      --tj-spotlight-height     desktop fixed height
+      --tj-spotlight-min-height desktop floor height
+      --tj-spotlight-shadow     box-shadow on spotlight card
+
+   B. Image / Overlay
+      --tj-backdrop-blur        optional backdrop blur on content area
+      --tj-image-blur           optional blur filter on images
+      --tj-image-brightness     brightness() filter value
+      --tj-image-contrast       contrast() filter value
+      --tj-image-fit            object-fit value
+      --tj-image-pos-x          object-position horizontal
+      --tj-image-pos-y          object-position vertical
+      --tj-overlay-opacity      opacity of gradient overlay div
+      --tj-overlay-stop1..4     four gradient stops at 0/38/68/100%
+
+   C. Typography
+      --tj-content-gap          gap between editorial content items
+      --tj-content-pad-max      max content padding
+      --tj-content-pad-min      min content padding
+      --tj-desc-lh              description line-height
+      --tj-desc-size            description font-size
+      --tj-list-sub-size        navigator subtitle (duration/route) size
+      --tj-list-title-size      navigator title font-size
+      --tj-title-lh             journey title line-height
+      --tj-title-size-max       journey title max clamp size
+      --tj-title-size-min       journey title min clamp size
+      --tj-title-weight         journey title font-weight
+
+   D. Navigator / Thumbnails
+      --tj-item-gap             grid gap within each navigator row
+      --tj-item-padding         padding of each navigator row
+      --tj-thumb-h              thumbnail height
+      --tj-thumb-radius         thumbnail border-radius
+      --tj-thumb-w              thumbnail width
+
+   E. Buttons
+      --tj-btn-pad-x            CTA button horizontal padding
+      --tj-btn-pad-y            CTA button vertical padding
+      --tj-btn-size             CTA button font-size
+      --tj-btn-weight           CTA button font-weight
+      --tj-cta-gap              gap between CTA buttons
+
+   F. Effects & Motion
+      --tj-fade-up-dist         content enter animation distance
+      --tj-hover-dur            hover transition duration
+      --tj-thumb-hover-zoom     thumbnail hover zoom scale
+      --tj-transition-dur       image/item transition duration
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Section Shell ──────────────────────────────────────────────────────── */
 
 .tj-section {
   position: relative;
@@ -19,51 +88,55 @@
 .tj-container {
   position: relative;
   z-index: 1;
-  max-width: 1580px;
+  max-width: var(--tj-container-max-width, 1180px);
   margin: 0 auto;
   padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
-/* ── Layout Grid: 70% Left / 30% Right ───────────────────────────────────────── */
+/* ── Layout Grid ─────────────────────────────────────────────────────────── */
 
 .tj-layout {
   display: grid;
-  grid-template-columns: minmax(0, 2.5fr) minmax(280px, 0.75fr);
-  gap: clamp(1rem, 1.8vw, 1.5rem);
-  align-items: stretch;
+  grid-template-columns:
+    minmax(0, var(--tj-spotlight-col-ratio, 1.95fr))
+    var(--tj-list-col-width, minmax(260px, 1fr));
+  gap: var(--tj-layout-gap, clamp(1rem, 1.5vw, 1.4rem));
+  align-items: start;   /* prevent uncontrolled stretch */
   margin-top: clamp(2rem, 4vw, 3rem);
 }
 
-/* ── Left Spotlight Column & Tilt Wrapper ───────────────────────────────────── */
+/* ── Left Spotlight Column & Tilt Wrapper ───────────────────────────────── */
 
 .tj-spotlight-col {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: 100%;
 }
 
 .tj-spotlight-tilt {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .tj-spotlight {
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--tj-card-radius, 18px);
   overflow: hidden;
-  min-height: clamp(440px, 46vw, 620px);
-  height: 100%;
-  box-shadow:
+  /* Fixed height from config — prevents unbounded vertical stretch */
+  height: var(--tj-spotlight-height, 510px);
+  min-height: var(--tj-spotlight-min-height, 460px);
+  box-shadow: var(
+    --tj-spotlight-shadow,
     0 24px 50px -22px rgba(28, 50, 40, 0.4),
-    0 10px 24px -14px rgba(23, 20, 17, 0.25);
+    0 10px 24px -14px rgba(23, 20, 17, 0.25)
+  );
   background: var(--color-forest-deep, #1c3228);
   display: flex;
   flex-direction: column;
 }
 
-/* ── Cinematic Image Stack & Crossfade ──────────────────────────────────────── */
+/* ── Cinematic Image Stack & Crossfade ──────────────────────────────────── */
 
 .tj-image-stack {
   position: absolute;
@@ -75,9 +148,14 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: var(--tj-image-fit, cover);
+  object-position: var(--tj-image-pos-x, center) var(--tj-image-pos-y, center);
+  filter:
+    blur(var(--tj-image-blur, 0px))
+    brightness(var(--tj-image-brightness, 1))
+    contrast(var(--tj-image-contrast, 1));
   opacity: 0;
-  transform: scale(1.04);
+  transform: scale(var(--tj-hover-zoom, 1.04));
   transition:
     opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
     transform 5.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -92,35 +170,41 @@
 .tj-image-overlay {
   position: absolute;
   inset: 0;
+  opacity: var(--tj-overlay-opacity, 1);
   background: linear-gradient(
     180deg,
-    rgba(23, 20, 17, 0.04) 0%,
-    rgba(23, 20, 17, 0.22) 38%,
-    rgba(23, 20, 17, 0.68) 68%,
-    rgba(18, 16, 13, 0.94) 100%
+    var(--tj-overlay-stop1, rgba(23, 20, 17, 0.04)) 0%,
+    var(--tj-overlay-stop2, rgba(23, 20, 17, 0.22)) 38%,
+    var(--tj-overlay-stop3, rgba(23, 20, 17, 0.68)) 68%,
+    var(--tj-overlay-stop4, rgba(18, 16, 13, 0.94)) 100%
   );
   pointer-events: none;
 }
 
-/* ── Spotlight Integrated Content ───────────────────────────────────────────── */
+/* ── Spotlight Integrated Content ──────────────────────────────────────── */
 
 .tj-spotlight-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  padding: clamp(1.8rem, 3.2vw, 3rem);
+  gap: var(--tj-content-gap, 0.6rem);
+  padding: clamp(
+    var(--tj-content-pad-min, 1.8rem),
+    3.2vw,
+    var(--tj-content-pad-max, 2.6rem)
+  );
   max-width: 680px;
   margin-top: auto;
   justify-content: flex-end;
+  backdrop-filter: blur(var(--tj-backdrop-blur, 0px));
   animation: tj-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes tj-fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(var(--tj-fade-up-dist, 14px));
   }
   to {
     opacity: 1;
@@ -155,16 +239,20 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #f1b369; /* warm saffron gold */
+  color: #f1b369;
 }
 
 .tj-journey-title {
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
-  font-weight: 600;
+  font-size: clamp(
+    var(--tj-title-size-min, 1.85rem),
+    3.2vw,
+    var(--tj-title-size-max, 2.65rem)
+  );
+  font-weight: var(--tj-title-weight, 600);
   color: #fffcf7;
   margin: 0;
-  line-height: 1.1;
+  line-height: var(--tj-title-lh, 1.1);
   letter-spacing: -0.015em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
@@ -194,18 +282,18 @@
 
 .tj-desc {
   font-family: var(--font-sans);
-  font-size: clamp(0.92rem, 1.1vw, 1.02rem);
-  line-height: 1.6;
+  font-size: var(--tj-desc-size, clamp(0.92rem, 1.05vw, 1rem));
+  line-height: var(--tj-desc-lh, 1.6);
   color: rgba(246, 241, 232, 0.88);
   margin: 0.15rem 0 0.45rem 0;
   max-width: 580px;
 }
 
-/* ── Spotlight Action Buttons (CTAs) ────────────────────────────────────────── */
+/* ── Spotlight Action Buttons (CTAs) ────────────────────────────────────── */
 
 .tj-cta-row {
   display: flex;
-  gap: 0.85rem;
+  gap: var(--tj-cta-gap, 0.8rem);
   margin-top: 0.5rem;
   flex-wrap: wrap;
   align-items: center;
@@ -213,10 +301,10 @@
 
 .tj-btn {
   font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 600;
+  font-size: var(--tj-btn-size, 0.84rem);
+  font-weight: var(--tj-btn-weight, 600);
   letter-spacing: 0.02em;
-  padding: 0.75rem 1.45rem;
+  padding: var(--tj-btn-pad-y, 0.72rem) var(--tj-btn-pad-x, 1.4rem);
   border-radius: 999px;
   text-decoration: none;
   display: inline-flex;
@@ -224,16 +312,16 @@
   gap: 0.45rem;
   cursor: pointer;
   transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    transform var(--tj-hover-dur, 0.25s) ease,
+    background var(--tj-hover-dur, 0.25s) ease,
+    color var(--tj-hover-dur, 0.25s) ease,
+    border-color var(--tj-hover-dur, 0.25s) ease,
+    box-shadow var(--tj-hover-dur, 0.25s) ease;
 }
 
 .tj-btn-arrow {
   display: inline-block;
-  transition: transform 0.25s ease;
+  transition: transform var(--tj-hover-dur, 0.25s) ease;
 }
 
 .tj-btn:hover .tj-btn-arrow {
@@ -272,39 +360,44 @@
   outline-offset: 3px;
 }
 
-/* ── Right Journey Navigator List ───────────────────────────────────────────── */
+/* ── Right Journey Navigator List ──────────────────────────────────────── */
 
 .tj-list {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: var(--tj-list-gap, 0.35rem);
   background: rgba(233, 225, 212, 0.35);
-  border-radius: 20px;
-  padding: 0.65rem;
+  border-radius: var(--tj-list-radius, 18px);
+  padding: var(--tj-list-padding, 0.55rem);
   border: 1px solid var(--color-line, #e4dcd0);
   min-width: 0;
-  justify-content: space-between;
+  /* Align navigator height with fixed spotlight height */
+  height: var(--tj-spotlight-height, 510px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(193, 122, 56, 0.3) transparent;
 }
 
 .tj-list-item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto var(--tj-thumb-w, 54px) minmax(0, 1fr);
   align-items: center;
-  gap:0.5rem;
+  gap: var(--tj-item-gap, 0.45rem);
   text-align: left;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 12px;
-  padding: 0.2rem 0.5rem;
+  padding: var(--tj-item-padding, 0.22rem 0.5rem);
   cursor: pointer;
   position: relative;
   font-family: var(--font-sans);
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    background var(--tj-hover-dur, 0.25s) ease,
+    border-color var(--tj-hover-dur, 0.25s) ease,
+    transform var(--tj-hover-dur, 0.25s) ease,
+    box-shadow var(--tj-hover-dur, 0.25s) ease;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .tj-list-item:hover {
@@ -329,7 +422,7 @@
   font-weight: 600;
   color: var(--color-ink-soft, #8a8378);
   min-width: 1.35rem;
-  transition: color 0.25s ease;
+  transition: color var(--tj-hover-dur, 0.25s) ease;
 }
 
 .tj-list-item.is-active .tj-list-number {
@@ -337,9 +430,9 @@
 }
 
 .tj-list-thumb {
-  width: 80px;
-  height: 80px;
-  border-radius: 9px;
+  width: var(--tj-thumb-w, 54px);
+  height: var(--tj-thumb-h, 54px);
+  border-radius: var(--tj-thumb-radius, 8px);
   overflow: hidden;
   flex-shrink: 0;
   background: var(--color-sand, #e9e1d4);
@@ -347,15 +440,15 @@
 }
 
 .tj-list-thumb img {
-  width: 80px;
-  height: 80px;
+  width: var(--tj-thumb-w, 54px);
+  height: var(--tj-thumb-h, 54px);
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease;
+  transition: transform var(--tj-transition-dur, 0.35s) ease;
 }
 
 .tj-list-item:hover .tj-list-thumb img {
-  transform: scale(1.08);
+  transform: scale(var(--tj-thumb-hover-zoom, 1.08));
 }
 
 .tj-list-text {
@@ -367,7 +460,7 @@
 
 .tj-list-title {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--tj-list-title-size, 0.9rem);
   font-weight: 600;
   color: var(--color-forest-deep, #1c3228);
   white-space: nowrap;
@@ -377,14 +470,14 @@
 }
 
 .tj-list-duration {
-  font-size: 0.75rem;
+  font-size: var(--tj-list-sub-size, 0.72rem);
   color: var(--color-saffron-deep, #a6662c);
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 
 .tj-list-route {
-  font-size: 0.75rem;
+  font-size: var(--tj-list-sub-size, 0.72rem);
   color: var(--color-ink-muted, #5a544c);
   white-space: nowrap;
   overflow: hidden;
@@ -403,8 +496,8 @@
   opacity: 0;
   transform: scaleY(0.4);
   transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
+    opacity var(--tj-hover-dur, 0.25s) ease,
+    transform var(--tj-hover-dur, 0.25s) ease;
 }
 
 .tj-list-item.is-active .tj-list-indicator {
@@ -412,11 +505,13 @@
   transform: scaleY(1);
 }
 
-/* ── Responsive Adaptations ─────────────────────────────────────────────────── */
+/* ── Responsive Adaptations ─────────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
   .tj-layout {
-    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    grid-template-columns:
+      minmax(0, var(--tj-spotlight-col-ratio, 1.95fr))
+      minmax(240px, 1fr);
   }
 }
 
@@ -430,13 +525,17 @@
     order: 1;
   }
 
+  /* Restore auto height on mobile — fixed pixel height is desktop-only */
   .tj-spotlight {
+    height: auto;
     min-height: 460px;
   }
 
   .tj-list {
     order: 2;
     flex-direction: row;
+    height: auto;
+    overflow-y: visible;
     overflow-x: auto;
     gap: 0.65rem;
     padding: 0.75rem;
@@ -446,11 +545,11 @@
   }
 
   .tj-list-item {
-    grid-template-columns: auto minmax(0, 1fr);
-    min-width: 220px;
-    max-width: 270px;
+    grid-template-columns: var(--tj-thumb-w, 54px) minmax(0, 1fr);
+    min-width: 200px;
+    max-width: 260px;
     flex: 0 0 auto;
-    padding: 0.6rem 0.75rem;
+    padding: 0.6rem 0.65rem;
     scroll-snap-align: start;
     transform: none !important;
   }
@@ -459,6 +558,7 @@
     display: none;
   }
 
+  /* Slightly smaller thumbnails on tablet rail */
   .tj-list-thumb {
     width: 48px;
     height: 48px;
@@ -542,7 +642,7 @@
   }
 }
 
-/* ── Reduced Motion ─────────────────────────────────────────────────────────── */
+/* ── Reduced Motion ──────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .tj-image,

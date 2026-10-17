@@ -1,12 +1,16 @@
-import { Link, useParams } from "../router/Router";
+import { Link, useNavigate, useParams } from "../router/Router";
 import { getDestination, getDestinationsByTheme } from "../data/destinations";
 import { getTheme } from "../data/themes";
 import { packages } from "../data/packages";
 import { PackageCard } from "../components/packages/PackageCard";
 import { MapPinIcon } from "../components/icons/Icons";
+import DestinationDetailPage from "../premium-destinations/DestinationDetailPage";
+import { getPremiumDestination } from "../premium-destinations/destinationRegistry";
+import type { DestinationPackage } from "../premium-destinations/destinationDetailTypes";
 
 export function DestinationPage() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const destination = getDestination(slug);
 
   if (!destination) {
@@ -17,6 +21,41 @@ export function DestinationPage() {
           Return home
         </Link>
       </div>
+    );
+  }
+
+  const premiumContent = getPremiumDestination(destination.slug);
+  if (premiumContent) {
+    const premiumPackages: DestinationPackage[] = packages
+      .filter((pkg) => pkg.destinations.includes(destination.id))
+      .map((pkg) => ({
+        id: pkg.id,
+        title: pkg.name,
+        image: pkg.image,
+        duration: pkg.duration,
+        category: pkg.categories[0],
+        href: `/create-query?package=${pkg.slug}`,
+      }));
+
+    return (
+      <DestinationDetailPage
+        content={premiumContent}
+        packages={premiumPackages}
+        onCreateQuery={(destinationId, packageId) => {
+          const packageRecord = packageId ? packages.find((pkg) => pkg.id === packageId) : undefined;
+          const query = new URLSearchParams({ destination: destinationId });
+          if (packageRecord) query.set("package", packageRecord.slug);
+          navigate(`/create-query?${query.toString()}`);
+        }}
+        onViewPackage={(pkg) => {
+          const packageRecord = packages.find((item) => item.id === pkg.id);
+          navigate(packageRecord ? `/create-query?package=${packageRecord.slug}` : "/packages");
+        }}
+        onViewAllPackages={() => navigate("/packages")}
+        onTalkToTeam={() => navigate(`/create-query?destination=${destination.id}`)}
+        onExploreThemePackages={() => navigate(`/packages?category=${destination.themes[0]}`)}
+        onBackToTheme={() => navigate(`/discover/${destination.themes[0]}`)}
+      />
     );
   }
 

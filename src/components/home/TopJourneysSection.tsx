@@ -5,25 +5,34 @@
  * Placement: immediately below FeaturedAccommodationsSection.
  *
  * Layout:
- * - Approved donor composition: Wide Left Spotlight (70%) + Compact Right Navigator (30%)
+ * - Approved donor composition: Wide Left Spotlight (~66%) + Compact Right Navigator (~34%)
  * - Scoped styles (tj-* namespace) using master design tokens and typography
  * - Reuses the shared master EditorialSectionHeading ("Top" in Pinyon Script, display serif title)
  * - Uses master Router Link for SPA navigation (no page reload)
  * - Autoplay timer: ~5.5s with pause on hover/focus and resume on leave/blur
  * - Manual item click or keyboard selection resets timer
- * - Right navigator rows: 50px x 50px mini thumbnails, number, title, duration, route
+ * - Right navigator rows: compact thumbnails (size from topJourneysConfig), number, title, duration, route
  * - Reuses shared PremiumTilt with subtle maxRotate (2.2deg) exclusively on the spotlight
  * - Responsive: becomes full-width spotlight + horizontal compact rail on mobile
+ *
+ * CENTRALIZED DESIGN CONTROL
+ * All visual properties are set in src/config/topJourneysConfig.ts.
+ * buildTJCSSVars() converts the config to inline CSS custom properties on
+ * the <section> element, which are consumed by TopJourneysSection.css.
  */
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { topJourneys, type TopJourney } from "../../data/topJourneys";
 import { EditorialSectionHeading } from "./EditorialSectionHeading";
 import { Link } from "../../router/Router";
 import { PremiumTilt } from "../ui/PremiumTilt";
+import { buildTJCSSVars, topJourneysConfig } from "../../config/topJourneysConfig";
 import "./TopJourneysSection.css";
 
 const AUTOPLAY_DELAY = 5500;
+
+/** Pre-compute the CSS vars object once (config is static at runtime). */
+const TJ_CSS_VARS = buildTJCSSVars(topJourneysConfig) as CSSProperties;
 
 export interface TopJourneysSectionProps {
   journeys?: TopJourney[];
@@ -116,6 +125,7 @@ export function TopJourneysSection({
       id="top-journeys"
       className="tj-section"
       aria-label="Top Journeys Across Madhya Pradesh"
+      style={TJ_CSS_VARS}
     >
       <div className="tj-container">
         {/*
@@ -137,7 +147,7 @@ export function TopJourneysSection({
           onFocus={handlePause}
           onBlur={handleResume}
         >
-          {/* LEFT: Featured Cinematic Spotlight (approx 70%) */}
+          {/* LEFT: Featured Cinematic Spotlight (~66%) */}
           <div className="tj-spotlight-col">
             <PremiumTilt
               strength="subtle"
@@ -196,7 +206,7 @@ export function TopJourneysSection({
             </PremiumTilt>
           </div>
 
-          {/* RIGHT: Compact Journey Navigator (approx 30%) */}
+          {/* RIGHT: Compact Journey Navigator (~34%) */}
           <nav
             className="tj-list"
             aria-label="Journey selector"

@@ -36,6 +36,11 @@
    9) Package card width:
       --nature-package-card-min-width
 
+   10) GAP / SPACE for ALL Nature sections:
+       See "02. NATURE PAGE - ALL SECTION SPACING CONTROLS" below.
+       Use independent --nature-...-space-top / ...-space-bottom settings.
+       Also edit heading-to-cards values for space inside sections.
+
    All editable colors below use HEX so VS Code shows a color picker.
    ============================================================ */
 
@@ -60,15 +65,15 @@
 
   /* COMPLETE BACKGROUND OPACITY: 0 hidden / 1 full */
 
-  --nature-leaf-bg-opacity: 0.5;
+  --nature-leaf-bg-opacity: 0.7;
 
   /* LEAF PATTERN OPACITY */
 
-  --nature-leaf-pattern-opacity: 0.3;
+  --nature-leaf-pattern-opacity: 0.2;
 
   /* GRAIN TEXTURE OPACITY */
 
-  --nature-leaf-grain-opacity: 0.08;
+  --nature-leaf-grain-opacity: 1.5;
 
   --nature-leaf-brightness: 1;
 
@@ -82,7 +87,7 @@
 
   --nature-fern-color: #4e9a3a;
 
-  --nature-leaf-sway-speed: 8s;
+  --nature-leaf-sway-speed: 10s;
 
   --nature-section-surface: transparent;
 
@@ -312,65 +317,70 @@
 
 
 
-  /* 02 GLOBAL SPACING */
+  /* ============================================================
+     02. NATURE PAGE - ALL SECTION SPACING CONTROLS
 
+     EDIT THE VALUES BELOW ONLY.
+     Gap between two sections = previous section BOTTOM
+                                + next section TOP.
 
+     Example: Four Natural Expressions -> Explore Destinations
+       expressions-space-bottom (2rem) + destinations-space-top (2rem)
+       = around 64px total on a typical browser.
 
-  /* SECTION TOP SPACING - smaller value = less gap */
+     Use 1rem for tight, 2rem for balanced, 3rem for spacious.
+     No negative margins, and no impact on the other theme pages.
+     ============================================================ */
 
+  /* GLOBAL DEFAULT - Used only by controls referencing these values */
   --nature-section-space-top: clamp(3.75rem, 6vw, 5.5rem);
-
-
-
-  /* SECTION BOTTOM SPACING - smaller value = less gap */
-
   --nature-section-space-bottom: clamp(3.75rem, 6vw, 5.5rem);
-
-
-
   --nature-section-space-y: clamp(3.75rem, 6vw, 5.5rem);
 
-
-
+  /* 01 - INTRO / LANDSCAPES OF THE HEARTLAND
+     Intro section ki TOP spacing; theme navigator ke neeche */
   --nature-intro-space-top: var(--nature-section-space-top);
 
+  /* Intro ke END se next Four Natural Expressions section tak
+     first half of the gap */
+  --nature-intro-space-bottom: 2rem;
 
+  /* 02 - FOUR NATURAL EXPRESSIONS
+     Intro aur Four Natural Expressions ke beech second half of gap */
+  --nature-expressions-space-top: 2rem;
 
-  --nature-intro-space-bottom: var(--nature-section-space-bottom);
+  /* Four Natural Expressions ke neeche ka gap (before Destinations) */
+  --nature-expressions-space-bottom: 2rem;
 
+  /* Four Natural Expressions heading/description aur image/cards ke beech */
+  --nature-expressions-heading-to-cards: 2rem;
 
+  /* 03 - EXPLORE NATURE DESTINATIONS
+     Section ki heading se PEHLE ka gap */
+  --nature-destinations-space-top: 4rem;
 
-  --nature-expressions-space-top: var(--nature-section-space-top);
+  /* Destinations section ke END se next Programmes section tak */
+  --nature-destinations-space-bottom: 4rem;
 
+  /* Destinations heading/description aur cards ke beech */
+  --nature-destinations-heading-to-cards: 4rem;
 
+  /* 04 - NATURE PROGRAMMES / PACKAGES
+     Programmes ki heading se PEHLE ka gap */
+  --nature-programmes-space-top: 2rem;
 
-  --nature-expressions-space-bottom: var(--nature-section-space-bottom);
+  /* Programmes ke END se Final CTA tak */
+  --nature-programmes-space-bottom: 2rem;
 
+  /* Programmes heading/description aur package cards ke beech */
+  --nature-programmes-heading-to-cards: 2rem;
 
+  /* 05 - FINAL BUILD A NATURE JOURNEY CTA
+     Final CTA ki heading/content ke UPAR ka gap */
+  --nature-cta-space-top: 5rem;
 
-  --nature-destinations-space-top: var(--nature-section-space-top);
-
-
-
-  --nature-destinations-space-bottom: var(--nature-section-space-bottom);
-
-
-
-  --nature-programmes-space-top: var(--nature-section-space-top);
-
-
-
-  --nature-programmes-space-bottom: var(--nature-section-space-bottom);
-
-
-
-  --nature-cta-space-top: var(--nature-section-space-top);
-
-
-
-  --nature-cta-space-bottom: var(--nature-section-space-bottom);
-
-
+  /* Final CTA content ke NEECHE ka gap */
+  --nature-cta-space-bottom: 2rem;
 
   --nature-content-max-width: 1440px;
 
@@ -2934,7 +2944,7 @@
 
 
 
-  margin-top: 3.5rem;
+  margin-top: var(--nature-expressions-heading-to-cards);
 
 
 
@@ -3788,7 +3798,7 @@
 
 .nature-destinations-mosaic {
 
-  margin-top: 3.5rem;
+  margin-top: var(--nature-destinations-heading-to-cards);
 
   display: grid;
 
@@ -4404,7 +4414,7 @@
 
 
 
-  margin-top: 3.5rem;
+  margin-top: var(--nature-programmes-heading-to-cards);
 
 
 
