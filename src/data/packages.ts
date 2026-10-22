@@ -108,7 +108,7 @@ export const packages: TravelPackage[] = [
     destinations: ["pachmarhi"],
     categories: ["nature", "fit", "group"],
     themes: ["nature"],
-    image: media.pachmarhi,
+    image: "/destination-assets/pachmarhi/package-1.webp",
     imageAlt: "Pachmarhi valley greenery",
     priceFrom: "₹28,000",
     limitedOffer: true,

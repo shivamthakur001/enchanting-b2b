@@ -242,7 +242,7 @@
 
 /* 02 — Why Pachmarhi works */
 .empd-overview { background: var(--empd-overview-bg, var(--empd-cream)); position: relative; }
-.empd-overview::before, .empd-themes::before, .empd-packages::before { content: ''; position: absolute; left: -120px; top: 0; width: 330px; height: 100%; pointer-events: none; opacity: .2; background: radial-gradient(ellipse at left, var(--empd-sage) 0%, transparent 65%); }
+.empd-packages::before { content: ''; position: absolute; left: -120px; top: 0; width: 330px; height: 100%; pointer-events: none; opacity: .2; background: radial-gradient(ellipse at left, var(--empd-sage) 0%, transparent 65%); }
 .empd-overview__layout { position: relative; display: grid; grid-template-columns: minmax(280px, .96fr) 2fr; gap: 52px; align-items: center; }
 .empd-overview__intro h2, .empd-story h2, .empd-cta h2 { font-size: var(--empd-heading-size); line-height: .96; letter-spacing: -.025em; }
 .empd-overview__intro p { margin-top: 17px; color: #59645a; max-width: 420px; font-size: .95rem; line-height: 1.7; }
@@ -274,7 +274,6 @@
 
 /* 03 — Cinematic six-card gallery */
 .empd-highlights { position: relative; background: var(--empd-highlights-bg, var(--empd-forest-deep)); color: #f7f6ec; }
-.empd-highlights::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 88% 8%, rgba(109,155,110,.13), transparent 48%), radial-gradient(ellipse at 7% 110%, rgba(5,111,63,.19), transparent 47%); pointer-events: none; }
 .empd-highlights .empd-container { position: relative; }
 .empd-highlights .empd-section-heading h2 { color: #fff8e9; }
 .empd-gallery-controls { display: flex; gap: 8px; padding-bottom: 24px; }
@@ -601,3 +600,13 @@
 .empd-deep-dive__grid ul { margin: 10px 0 0; padding-left: 18px; color: #59665b; font-size: .83rem; line-height: 1.6; }
 .empd-deep-dive__grid li + li { margin-top: 7px; }
 @media (max-width: 900px) { .empd-deep-dive__grid { grid-template-columns: 1fr; } }
+
+/* ICONIC EXPERIENCES - MAIN HEADING COLOR */
+.empd-page .empd-highlights .empd-section-heading h2 {
+  color: var(--empd-highlights-heading-color, #093626);
+}
+
+/* SIGNATURE HIGHLIGHTS - SMALL LABEL COLOR */
+.empd-page .empd-highlights .empd-eyebrow {
+  color: var(--empd-highlights-eyebrow-color, #42684f);
+}

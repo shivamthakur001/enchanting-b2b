@@ -8,7 +8,7 @@ export const destinations: Destination[] = [
     name: "Pachmarhi",
     region: "Satpura Hills",
     summary: "Queen of the Satpuras — waterfalls, gorges and colonial hill-station calm.",
-    image: media.pachmarhi,
+    image: "/destination-assets/pachmarhi/pachmarhi-hero.webp",
     imageAlt: "Verdant Pachmarhi valley unfolding across forested hills",
     themes: ["nature"],
     featured: true,

@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "generate-gallery-manifest": "node scripts/generate-gallery-manifest.js",
+    "predev": "node scripts/generate-gallery-manifest.js",
     "dev": "vite",
+    "prebuild": "node scripts/generate-gallery-manifest.js",
     "build": "vite build",
     "preview": "vite preview"
   },

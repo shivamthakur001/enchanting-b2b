@@ -6,6 +6,47 @@ import {
 } from './destinationDetailConfig';
 export { destinationDetailConfig } from './destinationDetailConfig';
 import './DestinationDetailPage.css';
+import { lazy, Suspense } from 'react';
+import { getGalleryRegistration, buildGalleryOverridesFromManager } from './gallery/galleryManager';
+import { useGalleryContent } from './gallery/hooks/useGalleryContent';
+
+// Lazy-load the heavy gallery bundle — only fetched when destination has a registered gallery
+const CinematicEnvelopeGallery = lazy(() => import('./gallery/components/CinematicEnvelopeGallery'));
+
+/**
+ * DestinationGallerySection
+ * Wrapper that resolves the gallery registration for the current destination slug,
+ * fetches its manifest, and renders the CinematicEnvelopeGallery.
+ * Renders nothing if the destination has no active gallery registration.
+ */
+function DestinationGallerySection({ destinationId }: { destinationId: string }) {
+  const registration = getGalleryRegistration(destinationId);
+  // Hook always called — handles undefined registration internally
+  const content = useGalleryContent(registration);
+  const baseOverrides = buildGalleryOverridesFromManager();
+
+  // Deep-merge destination-specific styleOverrides on top of manager defaults
+  const mergedOverrides = registration?.styleOverrides
+    ? {
+        ...baseOverrides,
+        ...registration.styleOverrides,
+        colors: { ...baseOverrides.colors, ...registration.styleOverrides.colors },
+        envelope: { ...baseOverrides.envelope, ...registration.styleOverrides.envelope },
+        timing: { ...baseOverrides.timing, ...registration.styleOverrides.timing },
+        gallery: { ...baseOverrides.gallery, ...registration.styleOverrides.gallery },
+        section: { ...baseOverrides.section, ...registration.styleOverrides.section },
+      }
+    : baseOverrides;
+
+  // No registered gallery for this destination, or manifest not loaded yet
+  if (!registration || !content) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <CinematicEnvelopeGallery content={content} settings={mergedOverrides} />
+    </Suspense>
+  );
+}
 
 /**
  * IMPORTANT MERGE RULE:
@@ -240,7 +281,9 @@ export default function DestinationDetailPage({
     <SeasonsAndAccess content={content}/>
     <Packages destinationId={content.id} destinationTitle={content.title} packages={packages} onViewPackage={onViewPackage} onCreateQuery={onCreateQuery} onViewAllPackages={onViewAllPackages} isDemo={isDemo}/>
     <FinalCTA content={content} onCreateQuery={onCreateQuery} onTalkToTeam={onTalkToTeam} onExploreThemePackages={onExploreThemePackages ?? onExploreNaturePackages}/>
-    {/* Future Gallery goes here, after the last content section and before the existing app footer.
-        Gallery design and footer changes are intentionally deferred. */}
+    {/* CINEMATIC ENVELOPE GALLERY — renders after Final CTA, before the shared app footer.
+        Active only for destinations registered in gallery/galleryManager.ts.
+        To enable: add destination slug to destinationGalleryRegistry with active: true. */}
+    <DestinationGallerySection destinationId={content.id} />
   </div>;
 }

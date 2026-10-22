@@ -83,6 +83,8 @@ export interface DestinationDetailDesign {
   // 04. ICONIC EXPERIENCES (HIGHLIGHTS)
   // ==========================================
   highlightsBg: string;
+  highlightsHeadingColor: string;
+  highlightsEyebrowColor: string;
   highlightHeight: string;
   highlightCardWidth: string;
   highlightColumns: string;
@@ -298,7 +300,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // Controls: Desktop par hero section ki exact height.
   // Value badhane se hero banner vertical lamba hota hai, kam karne se compact.
   // Unit: px ya vh. Range: 500px - 720px.
-  heroHeight: '575px',
+  heroHeight: '900px',
 
   // Controls: Desktop screens ke liye minimum safe hero height.
   // Unit: px. Range: 450px - 600px.
@@ -384,7 +386,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // =========================================================================
 
   // Controls: Overview section ka full background color.
-  overviewBg: '#fcfaf5',
+  overviewBg: '#beebb3',
 
   // Controls: Overview ke 4 feature cards ki desktop par minimum height.
   // Value badhane se cards vertical lambe hote hain.
@@ -441,7 +443,15 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // =========================================================================
 
   // Controls: Signature highlights gallery section ka dark background color.
-  highlightsBg: '#05281d',
+  highlightsBg: '#beebb3',
+
+  // Controls: Iconic Experiences ki badi heading ka text color.
+  // Light-green background par dark forest green readable rehta hai.
+  highlightsHeadingColor: '#093626',
+
+  // Controls: Upar chhote 'SIGNATURE HIGHLIGHTS' label ka text color.
+  // Dark sage label ko halka readable contrast deta hai.
+  highlightsEyebrowColor: '#42684f',
 
   // Controls: Desktop par signature highlight cards ki height.
   // Value badhane se photo cards vertical lambe hote hain.
@@ -454,11 +464,11 @@ export const destinationDetailConfig: DestinationDetailDesign = {
 
   // Controls: Desktop par highlight cards ke columns (6 cards row).
   // Value badhane se columns badhte hain, cards narrow hote hain.
-  highlightColumns: '6',
+  highlightColumns: '3',
 
   // Controls: Highlight cards ke beech ka horizontal gap.
   // Unit: px. Range: 8px - 16px.
-  highlightGap: '10px',
+  highlightGap: '15px',
 
   // Controls: Highlight card ke rounded corners.
   // Unit: px. Range: 6px - 16px.
@@ -475,23 +485,23 @@ export const destinationDetailConfig: DestinationDetailDesign = {
 
   // Controls: Highlight card ke heading (e.g. "Dhoopgarh") ka font size.
   // Unit: rem. Range: 1.1rem - 1.45rem.
-  highlightTitleSize: '1.25rem',
+  highlightTitleSize: '1.55rem',
 
   // Controls: Highlight card ke description copy ka font size.
   // Unit: rem. Range: 0.65rem - 0.78rem.
-  highlightDescSize: '0.7rem',
+  highlightDescSize: '0.8rem',
 
   // =========================================================================
   // 05. ACTIVITIES & EXPERIENCES (THEMES)
   // =========================================================================
 
   // Controls: Activities & Themes section ka background tone.
-  themesBg: '#f0f1e7',
+  themesBg: '#beebb3',
 
   // Controls: Theme cards ke top photo banner ki desktop height.
   // Value badhane se card ki image badi hoti hai.
   // Unit: px. Range: 130px - 200px.
-  themeImageHeight: '160px',
+  themeImageHeight: '180px',
 
   // Controls: Mobile screens par theme photo ki height.
   // Unit: px. Range: 140px - 210px.
@@ -507,7 +517,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   mobileThemeContentMinHeight: '165px',
 
   // Controls: Theme card ka solid background color.
-  themeCardBg: '#fefdfa',
+  themeCardBg: '#d2d8d3',
 
   // Controls: Theme card corners ka border-radius.
   // Unit: px. Range: 8px - 18px.
@@ -550,7 +560,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // =========================================================================
 
   // Controls: Seasons aur Access dono sections ka common background color.
-  seasonsBg: '#fcfaf5',
+  seasonsBg: '#beebb3',
 
   // Controls: Desktop par har ek season card (Winter, Monsoon etc.) ki minimum height.
   // Value badhane se season card vertical lamba hota hai.
@@ -613,7 +623,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // =========================================================================
 
   // Controls: Packages section ka base background color.
-  packagesBg: '#eff2e7',
+  packagesBg: '#beebb3',
 
   // Controls: Package card ka solid background white/cream.
   packageCardBg: '#ffffff',
@@ -800,6 +810,8 @@ const propertyMap: Record<keyof DestinationDetailDesign, string> = {
 
   // Highlights
   highlightsBg: '--empd-highlights-bg',
+  highlightsHeadingColor: '--empd-highlights-heading-color',
+  highlightsEyebrowColor: '--empd-highlights-eyebrow-color',
   highlightHeight: '--empd-highlight-height',
   highlightCardWidth: '--empd-highlight-card-width',
   highlightColumns: '--empd-highlight-cols',
