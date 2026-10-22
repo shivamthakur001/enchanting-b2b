@@ -300,7 +300,7 @@ export const destinationDetailConfig: DestinationDetailDesign = {
   // Controls: Desktop par hero section ki exact height.
   // Value badhane se hero banner vertical lamba hota hai, kam karne se compact.
   // Unit: px ya vh. Range: 500px - 720px.
-  heroHeight: '900px',
+  heroHeight: '850px',
 
   // Controls: Desktop screens ke liye minimum safe hero height.
   // Unit: px. Range: 450px - 600px.

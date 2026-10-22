@@ -433,7 +433,16 @@ export const destinationGalleryRegistry: DestinationGalleryRegistration[] = [
   // { slug: "satpura", active: false, manifestPath: "/destination-gallery/satpura/manifest.json", heading: "Satpura - The Wilderness Untouched.", monogram: "S" },
   // { slug: "khajuraho", active: false, manifestPath: "/destination-gallery/khajuraho/manifest.json", heading: "Khajuraho - Stones That Tell Stories.", monogram: "K" },
   // { slug: "ujjain", active: false, manifestPath: "/destination-gallery/ujjain/manifest.json", heading: "Ujjain - Where Time Stands Still.", monogram: "U" },
-  // { slug: "bhedaghat", active: false, manifestPath: "/destination-gallery/bhedaghat/manifest.json", heading: "Bhedaghat - Marble Cliffs and Moonlight.", monogram: "B" },
+  {
+    slug: "bhedaghat",
+    active: true,
+    manifestPath: "/destination-gallery/bhedaghat/manifest.json",
+    eyebrow: "THE NARMADA COLLECTION",
+    heading: "Discover Bhedaghat, One Memory at a Time.",
+    tagline: "Unfold the Extraordinary.",
+    description: "Marble cliffs, moonlit waters and the roar of Dhuandhar — a photographic journey through the Narmada gorge.",
+    monogram: "B",
+  },
   // { slug: "bandhavgarh", active: false, manifestPath: "/destination-gallery/bandhavgarh/manifest.json", heading: "Bandhavgarh - The Land of the White Tiger.", monogram: "B" },
   // { slug: "omkareshwar", active: false, manifestPath: "/destination-gallery/omkareshwar/manifest.json", heading: "Omkareshwar - Island of Devotion.", monogram: "O" },
 ];

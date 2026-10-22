@@ -5,9 +5,11 @@
  */
 import type { DestinationDetailContent } from './destinationDetailTypes';
 import { pachmarhiContent } from './pachmarhiContent';
+import { bhedaghatContent } from './bhedaghatContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
+  bhedaghat: bhedaghatContent,
   // pench: penchContent,            // add after content + media are ready
   // kanha: kanhaContent,
   // khajuraho: khajurahoContent,
