@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "../router/Router";
 import { getDestination, getDestinationsByTheme } from "../data/destinations";
 import { getTheme } from "../data/themes";
@@ -11,6 +12,17 @@ import type { DestinationPackage } from "../premium-destinations/destinationDeta
 export function DestinationPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (slug?.toLowerCase() === "jabalpur") {
+      navigate("/destinations/bhedaghat", { replace: true });
+    }
+  }, [slug, navigate]);
+
+  if (slug?.toLowerCase() === "jabalpur") {
+    return null;
+  }
+
   const destination = getDestination(slug);
 
   if (!destination) {

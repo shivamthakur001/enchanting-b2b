@@ -10,6 +10,12 @@ import { tawaContent } from './tawaContent';
 import { tamiaContent } from './tamiaContent';
 import { sailaniIslandContent } from './sailaniIslandContent';
 import { hanuwantiyaContent } from './hanuwantiyaContent';
+import { rewaContent } from './rewaContent';
+import { patalkotContent } from './patalkotContent';
+import { ranehFallsContent } from './ranehFallsContent';
+import { alirajpurContent } from './alirajpurContent';
+import { gulawatContent } from './gulawatContent';
+import { janapavContent } from './janapavContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
@@ -18,6 +24,12 @@ export const destinationRegistry: Record<string, DestinationDetailContent> = {
   tamia: tamiaContent,
   'sailani-island': sailaniIslandContent,
   hanuwantiya: hanuwantiyaContent,
+  rewa: rewaContent,
+  patalkot: patalkotContent,
+  'raneh-falls': ranehFallsContent,
+  alirajpur: alirajpurContent,
+  gulawat: gulawatContent,
+  janapav: janapavContent,
   // pench: penchContent,            // add after content + media are ready
   // kanha: kanhaContent,
   // khajuraho: khajurahoContent,

@@ -9,7 +9,8 @@ export function CreateQueryPage() {
   const params = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const presetPackage = params.get("package") ?? "";
-  const presetDestination = params.get("destination") ?? "";
+  const rawDestination = params.get("destination") ?? "";
+  const presetDestination = rawDestination.toLowerCase() === "jabalpur" ? "bhedaghat" : rawDestination;
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();

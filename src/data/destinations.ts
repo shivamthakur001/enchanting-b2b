@@ -32,7 +32,7 @@ export const destinations: Destination[] = [
     summary: "Sacred source of the Narmada, wrapped in sal forests and highland air.",
     image: media.cascade,
     imageAlt: "Forest waterfall in the highlands near Amarkantak",
-    themes: ["nature", "spirituality"],
+    themes: ["spirituality"],
   },
   {
     id: "tamia",
@@ -126,7 +126,7 @@ export const destinations: Destination[] = [
     summary: "Ahilya Fort, handloom ghats and a river town of unusual grace.",
     image: media.maheshwar,
     imageAlt: "Colorful boats and the riverside townscape of Maheshwar",
-    themes: ["heritage", "spirituality"],
+    themes: ["spirituality"],
     featured: true,
   },
   {
@@ -170,7 +170,7 @@ export const destinations: Destination[] = [
     summary: "Walking safaris, canoeing and a quieter wilderness of sandstone gorges.",
     image: media.safari,
     imageAlt: "Open safari vehicle moving through a forested national park",
-    themes: ["wildlife", "nature"],
+    themes: ["wildlife"],
   },
   {
     id: "panna",
@@ -222,7 +222,7 @@ export const destinations: Destination[] = [
     summary: "The Great Stupa — Ashokan Buddhism rendered in stone and stillness.",
     image: media.sanchiStupa,
     imageAlt: "The Great Stupa at Sanchi under a clear sky",
-    themes: ["spirituality", "heritage"],
+    themes: ["heritage"],
     featured: true,
   },
   {
@@ -259,16 +259,6 @@ export const destinations: Destination[] = [
   },
 
   // ── NATURE ──────────────────────────────────────────────────
-  {
-    id: "jabalpur",
-    slug: "jabalpur",
-    name: "Jabalpur",
-    region: "Narmada, Central MP",
-    summary: "Gateway to Bhedaghat — a Narmada city of marble gorges, mist-laden falls and historic riverside culture.",
-    image: media.jabalpurLake,
-    imageAlt: "Still water reflecting trees near Jabalpur",
-    themes: ["nature"],
-  },
   {
     id: "rewa",
     slug: "rewa",
@@ -359,7 +349,7 @@ export const destinations: Destination[] = [
     summary: "A Bundela palace-fort town and sacred seat of Pitambara Peeth, revered across Central India.",
     image: media.orchhaFort,
     imageAlt: "Fort and palace structures of the heritage town of Datia",
-    themes: ["heritage", "spirituality"],
+    themes: ["spirituality"],
   },
   {
     id: "burhanpur",
@@ -399,7 +389,7 @@ export const destinations: Destination[] = [
     summary: "The unfinished Bhojeshwar temple — a single colossal Shiva lingam beneath an ancient dome.",
     image: media.sanchiDetail,
     imageAlt: "Ancient stone temple structure at Bhojpur",
-    themes: ["heritage", "spirituality"],
+    themes: ["spirituality"],
   },
 
   // ── WILDLIFE ────────────────────────────────────────────────
@@ -473,11 +463,14 @@ export const destinations: Destination[] = [
     summary: "Ancient Pashupatinath temple, the fort of Mandsaur and a crossroads of Malwa heritage and faith.",
     image: media.orchhaTemple,
     imageAlt: "Ancient temple architecture in Mandsaur",
-    themes: ["spirituality", "heritage"],
+    themes: ["spirituality"],
   },
 ];
 
 export function getDestination(slug: string) {
+  if (slug?.toLowerCase() === "jabalpur") {
+    return destinations.find((d) => d.slug === "bhedaghat");
+  }
   return destinations.find((d) => d.slug === slug);
 }
 

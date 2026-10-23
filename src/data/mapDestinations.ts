@@ -419,7 +419,7 @@ export const mapDestinations: MapDestination[] = [
     lon: 79.95,
     lat: 23.18,
     major: true,
-    route: undefined,
+    route: "/destinations/bhedaghat",
     labelOffset: { dx: -12, dy: -12, anchor: "end" },
     images: [media.jabalpurLake],
     imageAlts: ["Narmada landscape near Jabalpur"],

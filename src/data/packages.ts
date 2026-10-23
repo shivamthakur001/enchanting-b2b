@@ -133,7 +133,7 @@ export const packages: TravelPackage[] = [
     name: "Satpura Walking Escape",
     summary: "Guided walks, canoeing and hide time — nature, not just the game drive.",
     duration: "4 nights",
-    destinations: ["satpura", "tamia", "tawa"],
+    destinations: ["satpura", "tamia", "tawa", "patalkot"],
     categories: ["nature", "special-interest", "fit"],
     themes: ["nature", "wildlife"],
     image: media.waterfall,

@@ -115,7 +115,7 @@ export function NatureDestinations({ destinations }: NatureDestinationsProps) {
             </Link>
           )}
 
-          {/* Supporting Destinations: Amarkantak, Satpura, Raneh Falls, Tamia, Patalkot */}
+          {/* Supporting destinations */}
           {others.map((dest) => (
             <Link
               key={dest.id}

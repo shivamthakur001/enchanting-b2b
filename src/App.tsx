@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Layout } from "./components/layout/Layout";
-import { RouterProvider, Routes, usePathname } from "./router/Router";
+import { RouterProvider, Routes, useNavigate, usePathname } from "./router/Router";
 import { HomePage } from "./pages/HomePage";
 import { DiscoverIndexPage, DiscoverThemePage } from "./pages/DiscoverThemePage";
 import { DestinationPage } from "./pages/DestinationPage";
@@ -12,6 +12,14 @@ import { CreateQueryPage } from "./pages/CreateQueryPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { getTheme } from "./data/themes";
 import { getDestination } from "./data/destinations";
+
+function RedirectRoute({ to }: { to: string }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate(to, { replace: true });
+  }, [navigate, to]);
+  return null;
+}
 
 function DocumentTitle() {
   const pathname = usePathname();
@@ -50,6 +58,7 @@ export default function App() {
             { path: "/", element: <HomePage /> },
             { path: "/discover", element: <DiscoverIndexPage /> },
             { path: "/discover/:slug", element: <DiscoverThemePage /> },
+            { path: "/destinations/jabalpur", element: <RedirectRoute to="/destinations/bhedaghat" /> },
             { path: "/destinations/:slug", element: <DestinationPage /> },
             { path: "/packages", element: <PackagesPage /> },
             { path: "/about", element: <AboutPage /> },

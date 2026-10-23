@@ -12,7 +12,7 @@ export const discoverThemes: DiscoverTheme[] = [
     previewImageAlt: "Forested hills and valley light in Pachmarhi",
     heroImage: media.pachmarhi,
     heroImageAlt: "Wide view of the Pachmarhi valley",
-    featuredDestinationIds: ["pachmarhi", "bhedaghat", "amarkantak", "tamia", "raneh-falls", "patalkot"],
+    featuredDestinationIds: ["pachmarhi", "bhedaghat", "tamia", "raneh-falls", "patalkot"],
     packageCategory: "nature",
     visual: {
       accent: "#2a4536",
@@ -35,7 +35,7 @@ export const discoverThemes: DiscoverTheme[] = [
     previewImageAlt: "Sandstone temples of Khajuraho",
     heroImage: media.khajuraho,
     heroImageAlt: "Khajuraho temple complex in morning light",
-    featuredDestinationIds: ["khajuraho", "orchha", "gwalior", "mandu", "bhimbetka", "maheshwar"],
+    featuredDestinationIds: ["khajuraho", "orchha", "gwalior", "mandu", "bhimbetka"],
     packageCategory: "heritage",
     visual: {
       accent: "#8c5a32",
@@ -81,7 +81,7 @@ export const discoverThemes: DiscoverTheme[] = [
     previewImageAlt: "The Great Stupa at Sanchi",
     heroImage: media.ujjainAarti,
     heroImageAlt: "Evening aarti on the ghats of Ujjain",
-    featuredDestinationIds: ["ujjain", "omkareshwar", "sanchi", "maheshwar", "chitrakoot", "amarkantak"],
+    featuredDestinationIds: ["ujjain", "omkareshwar", "maheshwar", "chitrakoot", "amarkantak"],
     packageCategory: "spirituality",
     visual: {
       accent: "#9a6b2f",
