@@ -151,7 +151,8 @@ export function computePhotoLayout(
   isMobile: boolean,
   reducedMotion: boolean,
   galleryConfig: GalleryConfig,
-  scrollY: number = 0
+  scrollY: number = 0,
+  aspectRatio?: number
 ): PhotoLayout {
   const envW = isMobile
     ? galleryConfig.envelope.widthMobile
@@ -246,16 +247,66 @@ export function computePhotoLayout(
         galleryConfig.visibility?.showPhotoCaptions ||
         galleryConfig.visibility?.showPhotoCategories
       );
-      const maxW = Math.min(
-        vp.w * (galleryConfig.gallery.selectedMaxWidthVw * 0.01),
-        galleryConfig.gallery.selectedMaxWidthPx
+
+      const maxWidthVw = isMobile
+        ? (galleryConfig.gallery.mobileSelectedMaxWidthVw ?? 86)
+        : galleryConfig.gallery.selectedMaxWidthVw;
+      const maxHeightVh = isMobile
+        ? (galleryConfig.gallery.mobileSelectedMaxHeightVh ?? 70)
+        : galleryConfig.gallery.selectedMaxHeightVh;
+
+      // Safe clearance for left/right navigation arrows and top/bottom chrome
+      const arrowClearance = isMobile ? 88 : 176;
+      const topBottomClearance = hasMetadata
+        ? (isMobile ? 180 : 160)
+        : (isMobile ? 120 : 100);
+
+      const maxW = Math.max(
+        160,
+        Math.min(
+          vp.w * (maxWidthVw * 0.01),
+          vp.w - arrowClearance,
+          galleryConfig.gallery.selectedMaxWidthPx
+        )
       );
-      const maxH = vp.h * (galleryConfig.gallery.selectedMaxHeightVh * 0.01);
+      const maxH = Math.max(
+        160,
+        Math.min(
+          vp.h * (maxHeightVh * 0.01),
+          vp.h - topBottomClearance
+        )
+      );
+
+      // Adaptive aspect-ratio fitting: frame hugs the actual photo bounds
+      const ratio = (aspectRatio && aspectRatio > 0 && isFinite(aspectRatio))
+        ? aspectRatio
+        : (maxW / maxH);
+
+      let targetW = maxW;
+      let targetH = maxH;
+
+      if (ratio > 0) {
+        if (maxW / maxH > ratio) {
+          // Bounding box is wider than photo -> constrained by available height
+          targetH = maxH;
+          targetW = Math.round(maxH * ratio * 10) / 10;
+        } else {
+          // Bounding box is taller than photo -> constrained by available width
+          targetW = maxW;
+          targetH = Math.round((maxW / ratio) * 10) / 10;
+        }
+      }
+
+      // Vertical centering: account for optional bottom metadata panel
+      const centerY = hasMetadata
+        ? (isMobile ? vp.h * 0.42 : vp.h * 0.45)
+        : vp.h * 0.50;
+
       return {
         x: vp.w / 2,
-        y: hasMetadata ? vp.h * 0.46 : vp.h * 0.49,
-        width: maxW,
-        height: maxH,
+        y: centerY,
+        width: targetW,
+        height: targetH,
         rotate: 0,
         scale: 1,
         opacity: 1,

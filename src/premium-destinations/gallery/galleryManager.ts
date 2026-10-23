@@ -250,6 +250,21 @@ export const focusedImageSettings = {
 
   // PRINT BORDER THICKNESS (px)
   printBorderPx: 3,
+
+  // FOCUSED PHOTO MAX VIEWPORT WIDTH (%) — Desktop par focused photo ki maximum width (% of screen)
+  maxWidthVw: 76,
+
+  // FOCUSED PHOTO MAX VIEWPORT HEIGHT (%) — Desktop par focused photo ki maximum height (% of screen)
+  maxHeightVh: 74,
+
+  // FOCUSED PHOTO MAX ABSOLUTE WIDTH (px) — Badi screens par maximum width cap
+  maxWidthPx: 1180,
+
+  // FOCUSED PHOTO MOBILE MAX WIDTH (%) — Mobile screens par photo ki maximum width (% of screen)
+  mobileMaxWidthVw: 86,
+
+  // FOCUSED PHOTO MOBILE MAX HEIGHT (%) — Mobile screens par photo ki maximum height (% of screen)
+  mobileMaxHeightVh: 70,
 };
 
 // ============================================================
@@ -443,6 +458,42 @@ export const destinationGalleryRegistry: DestinationGalleryRegistration[] = [
     description: "Marble cliffs, moonlit waters and the roar of Dhuandhar — a photographic journey through the Narmada gorge.",
     monogram: "B",
   },
+  {
+    slug: "tawa",
+    active: true,
+    manifestPath: "/destination-gallery/tawa/manifest.json",
+    eyebrow: "THE TAWA COLLECTION",
+    heading: "Discover Tawa, One Memory at a Time.",
+    tagline: "Unfold the Extraordinary.",
+    monogram: "T",
+  },
+  {
+    slug: "tamia",
+    active: true,
+    manifestPath: "/destination-gallery/tamia/manifest.json",
+    eyebrow: "THE SATPURA HIGHLANDS COLLECTION",
+    heading: "Discover Tamia, One Memory at a Time.",
+    tagline: "Unfold the Extraordinary.",
+    monogram: "T",
+  },
+  {
+    slug: "sailani-island",
+    active: true,
+    manifestPath: "/destination-gallery/sailani-island/manifest.json",
+    eyebrow: "THE NARMADA ISLAND COLLECTION",
+    heading: "Discover Sailani Island, One Memory at a Time.",
+    tagline: "Unfold the Extraordinary.",
+    monogram: "S",
+  },
+  {
+    slug: "hanuwantiya",
+    active: true,
+    manifestPath: "/destination-gallery/hanuwantiya/manifest.json",
+    eyebrow: "THE INDIRA SAGAR COLLECTION",
+    heading: "Discover Hanuwantiya, One Memory at a Time.",
+    tagline: "Unfold the Extraordinary.",
+    monogram: "H",
+  },
   // { slug: "bandhavgarh", active: false, manifestPath: "/destination-gallery/bandhavgarh/manifest.json", heading: "Bandhavgarh - The Land of the White Tiger.", monogram: "B" },
   // { slug: "omkareshwar", active: false, manifestPath: "/destination-gallery/omkareshwar/manifest.json", heading: "Omkareshwar - Island of Devotion.", monogram: "O" },
 ];
@@ -511,9 +562,11 @@ export function buildGalleryOverridesFromManager(): GalleryOverrides {
     gallery: {
       blurPx: focusedImageSettings.backgroundBlurPx,
       overlayDarkness: focusedImageSettings.backgroundDarkness,
-      selectedMaxWidthVw: fullscreenGallerySettings.selectedMaxWidthVw,
-      selectedMaxHeightVh: fullscreenGallerySettings.selectedMaxHeightVh,
-      selectedMaxWidthPx: fullscreenGallerySettings.selectedMaxWidthPx,
+      selectedMaxWidthVw: focusedImageSettings.maxWidthVw,
+      selectedMaxHeightVh: focusedImageSettings.maxHeightVh,
+      selectedMaxWidthPx: focusedImageSettings.maxWidthPx,
+      mobileSelectedMaxWidthVw: focusedImageSettings.mobileMaxWidthVw,
+      mobileSelectedMaxHeightVh: focusedImageSettings.mobileMaxHeightVh,
       gridCols: fullscreenGallerySettings.gridCols,
       gridRows: fullscreenGallerySettings.gridRows,
       mobileCols: fullscreenGallerySettings.mobileCols,

@@ -6,10 +6,18 @@
 import type { DestinationDetailContent } from './destinationDetailTypes';
 import { pachmarhiContent } from './pachmarhiContent';
 import { bhedaghatContent } from './bhedaghatContent';
+import { tawaContent } from './tawaContent';
+import { tamiaContent } from './tamiaContent';
+import { sailaniIslandContent } from './sailaniIslandContent';
+import { hanuwantiyaContent } from './hanuwantiyaContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
   bhedaghat: bhedaghatContent,
+  tawa: tawaContent,
+  tamia: tamiaContent,
+  'sailani-island': sailaniIslandContent,
+  hanuwantiya: hanuwantiyaContent,
   // pench: penchContent,            // add after content + media are ready
   // kanha: kanhaContent,
   // khajuraho: khajurahoContent,

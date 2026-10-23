@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import type { DestinationPhoto, GalleryState } from "../types/gallery";
 
@@ -10,6 +10,7 @@ interface PhotoPrintProps {
   isSelected: boolean;
   onSelect: (index: number) => void;
   showTitles?: boolean;
+  onRatio?: (src: string, ratio: number) => void;
 }
 
 export function PhotoPrint({
@@ -20,11 +21,26 @@ export function PhotoPrint({
   isSelected,
   onSelect,
   showTitles = false,
+  onRatio,
 }: PhotoPrintProps) {
   const [failed, setFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const interactive = state === "expanded" || (state === "focused" && !isSelected);
   const showChrome = state === "expanded" && showTitles;
   const number = String(index + 1).padStart(2, "0");
+
+  const notifyRatio = (w: number, h: number) => {
+    if (w > 0 && h > 0 && onRatio) {
+      onRatio(photo.image, w / h);
+    }
+  };
+
+  useEffect(() => {
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth && el.naturalHeight) {
+      notifyRatio(el.naturalWidth, el.naturalHeight);
+    }
+  }, [photo.image]);
 
   const handleKey = (event: KeyboardEvent<HTMLElement>) => {
     if (!interactive) return;
@@ -63,10 +79,14 @@ export function PhotoPrint({
           </div>
         ) : (
           <img
+            ref={imgRef}
             src={photo.image}
             alt={photo.alt || `Photograph ${number}`}
             style={{ objectPosition: photo.focal }}
             onError={() => setFailed(true)}
+            onLoad={(e) => {
+              notifyRatio(e.currentTarget.naturalWidth, e.currentTarget.naturalHeight);
+            }}
             draggable={false}
           />
         )}

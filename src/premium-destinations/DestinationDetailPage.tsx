@@ -38,8 +38,8 @@ function DestinationGallerySection({ destinationId }: { destinationId: string })
       }
     : baseOverrides;
 
-  // No registered gallery for this destination, or manifest not loaded yet
-  if (!registration || !content) return null;
+  // No registered gallery for this destination, or manifest not loaded yet, or no photos
+  if (!registration || !content || content.photos.length === 0) return null;
 
   return (
     <Suspense fallback={null}>
@@ -119,7 +119,30 @@ function SectionHeading({ label, title, copy, light = false }: {
   </div>;
 }
 function Picture({ src, alt, eager = false }: { src: string; alt: string; eager?: boolean }) {
-  return <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />;
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div
+        className="empd-picture-fallback"
+        aria-label={alt}
+        style={{
+          width: '100%',
+          height: '100%',
+          minHeight: '100%',
+          background: 'linear-gradient(135deg, rgba(23, 56, 42, 0.9) 0%, rgba(6, 30, 21, 0.96) 100%)',
+        }}
+      />
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 function Hero({ content, onBackToTheme }: { content: DestinationDetailContent; onBackToTheme?: () => void }) {

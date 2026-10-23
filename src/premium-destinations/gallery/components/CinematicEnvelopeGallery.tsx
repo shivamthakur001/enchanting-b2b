@@ -45,6 +45,35 @@ export default function CinematicEnvelopeGallery({
   const [viewport, setViewport] = useState({ w: 1280, h: 800 });
   const [ready, setReady] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({});
+
+  const handleRatio = useCallback((imageSrc: string, ratio: number) => {
+    if (!imageSrc || !ratio || !isFinite(ratio) || ratio <= 0) return;
+    setAspectRatios((prev) => {
+      if (prev[imageSrc] && Math.abs(prev[imageSrc] - ratio) < 0.002) return prev;
+      return { ...prev, [imageSrc]: ratio };
+    });
+  }, []);
+
+  // Pre-fetch natural aspect ratios of all photos in collection
+  useEffect(() => {
+    if (!photos || photos.length === 0) return;
+    photos.forEach((photo) => {
+      const src = photo.image;
+      if (!src) return;
+      const img = new Image();
+      img.src = src;
+      if (img.complete && img.naturalWidth && img.naturalHeight) {
+        handleRatio(src, img.naturalWidth / img.naturalHeight);
+      } else {
+        img.onload = () => {
+          if (img.naturalWidth && img.naturalHeight) {
+            handleRatio(src, img.naturalWidth / img.naturalHeight);
+          }
+        };
+      }
+    });
+  }, [photos, handleRatio]);
 
   const reducedMotion = usePrefersReducedMotion();
   const { isMobile, canHover } = useMediaFlags();
@@ -317,6 +346,15 @@ export default function CinematicEnvelopeGallery({
         >
           <Atmosphere />
           {photos.map((photo, index) => {
+            const ratio =
+              aspectRatios[photo.image] ||
+              (photo.aspect === "portrait"
+                ? 0.75
+                : photo.aspect === "wide"
+                ? 1.7778
+                : photo.aspect === "square"
+                ? 1.0
+                : undefined);
             const layout = computePhotoLayout(
               index,
               total,
@@ -327,7 +365,8 @@ export default function CinematicEnvelopeGallery({
               isMobile,
               reducedMotion,
               cfg,
-              scrollY
+              scrollY,
+              ratio
             );
             return (
               <PhotoPrint
@@ -339,6 +378,7 @@ export default function CinematicEnvelopeGallery({
                 showTitles={cfg.visibility?.showPhotoTitles ?? false}
                 layoutStyle={layoutToStyle(layout, duration, cfg.timing.easing)}
                 onSelect={focusPhoto}
+                onRatio={handleRatio}
               />
             );
           })}

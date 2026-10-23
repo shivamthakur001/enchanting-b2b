@@ -91,6 +91,8 @@ export const galleryConfig = {
     selectedMaxWidthVw: 76,
     selectedMaxHeightVh: 74,
     selectedMaxWidthPx: 1180,
+    mobileSelectedMaxWidthVw: 86,
+    mobileSelectedMaxHeightVh: 70,
     gridCols: 12,
     gridRows: 12,
     mobileCols: 6,
