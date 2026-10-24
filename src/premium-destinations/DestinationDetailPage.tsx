@@ -9,6 +9,7 @@ import './DestinationDetailPage.css';
 import { lazy, Suspense } from 'react';
 import { getGalleryRegistration, buildGalleryOverridesFromManager } from './gallery/galleryManager';
 import { useGalleryContent } from './gallery/hooks/useGalleryContent';
+import { getHeritageDestinationDesign } from './heritageDestinationConfig';
 
 // Lazy-load the heavy gallery bundle — only fetched when destination has a registered gallery
 const CinematicEnvelopeGallery = lazy(() => import('./gallery/components/CinematicEnvelopeGallery'));
@@ -290,7 +291,11 @@ export default function DestinationDetailPage({
   onBackToNature,
   isDemo = false,
 }: DestinationDetailPageProps) {
-  const activeConfig = config ?? content.customDesign;
+  const isHeritage = content.themeLabel?.toLowerCase() === 'heritage';
+  const effectiveDesign = isHeritage
+    ? getHeritageDestinationDesign(content.id, content.customDesign)
+    : content.customDesign;
+  const activeConfig = config ? { ...effectiveDesign, ...config } : effectiveDesign;
   const style = {
     ...destinationDesignVars(activeConfig),
     // CTA background is destination data — never hardcode Pachmarhi in shared CSS.

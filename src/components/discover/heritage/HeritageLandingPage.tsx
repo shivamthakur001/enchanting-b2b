@@ -5,6 +5,7 @@ import { ArrowRightIcon, CalendarIcon } from "../../icons/Icons";
 import { getDestination } from "../../../data/destinations";
 import { NatureThemeSwitcher } from "../nature/NatureThemeSwitcher";
 import { heritageLandingConfig } from "./config/heritageLandingConfig";
+import { getDestinationCardImage, handleDestinationCardImageError } from "../../../lib/destinationCardImages";
 import "./heritageLanding.css";
 
 // ─── CSS VARIABLE MAP ─────────────────────────────────────────────────────────
@@ -338,7 +339,7 @@ export function HeritageLandingPage({ destinations, packages }: HeritageLandingP
           {/* Full-photo overlay destination grid — matching Nature's card design */}
           <div className="heritage-destination-mosaic">
             {destinations.map((destination, index) => {
-              const imageUrl = cfg.destinations.imageOverrides[destination.slug] ?? destination.image;
+              const imageUrl = getDestinationCardImage(destination);
               return (
                 <Link
                   key={destination.id}
@@ -349,6 +350,7 @@ export function HeritageLandingPage({ destinations, packages }: HeritageLandingP
                   <img
                     src={imageUrl}
                     alt={destination.imageAlt}
+                    onError={(event) => handleDestinationCardImageError(event, destination)}
                     className="heritage-dest-card__media"
                     loading={index < 3 ? "eager" : "lazy"}
                   />

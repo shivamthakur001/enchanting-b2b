@@ -4,6 +4,7 @@ import type { Destination } from "../../types";
 import { getDestinationVideo } from "../../data/destinationVideos";
 import { MapPinIcon } from "../icons/Icons";
 import { cn } from "../../utils/cn";
+import { getDestinationCardImage, handleDestinationCardImageError } from "../../lib/destinationCardImages";
 
 const THEME_LABELS: Record<string, string> = {
   heritage: "Heritage",
@@ -101,8 +102,9 @@ export function TopDestinationCard({
     >
       {/* Poster image (master asset) */}
       <img
-        src={destination.image}
+        src={getDestinationCardImage(destination)}
         alt={destination.imageAlt}
+        onError={(event) => handleDestinationCardImageError(event, destination)}
         loading="lazy"
         decoding="async"
         className={cn(

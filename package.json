@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "generate-gallery-manifest": "node scripts/generate-gallery-manifest.js",
-    "predev": "node scripts/generate-gallery-manifest.js",
+    "predev": "node scripts/generate-gallery-manifest.js && node scripts/generate-destination-card-image-manifest.js",
     "dev": "vite",
-    "prebuild": "node scripts/generate-gallery-manifest.js",
+    "prebuild": "node scripts/generate-gallery-manifest.js && node scripts/generate-destination-card-image-manifest.js",
     "build": "vite build",
     "preview": "vite preview"
   },

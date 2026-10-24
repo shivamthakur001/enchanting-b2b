@@ -16,6 +16,18 @@ import { ranehFallsContent } from './ranehFallsContent';
 import { alirajpurContent } from './alirajpurContent';
 import { gulawatContent } from './gulawatContent';
 import { janapavContent } from './janapavContent';
+import { khajurahoContent } from './khajurahoContent';
+import { indoreContent } from './indoreContent';
+import { sanchiContent } from './sanchiContent';
+import { chanderiContent } from './chanderiContent';
+import { bhimbetkaContent } from './bhimbetkaContent';
+import { orchhaContent } from './orchhaContent';
+import { gwaliorContent } from './gwaliorContent';
+import { manduContent } from './manduContent';
+import { bhopalContent } from './bhopalContent';
+import { burhanpurContent } from './burhanpurContent';
+import { shivpuriContent } from './shivpuriContent';
+import { morenaContent } from './morenaContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
@@ -30,9 +42,20 @@ export const destinationRegistry: Record<string, DestinationDetailContent> = {
   alirajpur: alirajpurContent,
   gulawat: gulawatContent,
   janapav: janapavContent,
+  khajuraho: khajurahoContent,
+  indore: indoreContent,
+  sanchi: sanchiContent,
+  chanderi: chanderiContent,
+  bhimbetka: bhimbetkaContent,
+  orchha: orchhaContent,
+  gwalior: gwaliorContent,
+  mandu: manduContent,
+  bhopal: bhopalContent,
+  burhanpur: burhanpurContent,
+  shivpuri: shivpuriContent,
+  morena: morenaContent,
   // pench: penchContent,            // add after content + media are ready
   // kanha: kanhaContent,
-  // khajuraho: khajurahoContent,
   // ujjain: ujjainContent,
 };
 

@@ -2,6 +2,7 @@ import { Link } from "../../../router/Router";
 import type { Destination } from "../../../types";
 import { ArrowRightIcon } from "../../icons/Icons";
 import { naturePageConfig } from "../../../config/naturePageConfig";
+import { getDestinationCardImage, handleDestinationCardImageError } from "../../../lib/destinationCardImages";
 
 interface NatureDestinationsProps {
   destinations: Destination[];
@@ -47,8 +48,9 @@ export function NatureDestinations({ destinations }: NatureDestinationsProps) {
               className="nature-dest-card nature-dest-card--featured group"
             >
               <img
-                src={pachmarhi.image}
+                src={getDestinationCardImage(pachmarhi)}
                 alt={pachmarhi.imageAlt}
+                onError={(event) => handleDestinationCardImageError(event, pachmarhi)}
                 className="nature-dest-card__media"
                 loading="lazy"
               />
@@ -85,8 +87,9 @@ export function NatureDestinations({ destinations }: NatureDestinationsProps) {
               className="nature-dest-card nature-dest-card--secondary group"
             >
               <img
-                src={bhedaghat.image}
+                src={getDestinationCardImage(bhedaghat)}
                 alt={bhedaghat.imageAlt}
+                onError={(event) => handleDestinationCardImageError(event, bhedaghat)}
                 className="nature-dest-card__media"
                 loading="lazy"
               />
@@ -123,8 +126,9 @@ export function NatureDestinations({ destinations }: NatureDestinationsProps) {
               className="nature-dest-card nature-dest-card--standard group"
             >
               <img
-                src={dest.image}
+                src={getDestinationCardImage(dest)}
                 alt={dest.imageAlt}
+                onError={(event) => handleDestinationCardImageError(event, dest)}
                 className="nature-dest-card__media"
                 loading="lazy"
               />

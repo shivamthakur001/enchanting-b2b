@@ -2,6 +2,7 @@ import { Link } from "../../router/Router";
 import type { Destination } from "../../types";
 import { ArrowRightIcon } from "../icons/Icons";
 import { PremiumTilt } from "../ui/PremiumTilt";
+import { getDestinationCardImage, handleDestinationCardImageError } from "../../lib/destinationCardImages";
 
 export function DestinationCard({ destination }: { destination: Destination }) {
   return (
@@ -12,8 +13,9 @@ export function DestinationCard({ destination }: { destination: Destination }) {
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={destination.image}
+            src={getDestinationCardImage(destination)}
             alt={destination.imageAlt}
+            onError={(event) => handleDestinationCardImageError(event, destination)}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none"
             loading="lazy"
           />

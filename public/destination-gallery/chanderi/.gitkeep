@@ -1,0 +1,3 @@
+# Chanderi Cinematic Envelope Gallery Directory
+# Place high-resolution gallery images here (.jpg, .jpeg, .png, .webp, .avif).
+# The build script generate-gallery-manifest.js will automatically index photos into manifest.json.
