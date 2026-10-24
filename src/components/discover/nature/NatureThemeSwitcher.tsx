@@ -3,11 +3,12 @@ import { discoverThemes } from "../../../data/themes";
 
 interface NatureThemeSwitcherProps {
   activeSlug?: string;
+  className?: string;
 }
 
-export function NatureThemeSwitcher({ activeSlug = "nature" }: NatureThemeSwitcherProps) {
+export function NatureThemeSwitcher({ activeSlug = "nature", className }: NatureThemeSwitcherProps) {
   return (
-    <nav aria-label="Editorial Theme Navigator" className="nature-theme-nav">
+    <nav aria-label="Editorial Theme Navigator" className={["nature-theme-nav", className].filter(Boolean).join(" ")}>
       <div className="nature-theme-nav__container">
         <span className="nature-theme-nav__label">
           Explore Madhya Pradesh Themes

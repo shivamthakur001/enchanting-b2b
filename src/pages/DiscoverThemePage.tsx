@@ -5,6 +5,7 @@ import { getPackagesByTheme } from "../data/packages";
 import { ThemeDestinationGrid } from "../components/destinations/DestinationCard";
 import { ThemePackageSection } from "../components/packages/PackageCard";
 import { NatureThemeLanding } from "../components/discover/nature/NatureThemeLanding";
+import { HeritageLandingPage } from "../components/discover/heritage/HeritageLandingPage";
 import { cn } from "../utils/cn";
 
 export function DiscoverThemePage() {
@@ -34,6 +35,10 @@ export function DiscoverThemePage() {
         packages={relatedPackages}
       />
     );
+  }
+
+  if (theme.slug === "heritage") {
+    return <HeritageLandingPage destinations={destinations} packages={relatedPackages} />;
   }
 
   return (
