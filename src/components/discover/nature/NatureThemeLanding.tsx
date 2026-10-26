@@ -1,6 +1,6 @@
 import type { Destination, TravelPackage, DiscoverTheme } from "../../../types";
 import { NatureHero } from "./NatureHero";
-import { NatureThemeSwitcher } from "./NatureThemeSwitcher";
+import { CinematicThemeSwitcher } from "../shared/CinematicThemeSwitcher";
 import { NatureIntro } from "./NatureIntro";
 import { NatureLandscapes } from "./NatureLandscapes";
 import { NatureDestinations } from "./NatureDestinations";
@@ -29,7 +29,7 @@ export function NatureThemeLanding({
       <NatureHero />
 
       {/* 3. Refined Editorial Theme Switcher (anchored below hero) */}
-      {naturePageConfig.themeSwitcher.enabled && <NatureThemeSwitcher activeSlug={theme.slug} />}
+      {naturePageConfig.themeSwitcher.enabled && <CinematicThemeSwitcher activeSlug={theme.slug} />}
 
       {/* 4. Intro — The Landscape Story */}
       <NatureIntro />

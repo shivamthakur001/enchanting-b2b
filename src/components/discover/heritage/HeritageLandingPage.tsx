@@ -3,7 +3,7 @@ import { Link } from "../../../router/Router";
 import type { Destination, TravelPackage } from "../../../types";
 import { ArrowRightIcon, CalendarIcon } from "../../icons/Icons";
 import { getDestination } from "../../../data/destinations";
-import { NatureThemeSwitcher } from "../nature/NatureThemeSwitcher";
+import { CinematicThemeSwitcher } from "../shared/CinematicThemeSwitcher";
 import { heritageLandingConfig } from "./config/heritageLandingConfig";
 import { getDestinationCardImage, handleDestinationCardImageError } from "../../../lib/destinationCardImages";
 import "./heritageLanding.css";
@@ -219,7 +219,7 @@ export function HeritageLandingPage({ destinations, packages }: HeritageLandingP
       </section>
 
       {/* ── THEME SWITCHER ───────────────────────────────────────────────── */}
-      <NatureThemeSwitcher activeSlug="heritage" className="heritage-theme-switcher" />
+      <CinematicThemeSwitcher activeSlug="heritage" />
 
       {/* ── INTRODUCTION ─────────────────────────────────────────────────── */}
       <section

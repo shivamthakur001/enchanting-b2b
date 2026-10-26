@@ -6,6 +6,8 @@ import { ThemeDestinationGrid } from "../components/destinations/DestinationCard
 import { ThemePackageSection } from "../components/packages/PackageCard";
 import { NatureThemeLanding } from "../components/discover/nature/NatureThemeLanding";
 import { HeritageLandingPage } from "../components/discover/heritage/HeritageLandingPage";
+import { WildlifeLandingPage } from "../components/discover/wildlife/WildlifeLandingPage";
+import { CinematicThemeSwitcher } from "../components/discover/shared/CinematicThemeSwitcher";
 import { cn } from "../utils/cn";
 
 export function DiscoverThemePage() {
@@ -41,6 +43,16 @@ export function DiscoverThemePage() {
     return <HeritageLandingPage destinations={destinations} packages={relatedPackages} />;
   }
 
+  if (theme.slug === "wildlife") {
+    return (
+      <WildlifeLandingPage
+        theme={theme}
+        destinations={destinations}
+        packages={relatedPackages}
+      />
+    );
+  }
+
   return (
     <div style={{ background: theme.visual.background }}>
       <section className="relative min-h-[52vh] overflow-hidden">
@@ -54,6 +66,8 @@ export function DiscoverThemePage() {
           <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-ivory/85">{theme.shortDescription}</p>
         </div>
       </section>
+
+      <CinematicThemeSwitcher activeSlug={theme.slug} />
 
       <div className="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-8">
         <nav aria-label="Other themes" className="mb-10 flex flex-wrap gap-2">

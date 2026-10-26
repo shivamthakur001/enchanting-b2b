@@ -5,7 +5,7 @@ import { Logo } from "../logo/Logo";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-line bg-forest-deep text-ivory">
+    <footer className="relative z-10 mt-auto border-t border-line bg-forest-deep text-ivory">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div className="max-w-xs">
           <Logo inverted />

@@ -1,0 +1,163 @@
+.wildlife-emerald-background {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  color: #d4c9a6;
+  background: var(--emerald-base);
+}
+
+.wildlife-emerald-background > * {
+  position: absolute;
+  pointer-events: none;
+}
+
+.wildlife-emerald-background svg {
+  display: block;
+  max-width: 100%;
+}
+
+.wildlife-emerald-background__base {
+  inset: 0;
+  z-index: -10;
+  background: var(--emerald-base);
+}
+
+.wildlife-emerald-background__gradient {
+  inset: 0;
+  z-index: -9;
+}
+
+.wildlife-emerald-background__gradient--canopy { background: var(--emerald-canopy-gradient); }
+.wildlife-emerald-background__gradient--undergrowth { background: var(--emerald-undergrowth-gradient); }
+
+.wildlife-emerald-background__silk {
+  inset: 0;
+  z-index: -8;
+  background:
+    radial-gradient(ellipse 80% 50% at 18% 12%, rgba(28,72,50,.28), transparent 58%),
+    radial-gradient(ellipse 70% 45% at 82% 8%, rgba(18,56,40,.22), transparent 52%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(10,36,24,.45), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 8% 78%, rgba(20,64,44,.16), transparent 50%),
+    radial-gradient(ellipse 45% 30% at 92% 72%, rgba(20,64,44,.14), transparent 50%);
+}
+
+.wildlife-emerald-background__pattern {
+  inset: 0;
+  z-index: -7;
+  opacity: var(--emerald-pattern-opacity);
+  color: #c9bfa0;
+}
+
+.wildlife-emerald-background__photo {
+  z-index: -6;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* normal blend mode ensures photos are actually visible on dark backgrounds */
+  mix-blend-mode: normal;
+}
+
+.wildlife-emerald-background__photo--canopy {
+  inset: 0 0 auto;
+  height: 58%;
+  opacity: var(--emerald-canopy-opacity);
+  background-image: linear-gradient(to bottom, rgba(7,20,16,.18), transparent 72%), url("/wildlife-emerald-background/canopy.jpg");
+  background-position: var(--emerald-canopy-position);
+  background-size: var(--emerald-canopy-size);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.65) 38%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.65) 38%, transparent 100%);
+}
+
+.wildlife-emerald-background__photo--undergrowth {
+  inset: auto 0 0;
+  height: 48%;
+  opacity: var(--emerald-undergrowth-opacity);
+  background-image: linear-gradient(to top, rgba(7,20,16,.2), transparent 72%), url("/wildlife-emerald-background/undergrowth.jpg");
+  background-position: var(--emerald-undergrowth-position);
+  background-size: var(--emerald-undergrowth-size);
+  mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.6) 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.6) 40%, transparent 100%);
+}
+
+.wildlife-emerald-background__photo--left,
+.wildlife-emerald-background__photo--right {
+  top: 0;
+  bottom: 0;
+  width: 32vw;
+  min-width: 240px;
+  opacity: var(--emerald-foliage-opacity);
+  background-size: var(--emerald-foliage-size);
+}
+
+.wildlife-emerald-background__photo--left {
+  left: 0;
+  background-image: url("/wildlife-emerald-background/foliage-left.jpg");
+  mask-image: linear-gradient(to right, #000 0%, #000 28%, rgba(0,0,0,.45) 52%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 28%, rgba(0,0,0,.45) 52%, transparent 100%);
+}
+
+.wildlife-emerald-background__photo--right {
+  right: 0;
+  background-image: url("/wildlife-emerald-background/foliage-right.jpg");
+  mask-image: linear-gradient(to left, #000 0%, #000 28%, rgba(0,0,0,.45) 52%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 28%, rgba(0,0,0,.45) 52%, transparent 100%);
+}
+
+.wildlife-emerald-background__corners,
+.wildlife-emerald-background__gold-corners,
+.wildlife-emerald-background__vines,
+.wildlife-emerald-background__ferns {
+  inset: 0;
+}
+
+.wildlife-emerald-background__corners span,
+.wildlife-emerald-background__gold-corners span,
+.wildlife-emerald-background__vines span,
+.wildlife-emerald-background__ferns span {
+  position: absolute;
+  display: block;
+}
+
+.wildlife-emerald-background__corners { z-index: -4; color: #0d2a1c; }
+.wildlife-emerald-background__corners span { width: min(42vw,460px); height: 70vh; opacity: .34; mix-blend-mode: multiply; }
+.wildlife-emerald-background__corners span:nth-child(2) { right: 0; transform: scaleX(-1); }
+.wildlife-emerald-background__corners span:nth-child(3) { bottom: 0; transform: scaleY(-1); }
+.wildlife-emerald-background__corners span:nth-child(4) { right: 0; bottom: 0; transform: scale(-1); }
+
+.wildlife-emerald-background__vines { z-index: -3; color: #d4c9a6; }
+.wildlife-emerald-background__vines span { top: 8vh; left: 8px; width: min(16vw,180px); height: 62vh; opacity: .22; }
+.wildlife-emerald-background__vines span:nth-child(2) { left: auto; right: 8px; transform: scaleX(-1); }
+
+.wildlife-emerald-background__ferns { z-index: -3; color: #c9bfa0; }
+.wildlife-emerald-background__ferns span { top: 12%; left: 0; width: min(18vw,200px); height: 78%; opacity: .14; }
+.wildlife-emerald-background__ferns span:nth-child(2) { left: auto; right: 0; transform: scaleX(-1); }
+
+.wildlife-emerald-background__gold-corners { z-index: -2; color: #d4c9a6; }
+.wildlife-emerald-background__gold-corners span { width: min(44vw,440px); height: min(44vw,440px); opacity: var(--emerald-corner-opacity); }
+.wildlife-emerald-background__gold-corners span:nth-child(2) { right: 0; transform: scaleX(-1); }
+.wildlife-emerald-background__gold-corners span:nth-child(3) { bottom: 0; transform: scaleY(-1); }
+.wildlife-emerald-background__gold-corners span:nth-child(4) { right: 0; bottom: 0; transform: scale(-1); }
+
+.wildlife-emerald-background__section-vine { top: 50%; left: 4%; right: 4%; z-index: -2; height: 40px; color: #d4c9a6; opacity: .22; }
+.wildlife-emerald-background__frame { inset: 32px; z-index: -1; border: 1px solid rgba(212,201,166,var(--emerald-frame-opacity)); }
+.wildlife-emerald-background__frame::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(212,201,166,calc(var(--emerald-frame-opacity) * .4)); }
+.wildlife-emerald-background__vignette { inset: 0; z-index: -1; opacity: var(--emerald-vignette-opacity); background: var(--emerald-vignette-gradient); }
+.wildlife-emerald-background__linen { inset: 0; z-index: 0; opacity: var(--emerald-texture-opacity); mix-blend-mode: overlay; background: repeating-linear-gradient(0deg,rgba(212,201,166,.018) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.04) 0 1px,transparent 1px 4px); }
+.wildlife-emerald-background__velvet { inset: 0; z-index: 0; opacity: .5; mix-blend-mode: soft-light; background-image: radial-gradient(circle at 50% 50%,rgba(255,255,255,.025) .5px,transparent .6px); background-size: 3px 3px; }
+.wildlife-emerald-background__grain { inset: 0; z-index: 0; opacity: var(--emerald-texture-opacity); mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='e' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23e)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
+
+@media (max-width: 700px) {
+  .wildlife-emerald-background__photo--canopy { background-position: var(--emerald-mobile-canopy-position); }
+  .wildlife-emerald-background__photo--undergrowth { background-position: var(--emerald-mobile-undergrowth-position); }
+  .wildlife-emerald-background__photo--left,
+  .wildlife-emerald-background__photo--right { background-size: var(--emerald-mobile-foliage-size); min-width: 120px; width: 35vw; opacity: calc(var(--emerald-foliage-opacity) * var(--emerald-mobile-opacity-scale)); }
+  .wildlife-emerald-background__gold-corners span { width: min(52vw,280px); height: min(52vw,280px); }
+  .wildlife-emerald-background__vines span { width: 22vw; opacity: .14; }
+  .wildlife-emerald-background__ferns span { width: 24vw; opacity: .1; }
+  .wildlife-emerald-background__frame { inset: 18px; }
+}
