@@ -1,7 +1,6 @@
 import { cn } from "../../utils/cn";
 import { Link } from "../../router/Router";
-import logoImage from "../../assets/enchanting-mp-logo.png.jpeg";
-
+import logoImage from "../../assets/enchanting-mp-logo.png";
 type LogoProps = {
   compact?: boolean;
   inverted?: boolean;
@@ -17,7 +16,7 @@ export function Logo({ compact = false, inverted = false, className }: LogoProps
     >
       <img
         src={logoImage}
-        alt=""
+        alt="logo text"
         aria-hidden="true"
         className={cn(
           "shrink-0 object-contain transition-[width,height,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",

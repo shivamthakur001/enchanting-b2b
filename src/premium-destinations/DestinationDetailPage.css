@@ -313,44 +313,285 @@
 .empd-story blockquote { font-size: 1.62rem; font-style: italic; line-height: 1.23; color: #344f3f; }
 .empd-story blockquote span { display: block; font-size: 4rem; height: 38px; color: #a8bd9e; line-height: 1; }
 
-/* 05 — Theme cards, four equal columns */
+/* 05 — Activities & Experiences — Cinematic Flex-Grow Cards (Homepage-matched) */
 .empd-themes { background: var(--empd-themes-bg, var(--empd-parchment)); position: relative; }
 .empd-themes .empd-container { position: relative; }
-.empd-themes__grid { display: grid; grid-template-columns: repeat(var(--empd-theme-cols), minmax(0, 1fr)); gap: var(--empd-theme-gap, var(--empd-gap)); }
-.empd-theme-card {
-  text-align: left;
-  border: 1px solid var(--empd-theme-card-border);
-  padding: 0;
-  border-radius: var(--empd-theme-card-radius, var(--empd-radius));
-  background: var(--empd-theme-card-bg);
+
+/* ── Desktop 4-card flex row ── */
+.empd-exp-desktop-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  height: clamp(500px, 38vw, 580px);
+  min-height: 480px;
+}
+
+/* Each card slot */
+.empd-exp-card {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  flex-basis: 0;
   overflow: hidden;
-  color: var(--empd-ink);
-  box-shadow: 0 6px 17px rgba(19,52,30,.05);
-  transition: transform var(--empd-motion) ease, box-shadow var(--empd-motion) ease;
+  border-radius: 20px;
+  background: #0d2b1e;
+  cursor: pointer;
+  box-shadow: 0 18px 48px -16px rgba(6, 22, 14, 0.55);
+  outline: none;
 }
-.empd-theme-card:hover, .empd-theme-card.is-active { transform: translateY(-3px); box-shadow: var(--empd-shadow); }
-.empd-theme-card__image { height: var(--empd-theme-image-height); overflow: hidden; }
-.empd-theme-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--empd-motion) ease; }
-.empd-theme-card:hover img { transform: scale(var(--empd-hover-scale)); }
-.empd-theme-card__content { position: relative; padding: 18px 20px 23px; min-height: var(--empd-theme-content-min-height); }
-.empd-theme-card__head { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
-.empd-theme-card__icon {
-  width: var(--empd-theme-icon-size);
-  height: var(--empd-theme-icon-size);
-  flex: 0 0 var(--empd-theme-icon-size);
-  background: var(--empd-theme-icon-bg);
-  color: white;
-  display: grid;
-  place-items: center;
+.empd-exp-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--empd-copper, #c18d4a), 0 18px 48px -16px rgba(6,22,14,0.55);
+}
+
+/* Full-cover image */
+.empd-exp-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.empd-exp-card.is-expanded > img {
+  transform: scale(1.06);
+}
+
+/* Top vignette for chip readability */
+.empd-exp-card__top-vignette {
+  pointer-events: none;
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 110px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.18) 60%, transparent 100%);
+  z-index: 1;
+}
+
+/* Bottom gradient overlay — deepens on expand */
+.empd-exp-card__bottom {
+  pointer-events: none;
+  position: absolute;
+  inset-x: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0 22px 22px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.62) 40%,
+    rgba(0, 0, 0, 0.16) 72%,
+    transparent 100%
+  );
+  transition: background 550ms ease;
+}
+.empd-exp-card.is-expanded .empd-exp-card__bottom {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.80) 52%,
+    rgba(0, 0, 0, 0.30) 80%,
+    transparent 100%
+  );
+}
+
+/* Top bar with category chip */
+.empd-exp-card__topbar {
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+}
+
+.empd-exp-card__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.26);
+  background: rgba(0,0,0,0.52);
+  backdrop-filter: blur(10px);
+  color: rgba(255,255,255,0.92);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  max-width: 100%;
+  overflow: hidden;
+}
+.empd-exp-card__chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+  transition: max-width 500ms cubic-bezier(0.22,1,0.36,1), opacity 400ms ease;
+}
+/* On dimmed (non-hovered) cards, hide chip label — shows only icon */
+.empd-exp-card.is-dimmed .empd-exp-card__chip span {
+  max-width: 0;
+  opacity: 0;
+}
+
+/* Card title */
+.empd-exp-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 1.5vw, 1.65rem);
+  font-weight: 650;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -0.016em;
+  margin: 0;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.5);
+  transition: font-size 480ms cubic-bezier(0.22,1,0.36,1);
+}
+.empd-exp-card.is-expanded .empd-exp-card__title {
+  font-size: clamp(1.4rem, 2vw, 2.05rem);
+}
+
+/* Reveal block — slides up and fades in on expansion */
+.empd-exp-card__reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    max-height 580ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 450ms ease 80ms,
+    transform 450ms ease 80ms;
+  margin-top: 0;
+}
+.empd-exp-card__reveal.is-visible {
+  max-height: 260px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 12px;
+}
+
+/* Sights list */
+.empd-exp-card__sights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.empd-exp-card__sights li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.71rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.35;
+}
+.empd-exp-card__dot {
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
+  background: var(--empd-copper, #c18d4a);
 }
-.empd-theme-card h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: var(--empd-theme-title-size); line-height: 1.05; font-weight: 700; }
-.empd-theme-card ul { padding-left: 49px; list-style: none; color: #57625b; font-size: var(--empd-theme-list-size); line-height: 1.5; }
-.empd-theme-card__arrow { position: absolute; width: 34px; height: 34px; bottom: 13px; right: 13px; border-radius: 50%; background: #d4dfbc; color: #345b36; display: grid; place-items: center; }
-.empd-theme-detail { margin-top: 17px; display: flex; align-items: center; gap: 16px; padding: 15px 20px; background: #fffdf6; border-radius: 9px; border: 1px solid #d3dfc8; }
-.empd-theme-detail strong { min-width: 150px; }
-.empd-theme-detail p { flex: 1; font-size: .88rem; color: #586b5a; }
-.empd-theme-detail button { border: 0; background: none; color: #416846; font-size: .86rem; }
+
+/* Note paragraph */
+.empd-exp-card__note {
+  margin-top: 10px;
+  font-size: 0.73rem;
+  line-height: 1.48;
+  color: rgba(255,255,255,0.72);
+  font-style: italic;
+  border-left: 2px solid rgba(255,255,255,0.25);
+  padding-left: 10px;
+}
+
+/* Hairline inset ring */
+.empd-exp-card__ring {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+  transition: box-shadow 450ms ease;
+}
+.empd-exp-card.is-expanded .empd-exp-card__ring {
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.28);
+}
+
+/* ── Mobile/Tablet wrapper — hide desktop row, show rail ── */
+.empd-exp-mobile-wrapper { display: none; }
+
+/* ── Mobile snap rail ── */
+.empd-exp-mobile-rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 6px;
+  margin-inline: -18px;
+  padding-inline: 18px;
+}
+.empd-exp-mobile-rail::-webkit-scrollbar { display: none; }
+
+.empd-exp-mobile-card {
+  position: relative;
+  flex: 0 0 76vw;
+  max-width: 320px;
+  min-width: 260px;
+  height: 440px;
+  scroll-snap-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0d2b1e;
+  cursor: pointer;
+  box-shadow: 0 14px 38px -12px rgba(6,22,14,0.52);
+  outline: none;
+}
+.empd-exp-mobile-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+.empd-exp-mobile-card.is-active > img { transform: scale(1.05); }
+.empd-exp-mobile-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--empd-copper, #c18d4a);
+}
+
+/* Responsive: swap desktop row <-> mobile rail at 900px */
+@media (max-width: 900px) {
+  .empd-exp-desktop-row { display: none; }
+  .empd-exp-mobile-wrapper { display: block; }
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .empd-exp-card > img,
+  .empd-exp-card__reveal,
+  .empd-exp-card__bottom,
+  .empd-exp-card__chip span,
+  .empd-exp-card__title,
+  .empd-exp-card__ring,
+  .empd-exp-mobile-card > img {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Legacy theme card stubs — hidden so old markup causes no visual regression */
+.empd-themes__grid { display: none; }
+.empd-theme-card { display: none; }
+.empd-theme-detail { display: none; }
+
 
 /* 06 — Seasons + travel planning side-by-side */
 .empd-seasons { background: var(--empd-seasons-bg); }

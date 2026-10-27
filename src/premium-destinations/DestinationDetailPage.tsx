@@ -1,4 +1,4 @@
-import { useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useRef, useState, useEffect, type CSSProperties, type ReactNode } from 'react';
 import type { DestinationDetailContent, DestinationPackage } from './destinationDetailTypes';
 import {
   destinationDesignVars,
@@ -213,24 +213,178 @@ function Highlights({ content }: { content: DestinationDetailContent }) {
   </section>;
 }
 
-function Themes({ content }: { content: DestinationDetailContent }) {
-  const [selected, setSelected] = useState<string | null>(null);
-  const active = content.themes.find((theme) => theme.id === selected);
-  return <section className="empd-themes empd-section--narrow">
-    <div className="empd-container">
-      <SectionHeading label="What To Explore" title="Activities & Experiences"/>
-      <div className="empd-themes__grid">
-        {content.themes.map((theme) => <button type="button" className={`empd-theme-card${selected === theme.id ? ' is-active' : ''}`} key={theme.id} onClick={() => setSelected(selected === theme.id ? null : theme.id)} aria-expanded={selected === theme.id}>
-          <div className="empd-theme-card__image"><Picture src={theme.image} alt={theme.title}/></div>
-          <div className="empd-theme-card__content"><div className="empd-theme-card__head"><span className="empd-theme-card__icon"><Icon name={theme.icon} size={20}/></span><h3>{theme.title}</h3></div>
-            <ul>{theme.sights.map((sight) => <li key={sight}>{sight}</li>)}</ul>
-            <span className="empd-theme-card__arrow"><Icon name="arrow" size={20}/></span>
-          </div>
-        </button>)}
+function ExperienceCardDesktop({
+  theme,
+  isExpanded,
+  isDimmed,
+  onEnter,
+  onLeave,
+}: {
+  theme: DestinationDetailContent['themes'][number];
+  isExpanded: boolean;
+  isDimmed: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
+}) {
+  return (
+    <div
+      className={`empd-exp-card${isExpanded ? ' is-expanded' : ''}${isDimmed ? ' is-dimmed' : ''}`}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onFocus={onEnter}
+      onBlur={onLeave}
+      tabIndex={0}
+      role="article"
+      aria-label={theme.title}
+      style={{
+        flexGrow: isExpanded ? 1.65 : isDimmed ? 0.82 : 1,
+        flexBasis: 0,
+        transition: 'flex-grow 650ms cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
+    >
+      {/* Full-cover photo */}
+      <Picture src={theme.image} alt={theme.title} />
+
+      {/* Top vignette */}
+      <div className="empd-exp-card__top-vignette" />
+
+      {/* Top bar: icon chip */}
+      <div className="empd-exp-card__topbar">
+        <span className="empd-exp-card__chip">
+          <Icon name={theme.icon} size={14} />
+          <span>{theme.title}</span>
+        </span>
       </div>
-      {active && <div className="empd-theme-detail" role="status"><strong>{active.title}</strong><p>{active.note}</p><button type="button" onClick={() => setSelected(null)}>Close ×</button></div>}
+
+      {/* Bottom gradient + content */}
+      <div className="empd-exp-card__bottom">
+        <h3 className="empd-exp-card__title">{theme.title}</h3>
+
+        {/* Reveal panel — slides up on expansion */}
+        <div className={`empd-exp-card__reveal${isExpanded ? ' is-visible' : ''}`}>
+          <ul className="empd-exp-card__sights">
+            {theme.sights.map((sight) => (
+              <li key={sight}><span className="empd-exp-card__dot" />{sight}</li>
+            ))}
+          </ul>
+          {theme.note && (
+            <p className="empd-exp-card__note">{theme.note}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Hairline ring */}
+      <div className="empd-exp-card__ring" />
     </div>
-  </section>;
+  );
+}
+
+function ExperienceMobileRail({ themes }: { themes: DestinationDetailContent['themes'] }) {
+  const [activeId, setActiveId] = useState<string | null>(themes[0]?.id ?? null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || themes.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let bestId: string | null = null;
+        let bestRatio = 0;
+        for (const entry of entries) {
+          const id = (entry.target as HTMLElement).dataset.expId;
+          if (!id) continue;
+          if (entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            bestId = id;
+          }
+        }
+        if (bestId && bestRatio > 0.5) setActiveId(bestId);
+      },
+      { root: container, threshold: [0.3, 0.5, 0.7, 0.9] }
+    );
+    itemRefs.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [themes]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="empd-exp-mobile-rail"
+      aria-label="Activities rail — swipe to explore"
+    >
+      {themes.map((theme) => {
+        const active = activeId === theme.id;
+        return (
+          <div
+            key={theme.id}
+            data-exp-id={theme.id}
+            ref={(el) => {
+              if (el) itemRefs.current.set(theme.id, el);
+              else itemRefs.current.delete(theme.id);
+            }}
+            className={`empd-exp-mobile-card${active ? ' is-active' : ''}`}
+            onClick={() => setActiveId(theme.id)}
+            tabIndex={0}
+            role="article"
+            aria-label={theme.title}
+          >
+            <Picture src={theme.image} alt={theme.title} />
+            <div className="empd-exp-card__top-vignette" />
+            <div className="empd-exp-card__topbar">
+              <span className="empd-exp-card__chip">
+                <Icon name={theme.icon} size={13} />
+                <span>{theme.title}</span>
+              </span>
+            </div>
+            <div className="empd-exp-card__bottom">
+              <h3 className="empd-exp-card__title">{theme.title}</h3>
+              <div className={`empd-exp-card__reveal${active ? ' is-visible' : ''}`}>
+                <ul className="empd-exp-card__sights">
+                  {theme.sights.map((sight) => (
+                    <li key={sight}><span className="empd-exp-card__dot" />{sight}</li>
+                  ))}
+                </ul>
+                {theme.note && <p className="empd-exp-card__note">{theme.note}</p>}
+              </div>
+            </div>
+            <div className="empd-exp-card__ring" />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Themes({ content }: { content: DestinationDetailContent }) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  return (
+    <section className="empd-themes empd-section--narrow">
+      <div className="empd-container">
+        <SectionHeading label="What To Explore" title="Activities &amp; Experiences" />
+
+
+        {/* Desktop: 4-card cinematic flex-grow row */}
+        <div className="empd-exp-desktop-row">
+          {content.themes.map((theme) => (
+            <ExperienceCardDesktop
+              key={theme.id}
+              theme={theme}
+              isExpanded={hoveredId === theme.id}
+              isDimmed={hoveredId !== null && hoveredId !== theme.id}
+              onEnter={() => setHoveredId(theme.id)}
+              onLeave={() => setHoveredId(null)}
+            />
+          ))}
+        </div>
+
+        {/* Mobile: horizontal snap rail */}
+        <div className="empd-exp-mobile-wrapper">
+          <ExperienceMobileRail themes={content.themes} />
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function SeasonsAndAccess({ content }: { content: DestinationDetailContent }) {
