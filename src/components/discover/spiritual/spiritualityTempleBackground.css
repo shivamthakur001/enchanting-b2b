@@ -1,0 +1,381 @@
+/**
+ * Spirituality Temple Ivory Background Styles
+ * 
+ * Strict containment: all decorative layers use pointer-events: none,
+ * are scoped under .spirituality-temple-bg, and stay behind interactive content.
+ */
+
+.spirituality-temple-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  isolation: isolate;
+  background-color: var(--stb-base-ivory, #FAF7F0);
+  color: var(--stb-muted-gold, #B89758);
+}
+
+.spirituality-temple-bg * {
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* 1. BASE IVORY & PARCHMENT LAYERS */
+.spirituality-temple-bg__base {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background-color: var(--stb-base-ivory, #FAF7F0);
+}
+
+.spirituality-temple-bg__parchment {
+  position: absolute;
+  inset: 0;
+  z-index: -9;
+  background: var(--stb-parchment-gradient, linear-gradient(180deg, rgba(250, 247, 240, 0.9) 0%, rgba(245, 239, 235, 0.95) 50%, #FAF7F0 100%));
+}
+
+/* 2. TEXTURE / GRAIN (Warm stone parchment) */
+.spirituality-temple-bg__texture {
+  position: absolute;
+  inset: 0;
+  z-index: -8;
+  opacity: var(--stb-texture-opacity, 0.16);
+  background-image: url("/spirituality-assets/parchment-texture.jpg");
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  mix-blend-mode: multiply;
+}
+
+/* 3. HERO SACRED RIVER FAINT BACKDROP */
+.spirituality-temple-bg__hero-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(75vh, 680px);
+  z-index: -7;
+  opacity: var(--stb-hero-opacity, 0.32);
+  background-image: url("/spirituality-assets/hero-sacred-river.jpg");
+  background-position: var(--stb-hero-pos, center 30%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+}
+
+/* 4. TEMPLE ENGRAVINGS & CARVINGS */
+.spirituality-temple-bg__engraving-layer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(85vw, 1100px);
+  height: 600px;
+  z-index: -7;
+  opacity: var(--stb-engraving-opacity, 0.12);
+  background-image: url("/spirituality-assets/temple-engraving.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,1) 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,1) 0%, transparent 75%);
+}
+
+.spirituality-temple-bg__carving-layer {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80vw, 1000px);
+  height: 520px;
+  z-index: -7;
+  opacity: var(--stb-engraving-opacity, 0.10);
+  background-image: url("/spirituality-assets/temple-carving.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,1) 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,1) 0%, transparent 75%);
+}
+
+/* 5. FADED SIDE PHOTOGRAPHS */
+.spirituality-temple-bg__side-photo {
+  position: absolute;
+  top: 18%;
+  bottom: 8%;
+  width: min(24vw, 360px);
+  min-width: 180px;
+  z-index: -6;
+  opacity: var(--stb-side-photos-opacity, 0.18);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.spirituality-temple-bg__side-photo--left {
+  left: 0;
+  background-image: url("/spirituality-assets/side-temple-pillars.jpg");
+  background-position: left center;
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, transparent 100%);
+}
+
+.spirituality-temple-bg__side-photo--right {
+  right: 0;
+  background-image: url("/spirituality-assets/side-shikhara.jpg");
+  background-position: right top;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, transparent 100%);
+}
+
+/* 6. NARMADA GHATS LOWER ATMOSPHERE */
+.spirituality-temple-bg__ghats {
+  position: absolute;
+  bottom: 2%;
+  right: 0;
+  width: min(28vw, 420px);
+  height: 480px;
+  z-index: -6;
+  opacity: var(--stb-ghat-opacity, 0.20);
+  background-image: url("/spirituality-assets/side-narmada-ghats.jpg");
+  background-position: right bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  mask-image: radial-gradient(ellipse 85% 75% at 90% 90%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 90% 90%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+}
+
+/* 7. CTA EVENING TEMPLE ATMOSPHERE */
+.spirituality-temple-bg__cta-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min(45vh, 480px);
+  z-index: -7;
+  opacity: var(--stb-cta-opacity, 0.22);
+  background-image: url("/spirituality-assets/cta-evening-temple.jpg");
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+}
+
+/* 8. TEMPLE COLUMNS (PILLARS) ON FLANKS */
+.spirituality-temple-bg__columns {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -5;
+}
+
+.spirituality-temple-bg__column {
+  position: absolute;
+  width: 32px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  opacity: var(--stb-columns-opacity, 0.26);
+  background-image: url("/spirituality-assets/ornaments/column.svg");
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 32px auto;
+  filter: drop-shadow(0 0 1px rgba(184, 151, 88, 0.3));
+}
+
+.spirituality-temple-bg__column--left {
+  left: max(12px, 1.2vw);
+}
+
+.spirituality-temple-bg__column--right {
+  right: max(12px, 1.2vw);
+  transform: scaleX(-1);
+}
+
+/* 9. SACRED MANDALAS */
+.spirituality-temple-bg__mandalas {
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+}
+
+.spirituality-temple-bg__mandala {
+  position: absolute;
+  width: min(50vw, 440px);
+  height: min(50vw, 440px);
+  opacity: var(--stb-mandala-opacity, 0.14);
+  background-image: url("/spirituality-assets/ornaments/mandala.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: multiply;
+  animation: spiritualityMandalaFloat 120s linear infinite;
+}
+
+.spirituality-temple-bg__mandala--top {
+  top: 3%;
+  right: 8%;
+}
+
+.spirituality-temple-bg__mandala--center {
+  top: 48%;
+  left: 4%;
+  width: min(42vw, 360px);
+  height: min(42vw, 360px);
+  opacity: calc(var(--stb-mandala-opacity, 0.14) * 0.85);
+  animation-duration: 90s;
+  animation-direction: reverse;
+}
+
+.spirituality-temple-bg__mandala--bottom {
+  bottom: 8%;
+  right: 6%;
+  width: min(45vw, 380px);
+  height: min(45vw, 380px);
+}
+
+@keyframes spiritualityMandalaFloat {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 10. CORNER ORNAMENTS */
+.spirituality-temple-bg__corners {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 520px;
+  z-index: -4;
+}
+
+.spirituality-temple-bg__corner {
+  position: absolute;
+  width: min(24vw, 160px);
+  height: min(24vw, 160px);
+  opacity: var(--stb-corner-opacity, 0.42);
+  background-image: url("/spirituality-assets/ornaments/corner.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 1px rgba(184, 151, 88, 0.25));
+}
+
+.spirituality-temple-bg__corner--tl {
+  top: 16px;
+  left: 16px;
+}
+
+.spirituality-temple-bg__corner--tr {
+  top: 16px;
+  right: 16px;
+  transform: scaleX(-1);
+}
+
+.spirituality-temple-bg__corner--bl {
+  bottom: 16px;
+  left: 16px;
+  transform: scaleY(-1);
+}
+
+.spirituality-temple-bg__corner--br {
+  bottom: 16px;
+  right: 16px;
+  transform: scale(-1);
+}
+
+/* 11. MUTED GOLD BORDER LINES & FRAME */
+.spirituality-temple-bg__frame {
+  position: absolute;
+  inset: clamp(14px, 2.5vw, 36px);
+  z-index: -3;
+  border: 1px solid var(--stb-border-gold, rgba(184, 151, 88, 0.45));
+  opacity: var(--stb-border-opacity, 0.50);
+}
+
+.spirituality-temple-bg__frame::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--stb-border-soft, rgba(184, 151, 88, 0.20));
+}
+
+/* 12. LOTUS MOTIFS */
+.spirituality-temple-bg__lotus-cluster {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  z-index: -4;
+  opacity: var(--stb-lotus-opacity, 0.22);
+  background-image: url("/spirituality-assets/ornaments/lotus.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+}
+
+.spirituality-temple-bg__lotus-cluster--1 {
+  top: 28%;
+  right: max(24px, 4vw);
+}
+
+.spirituality-temple-bg__lotus-cluster--2 {
+  top: 68%;
+  left: max(24px, 4vw);
+}
+
+/* 13. WARM RADIAL VIGNETTE (NO black overlay) */
+.spirituality-temple-bg__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: var(--stb-vignette-opacity, 0.85);
+  background: radial-gradient(ellipse 95% 85% at 50% 50%, transparent 68%, rgba(235, 227, 215, 0.5) 100%);
+}
+
+/* 14. MOBILE & TABLET RESPONSIVENESS */
+@media (max-width: 900px) {
+  .spirituality-temple-bg__column {
+    display: none;
+  }
+  .spirituality-temple-bg__side-photo {
+    width: 28vw;
+    opacity: calc(var(--stb-side-photos-opacity, 0.18) * 0.7);
+  }
+  .spirituality-temple-bg__mandala {
+    width: min(65vw, 260px);
+    height: min(65vw, 260px);
+    opacity: calc(var(--stb-mandala-opacity, 0.14) * 0.75);
+  }
+  .spirituality-temple-bg__corner {
+    width: 96px;
+    height: 96px;
+  }
+  .spirituality-temple-bg__frame {
+    inset: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .spirituality-temple-bg__side-photo {
+    display: none;
+  }
+  .spirituality-temple-bg__corner {
+    width: 72px;
+    height: 72px;
+  }
+  .spirituality-temple-bg__mandala--center {
+    display: none;
+  }
+  .spirituality-temple-bg__ghats {
+    width: 45vw;
+    height: 280px;
+    opacity: 0.12;
+  }
+}

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" fill-rule="evenodd">
+  <g transform="translate(200 200)" stroke="#000" stroke-width="1.15" stroke-linejoin="round">
+    <circle r="196" />
+    <circle r="188" />
+    <circle r="172" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(0)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(22.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(45)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(67.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(90)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(112.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(135)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(157.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(180)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(202.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(225)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(247.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(270)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(292.5)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(315)" />
+    <ellipse rx="16" ry="28" cx="0" cy="-156" transform="rotate(337.5)" />
+
+    <circle r="128" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(0)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(30)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(60)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(90)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(120)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(150)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(180)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(210)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(240)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(270)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(300)" />
+    <ellipse rx="14" ry="26" cx="0" cy="-108" transform="rotate(330)" />
+
+    <circle r="82" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(0)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(45)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(90)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(135)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(180)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(225)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(270)" />
+    <ellipse rx="12" ry="22" cx="0" cy="-62" transform="rotate(315)" />
+
+    <circle r="40" />
+    <circle r="22" />
+    <circle r="8" fill="#000" stroke="none" />
+    <rect x="-58" y="-58" width="116" height="116" transform="rotate(45)" />
+    <rect x="-42" y="-42" width="84" height="84" />
+    <circle cx="0.00" cy="-180.00" r="1.6" fill="#000" />
+    <circle cx="35.12" cy="-176.54" r="1.6" fill="#000" />
+    <circle cx="68.88" cy="-166.30" r="1.6" fill="#000" />
+    <circle cx="100.00" cy="-149.66" r="1.6" fill="#000" />
+    <circle cx="127.28" cy="-127.28" r="1.6" fill="#000" />
+    <circle cx="149.66" cy="-100.00" r="1.6" fill="#000" />
+    <circle cx="166.30" cy="-68.88" r="1.6" fill="#000" />
+    <circle cx="176.54" cy="-35.12" r="1.6" fill="#000" />
+    <circle cx="180.00" cy="0.00" r="1.6" fill="#000" />
+    <circle cx="176.54" cy="35.12" r="1.6" fill="#000" />
+    <circle cx="166.30" cy="68.88" r="1.6" fill="#000" />
+    <circle cx="149.66" cy="100.00" r="1.6" fill="#000" />
+    <circle cx="127.28" cy="127.28" r="1.6" fill="#000" />
+    <circle cx="100.00" cy="149.66" r="1.6" fill="#000" />
+    <circle cx="68.88" cy="166.30" r="1.6" fill="#000" />
+    <circle cx="35.12" cy="176.54" r="1.6" fill="#000" />
+    <circle cx="0.00" cy="180.00" r="1.6" fill="#000" />
+    <circle cx="-35.12" cy="176.54" r="1.6" fill="#000" />
+    <circle cx="-68.88" cy="166.30" r="1.6" fill="#000" />
+    <circle cx="-100.00" cy="149.66" r="1.6" fill="#000" />
+    <circle cx="-127.28" cy="127.28" r="1.6" fill="#000" />
+    <circle cx="-149.66" cy="100.00" r="1.6" fill="#000" />
+    <circle cx="-166.30" cy="68.88" r="1.6" fill="#000" />
+    <circle cx="-176.54" cy="35.12" r="1.6" fill="#000" />
+    <circle cx="-180.00" cy="0.00" r="1.6" fill="#000" />
+    <circle cx="-176.54" cy="-35.12" r="1.6" fill="#000" />
+    <circle cx="-166.30" cy="-68.88" r="1.6" fill="#000" />
+    <circle cx="-149.66" cy="-100.00" r="1.6" fill="#000" />
+    <circle cx="-127.28" cy="-127.28" r="1.6" fill="#000" />
+    <circle cx="-100.00" cy="-149.66" r="1.6" fill="#000" />
+    <circle cx="-68.88" cy="-166.30" r="1.6" fill="#000" />
+    <circle cx="-35.12" cy="-176.54" r="1.6" fill="#000" />
+
+    <circle cx="0.00" cy="-128.00" r="1.4" fill="#000" />
+    <circle cx="48.98" cy="-118.26" r="1.4" fill="#000" />
+    <circle cx="90.51" cy="-90.51" r="1.4" fill="#000" />
+    <circle cx="118.26" cy="-48.98" r="1.4" fill="#000" />
+    <circle cx="128.00" cy="0.00" r="1.4" fill="#000" />
+    <circle cx="118.26" cy="48.98" r="1.4" fill="#000" />
+    <circle cx="90.51" cy="90.51" r="1.4" fill="#000" />
+    <circle cx="48.98" cy="118.26" r="1.4" fill="#000" />
+    <circle cx="0.00" cy="128.00" r="1.4" fill="#000" />
+    <circle cx="-48.98" cy="118.26" r="1.4" fill="#000" />
+    <circle cx="-90.51" cy="90.51" r="1.4" fill="#000" />
+    <circle cx="-118.26" cy="48.98" r="1.4" fill="#000" />
+    <circle cx="-128.00" cy="0.00" r="1.4" fill="#000" />
+    <circle cx="-118.26" cy="-48.98" r="1.4" fill="#000" />
+    <circle cx="-90.51" cy="-90.51" r="1.4" fill="#000" />
+    <circle cx="-48.98" cy="-118.26" r="1.4" fill="#000" />
+
+    <circle cx="0.00" cy="-40.00" r="1.8" fill="#000" />
+    <circle cx="28.28" cy="-28.28" r="1.8" fill="#000" />
+    <circle cx="40.00" cy="0.00" r="1.8" fill="#000" />
+    <circle cx="28.28" cy="28.28" r="1.8" fill="#000" />
+    <circle cx="0.00" cy="40.00" r="1.8" fill="#000" />
+    <circle cx="-28.28" cy="28.28" r="1.8" fill="#000" />
+    <circle cx="-40.00" cy="0.00" r="1.8" fill="#000" />
+    <circle cx="-28.28" cy="-28.28" r="1.8" fill="#000" />
+
+  </g>
+</svg>

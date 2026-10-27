@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" fill-rule="evenodd">
+  <g transform="translate(120 120)" stroke="#000" fill="none" stroke-width="1.05">
+    <circle r="110"/>
+    <circle r="96"/>
+    <circle r="55"/>
+    <polygon points="0,-96 83.1,48 -83.1,48" />
+    <polygon points="0,96 83.1,-48 -83.1,-48" />
+    <circle r="32"/>
+    <circle r="8" fill="#000" stroke="none"/>
+    <circle cx="0.00" cy="-96.00" r="1.6" fill="#000" />
+    <circle cx="48.00" cy="-83.14" r="1.6" fill="#000" />
+    <circle cx="83.14" cy="-48.00" r="1.6" fill="#000" />
+    <circle cx="96.00" cy="0.00" r="1.6" fill="#000" />
+    <circle cx="83.14" cy="48.00" r="1.6" fill="#000" />
+    <circle cx="48.00" cy="83.14" r="1.6" fill="#000" />
+    <circle cx="0.00" cy="96.00" r="1.6" fill="#000" />
+    <circle cx="-48.00" cy="83.14" r="1.6" fill="#000" />
+    <circle cx="-83.14" cy="48.00" r="1.6" fill="#000" />
+    <circle cx="-96.00" cy="0.00" r="1.6" fill="#000" />
+    <circle cx="-83.14" cy="-48.00" r="1.6" fill="#000" />
+    <circle cx="-48.00" cy="-83.14" r="1.6" fill="#000" />
+
+  </g>
+</svg>

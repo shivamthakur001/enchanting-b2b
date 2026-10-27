@@ -11,6 +11,10 @@ import { getGalleryRegistration, buildGalleryOverridesFromManager } from './gall
 import { useGalleryContent } from './gallery/hooks/useGalleryContent';
 import { getHeritageDestinationDesign } from './heritageDestinationConfig';
 import { getWildlifeDestinationDesign } from './wildlifeDestinationConfig';
+import {
+  getSpiritualityDestinationDesign,
+  getSpiritualityCtaCssVars,
+} from './spiritualityDestinationConfig';
 
 // Lazy-load the heavy gallery bundle — only fetched when destination has a registered gallery
 const CinematicEnvelopeGallery = lazy(() => import('./gallery/components/CinematicEnvelopeGallery'));
@@ -294,16 +298,26 @@ export default function DestinationDetailPage({
 }: DestinationDetailPageProps) {
   const isHeritage = content.themeLabel?.toLowerCase() === 'heritage';
   const isWildlife = content.themeLabel?.toLowerCase() === 'wildlife';
+  const isSpirituality = content.themeLabel?.toLowerCase() === 'spirituality';
   const effectiveDesign = isHeritage
     ? getHeritageDestinationDesign(content.id, content.customDesign)
     : isWildlife
     ? getWildlifeDestinationDesign(content.id, content.customDesign)
+    : isSpirituality
+    ? getSpiritualityDestinationDesign(content.id, content.customDesign)
     : content.customDesign;
   const activeConfig = config ? { ...effectiveDesign, ...config } : effectiveDesign;
+  const isSpiritualitySolidCta = isSpirituality && (activeConfig as any)?.ctaBackgroundMode !== 'cinematic';
+  const spiritualityCtaVars = isSpirituality ? getSpiritualityCtaCssVars(activeConfig as any) : {};
+
   const style = {
     ...destinationDesignVars(activeConfig),
     // CTA background is destination data — never hardcode Pachmarhi in shared CSS.
-    '--empd-cta-image': `url(${JSON.stringify(content.ctaBackgroundImage ?? content.heroImage)})`,
+    // In solid Spirituality CTA mode, disable image layer so ctaBg displays pure and unclouded.
+    '--empd-cta-image': isSpiritualitySolidCta
+      ? 'none'
+      : `url(${JSON.stringify(content.ctaBackgroundImage ?? content.heroImage)})`,
+    ...spiritualityCtaVars,
   } as CSSProperties;
   return <div className="empd-page" style={style}>
     <Hero content={content} onBackToTheme={onBackToTheme ?? onBackToNature}/>

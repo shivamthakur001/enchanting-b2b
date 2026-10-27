@@ -456,7 +456,7 @@
 /* 09 — Scenic conversion CTA, host site footer comes after this */
 .empd-cta {
   background: var(--empd-cta-bg, var(--empd-forest-deep));
-  color: white;
+  color: var(--empd-cta-text-color, white);
   padding-block: var(--empd-cta-padding-block);
   position: relative;
   overflow: hidden;
@@ -469,11 +469,12 @@
   opacity: var(--empd-cta-overlay-opacity);
 }
 .empd-cta__inner { position: relative; z-index: 1; display: flex; gap: 20px; align-items: center; }
-.empd-cta__icon { display: grid; place-items: center; width: 67px; height: 67px; flex: 0 0 67px; background: #f3efdd; color: #3c784b; border-radius: 50%; }
+.empd-cta__icon { display: grid; place-items: center; width: 67px; height: 67px; flex: 0 0 67px; background: var(--empd-cta-icon-bg, #f3efdd); color: var(--empd-cta-icon-color, #3c784b); border-radius: 50%; }
 .empd-cta__text { flex: 1; }
 .empd-cta__text .empd-eyebrow { margin-bottom: 8px; }
-.empd-cta h2 { font-size: var(--empd-cta-title-size); }
-.empd-cta p { margin-top: 10px; font-size: var(--empd-cta-desc-size); max-width: 485px; color: #ecf2e4; line-height: 1.45; }
+.empd-cta__text .empd-eyebrow--light { color: var(--empd-cta-eyebrow-color, #c3d3b9); }
+.empd-cta h2 { font-size: var(--empd-cta-title-size); color: var(--empd-cta-heading-color, inherit); }
+.empd-cta p { margin-top: 10px; font-size: var(--empd-cta-desc-size); max-width: 485px; color: var(--empd-cta-desc-color, #ecf2e4); line-height: 1.45; }
 .empd-cta__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 .empd-btn {
   min-height: var(--empd-cta-btn-min-height);
@@ -488,9 +489,9 @@
   border: 1px solid transparent;
   white-space: nowrap;
 }
-.empd-btn--gold { background: var(--empd-cta-gold-btn-bg); border-color: var(--empd-cta-gold-btn-bg); color: #172b22; }
+.empd-btn--gold { background: var(--empd-cta-gold-btn-bg); border-color: var(--empd-cta-gold-btn-bg); color: var(--empd-cta-gold-btn-text, #172b22); }
 .empd-btn--forest { background: #20663e; color: white; }
-.empd-btn--outline { background: rgba(0,0,0,.08); border-color: var(--empd-cta-outline-btn-border); color: white; }
+.empd-btn--outline { background: var(--empd-cta-outline-btn-bg, rgba(0,0,0,.08)); border-color: var(--empd-cta-outline-btn-border); color: var(--empd-cta-outline-btn-text, white); }
 .empd-btn:hover:not(:disabled) { filter: brightness(1.12); }
 
 @media (max-width: 1180px) {

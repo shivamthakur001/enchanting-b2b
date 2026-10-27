@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" fill-rule="evenodd">
+  <g stroke="#000" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- double L -->
+    <path d="M28 18 H210" stroke-width="1.6"/>
+    <path d="M18 28 V210" stroke-width="1.6"/>
+    <path d="M28 28 H198" stroke-width="0.7"/>
+    <path d="M28 28 V198" stroke-width="0.7"/>
+    <!-- inner tick marks -->
+    <path d="M52 28 V36 M76 28 V36 M100 28 V34 M124 28 V36 M148 28 V34 M172 28 V36" stroke-width="0.8"/>
+    <path d="M28 52 H36 M28 76 H36 M28 100 H34 M28 124 H36 M28 148 H34 M28 172 H36" stroke-width="0.8"/>
+    <!-- corner lotus medallion -->
+    <g transform="translate(28 28)">
+      <circle r="16" stroke-width="1.1"/>
+      <circle r="7" stroke-width="0.9"/>
+      <ellipse rx="4" ry="11" cy="-1" stroke-width="0.9"/>
+      <ellipse rx="4" ry="11" transform="rotate(60)" stroke-width="0.9"/>
+      <ellipse rx="4" ry="11" transform="rotate(120)" stroke-width="0.9"/>
+    </g>
+    <!-- vine along top -->
+    <path d="M52 44 C70 20, 90 20, 108 44 C126 66, 146 66, 164 44 C176 30, 190 34, 208 48" stroke-width="1.05"/>
+    <path d="M70 38 C74 28, 82 28, 86 38" stroke-width="0.9"/>
+    <path d="M128 52 C132 62, 140 62, 144 52" stroke-width="0.9"/>
+    <!-- vine along left -->
+    <path d="M44 52 C20 70, 20 90, 44 108 C66 126, 66 146, 44 164 C30 176, 34 190, 48 208" stroke-width="1.05"/>
+    <path d="M38 70 C28 74, 28 82, 38 86" stroke-width="0.9"/>
+    <path d="M52 128 C62 132, 62 140, 52 144" stroke-width="0.9"/>
+    <!-- diamonds -->
+    <path d="M210 18 l6 6 l-6 6 l-6 -6 z" stroke-width="1" fill="#000"/>
+    <path d="M18 210 l6 6 l-6 6 l-6 -6 z" stroke-width="1" fill="#000"/>
+  </g>
+</svg>

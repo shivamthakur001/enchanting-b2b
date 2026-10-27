@@ -1,0 +1,3 @@
+# Amarkantak Destination Gallery Directory
+# Place high-resolution gallery WebP photographs here.
+# Run 'node scripts/generate-gallery-manifest.js' to update manifest.json.

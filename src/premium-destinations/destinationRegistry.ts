@@ -38,6 +38,16 @@ import { sanjayDubriContent } from './sanjayDubriContent';
 import { nationalChambalContent } from './nationalChambalContent';
 import { madhavContent } from './madhavContent';
 import { nauradehiContent } from './nauradehiContent';
+import { ujjainContent } from './ujjainContent';
+import { omkareshwarContent } from './omkareshwarContent';
+import { maheshwarContent } from './maheshwarContent';
+import { chitrakootContent } from './chitrakootContent';
+import { amarkantakContent } from './amarkantakContent';
+import { bhojpurContent } from './bhojpurContent';
+import { maiharContent } from './maiharContent';
+import { salkanpurContent } from './salkanpurContent';
+import { datiaContent } from './datiaContent';
+import { mandsaurContent } from './mandsaurContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
@@ -74,7 +84,16 @@ export const destinationRegistry: Record<string, DestinationDetailContent> = {
   'national-chambal-sanctuary': nationalChambalContent,
   'madhav-national-park': madhavContent,
   nauradehi: nauradehiContent,
-  // ujjain: ujjainContent,
+  ujjain: ujjainContent,
+  omkareshwar: omkareshwarContent,
+  maheshwar: maheshwarContent,
+  chitrakoot: chitrakootContent,
+  amarkantak: amarkantakContent,
+  bhojpur: bhojpurContent,
+  maihar: maiharContent,
+  salkanpur: salkanpurContent,
+  datia: datiaContent,
+  mandsaur: mandsaurContent,
 };
 
 export function getPremiumDestination(slug: string | undefined): DestinationDetailContent | undefined {

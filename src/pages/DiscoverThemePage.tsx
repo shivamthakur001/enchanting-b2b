@@ -7,6 +7,7 @@ import { ThemePackageSection } from "../components/packages/PackageCard";
 import { NatureThemeLanding } from "../components/discover/nature/NatureThemeLanding";
 import { HeritageLandingPage } from "../components/discover/heritage/HeritageLandingPage";
 import { WildlifeLandingPage } from "../components/discover/wildlife/WildlifeLandingPage";
+import { SpiritualityLandingPage } from "../components/discover/spiritual/SpiritualityLandingPage";
 import { CinematicThemeSwitcher } from "../components/discover/shared/CinematicThemeSwitcher";
 import { cn } from "../utils/cn";
 
@@ -46,6 +47,16 @@ export function DiscoverThemePage() {
   if (theme.slug === "wildlife") {
     return (
       <WildlifeLandingPage
+        theme={theme}
+        destinations={destinations}
+        packages={relatedPackages}
+      />
+    );
+  }
+
+  if (theme.slug === "spirituality") {
+    return (
+      <SpiritualityLandingPage
         theme={theme}
         destinations={destinations}
         packages={relatedPackages}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" fill-rule="evenodd">
+  <g stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 8 H170" stroke-width="1.7"/>
+    <path d="M8 20 V170" stroke-width="1.7"/>
+    <path d="M20 20 H150" stroke-width="0.7"/>
+    <path d="M20 20 V150" stroke-width="0.7"/>
+    <path d="M20 8 V20 H8" stroke-width="1.7"/>
+    <!-- scalloped inner -->
+    <path d="M36 36 H70 C78 36, 78 48, 86 48 C94 48, 94 36, 102 36 H140" stroke-width="1"/>
+    <path d="M36 36 V70 C36 78, 48 78, 48 86 C48 94, 36 94, 36 102 V140" stroke-width="1"/>
+    <g transform="translate(20 20)">
+      <circle r="11" stroke-width="1.1"/>
+      <circle r="4.5"/>
+    </g>
+    <path d="M170 8 l6 6 -6 6 -6 -6 z" fill="#000" stroke="none"/>
+    <path d="M8 170 l6 6 -6 6 -6 -6 z" fill="#000" stroke="none"/>
+  </g>
+</svg>
