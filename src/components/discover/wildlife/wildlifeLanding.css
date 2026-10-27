@@ -30,25 +30,26 @@
 /* 1. CINEMATIC TIGER HERO */
 .wildlife-hero { position:relative; height:min(860px,calc(100svh - 15px)); min-height:650px; overflow:hidden; background:rgba(8,18,12,var(--wildlife-emerald-hero)); display:flex; align-items:center; }
 .wildlife-hero__image { position:absolute; width:100%; height:100%; object-fit:cover; object-position:64% 47%; animation:wildlife-hero-enter 1.3s ease-out both; }
-.wildlife-hero__shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(3,15,9,.96) 0%,rgba(4,18,10,.89) 25%,rgba(5,18,11,.6) 47%,rgba(4,17,10,.1) 78%),linear-gradient(0deg,rgba(3,17,9,.72),transparent 38%),linear-gradient(180deg,rgba(3,12,8,.23),transparent 28%); }
+.wildlife-hero__shade { display:none; }
 .wildlife-hero__inner { position:relative; z-index:1; }
 .wildlife-hero__copy { max-width:670px; padding:50px 0 62px; animation:wildlife-copy-enter .85s ease-out both; }
-.wildlife-hero__title { font-family:var(--font-display,Georgia,serif); font-size:clamp(3.8rem,6.5vw,7.1rem); line-height:.95; font-weight:500; letter-spacing:-.038em; margin:0 0 24px; color:#fff8e8; text-shadow:0 2px 18px rgba(0,0,0,.23); }
-.wildlife-hero__title span { display:block; color:#e5c581; font-style:italic; font-weight:400; }
-.wildlife-hero__lead { font-size:clamp(1rem,1.35vw,1.17rem); line-height:1.68; max-width:580px; color:#f3eee1; margin:0; text-wrap:pretty; }
+.wildlife-hero__copy .wildlife-eyebrow { text-shadow:0 1px 4px rgba(0,0,0,.8); }
+.wildlife-hero__title { font-family:var(--font-display,Georgia,serif); font-size:clamp(3.8rem,6.5vw,7.1rem); line-height:.95; font-weight:500; letter-spacing:-.038em; margin:0 0 24px; color:#fff8e8; text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.9); }
+.wildlife-hero__title span { display:block; color:#e5c581; font-style:italic; font-weight:400; text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.9); }
+.wildlife-hero__lead { font-size:clamp(1rem,1.35vw,1.17rem); line-height:1.68; max-width:580px; color:#f3eee1; margin:0; text-wrap:pretty; text-shadow:0 1px 6px rgba(0,0,0,.85),0 2px 14px rgba(0,0,0,.65); }
 .wildlife-hero__buttons { display:flex; align-items:center; flex-wrap:wrap; gap:14px; margin-top:30px; }
 .wildlife-hero__facts { display:flex; flex-wrap:wrap; align-items:center; gap:0; margin-top:41px; }
 .wildlife-hero__fact { display:flex; align-items:center; gap:12px; min-width:0; padding:0 18px; border-right:1px solid rgba(247,226,181,.3); }
 .wildlife-hero__fact:first-child { padding-left:0; }
 .wildlife-hero__fact:last-child { border-right:0; }
-.wildlife-hero__fact-icon { width:31px; color:var(--wildlife-gold); flex:0 0 31px; }
+.wildlife-hero__fact-icon { width:31px; color:var(--wildlife-gold); flex:0 0 31px; filter:drop-shadow(0 1px 3px rgba(0,0,0,.7)); }
 .wildlife-hero__fact-icon svg { display:block; width:29px; height:29px; fill:none; stroke:currentColor; stroke-width:1.7; }
 .wildlife-hero__fact-icon svg ellipse { fill:currentColor; stroke:none; }
 .wildlife-hero__fact strong,.wildlife-hero__fact small { display:block; white-space:normal; }
-.wildlife-hero__fact strong { font-size:12px; font-weight:600; color:#f5e9ce; }
-.wildlife-hero__fact small { margin-top:3px; font-size:11px; color:#c9d0c1; }
-.wildlife-hero__scroll { position:absolute; display:flex; flex-direction:column; align-items:center; gap:7px; bottom:17px; left:50%; transform:translateX(-50%); color:#f2ebd8; font-size:10px; letter-spacing:.06em; z-index:2; }
-.wildlife-hero__scroll-mark { height:22px; width:12px; border:1px solid #e9d9b5; border-radius:10px; position:relative; }
+.wildlife-hero__fact strong { font-size:12px; font-weight:600; color:#f5e9ce; text-shadow:0 1px 4px rgba(0,0,0,.8); }
+.wildlife-hero__fact small { margin-top:3px; font-size:11px; color:#c9d0c1; text-shadow:0 1px 4px rgba(0,0,0,.8); }
+.wildlife-hero__scroll { position:absolute; display:flex; flex-direction:column; align-items:center; gap:7px; bottom:17px; left:50%; transform:translateX(-50%); color:#f2ebd8; font-size:10px; letter-spacing:.06em; z-index:2; text-shadow:0 1px 4px rgba(0,0,0,.85); }
+.wildlife-hero__scroll-mark { height:22px; width:12px; border:1px solid #e9d9b5; border-radius:10px; position:relative; filter:drop-shadow(0 1px 3px rgba(0,0,0,.7)); }
 .wildlife-hero__scroll-mark::after {content:""; position:absolute; top:4px; left:5px; width:1px; height:7px; background:#e9d9b5; animation:wildlife-scroll 2s infinite;}
 @keyframes wildlife-hero-enter { from{transform:scale(1.045);opacity:.65;}to{transform:scale(1);opacity:1;} }
 @keyframes wildlife-copy-enter { from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);} }
@@ -126,10 +127,12 @@
 /* 6. FINAL CINEMATIC CTA — leaves shared footer alone */
 .wildlife-cta {position:relative;min-height:485px;display:flex;align-items:center;overflow:hidden;background:rgba(8,26,14,var(--wildlife-emerald-cta));margin-top:clamp(65px,8vw,112px);}
 .wildlife-cta>img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 46%;}
-.wildlife-cta__shade {position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,18,9,.08),rgba(1,18,9,.45) 42%,rgba(1,16,8,.96) 68%),linear-gradient(0deg,rgba(2,18,8,.42),transparent 68%);}
+.wildlife-cta__shade {display:none;}
 .wildlife-cta__inner {position:relative;z-index:1;display:flex;justify-content:flex-end;padding:65px 0;}
 .wildlife-cta__copy {width:min(100%,610px);}
-.wildlife-cta__copy>p:not(.wildlife-eyebrow) {color:#e2e4d5;font-size:15px;line-height:1.7;margin:17px 0 0;max-width:540px;}
+.wildlife-cta__copy .wildlife-eyebrow {text-shadow:0 1px 4px rgba(0,0,0,.8);}
+.wildlife-cta__copy .wildlife-heading {text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.9);}
+.wildlife-cta__copy>p:not(.wildlife-eyebrow) {color:#e2e4d5;font-size:15px;line-height:1.7;margin:17px 0 0;max-width:540px;text-shadow:0 1px 6px rgba(0,0,0,.85),0 2px 14px rgba(0,0,0,.65);}
 .wildlife-cta__copy .wildlife-hero__buttons {margin-top:25px;}
 
 @media(max-width:1100px) {
@@ -141,7 +144,6 @@
  .wildlife-shell{width:min(100% - 38px,1320px)}
  .wildlife-hero{min-height:720px;height:90svh;}
  .wildlife-hero__image{object-position:70% 50%;}
- .wildlife-hero__shade{background:linear-gradient(90deg,rgba(3,15,9,.93),rgba(3,15,9,.72) 53%,rgba(3,15,9,.23)),linear-gradient(0deg,rgba(3,15,9,.6),transparent 50%);}
  .wildlife-hero__title{font-size:clamp(3.5rem,8vw,5.2rem)}
  .wildlife-hero__facts{gap:12px;}
  .wildlife-hero__fact{padding:0;border:0;flex:1;min-width:150px;}
@@ -152,7 +154,6 @@
  .wildlife-expressions__tab{min-height:118px;}
  .wildlife-destinations__grid{grid-template-columns:repeat(2,minmax(0,1fr));}
  .wildlife-section-heading--split{flex-direction:column;align-items:start;gap:10px;}
- .wildlife-cta__shade{background:linear-gradient(0deg,rgba(1,16,8,.98),rgba(1,16,8,.5) 57%,rgba(1,16,8,.1));}
  .wildlife-cta__inner{justify-content:center;align-items:flex-end;min-height:500px;}
 }
 @media(max-width:560px) {
@@ -162,7 +163,6 @@
  .wildlife-eyebrow{font-size:9px;letter-spacing:.17em;}
  .wildlife-hero{min-height:780px;height:auto;align-items:flex-end;}
  .wildlife-hero__image{object-position:65% 18%;}
- .wildlife-hero__shade{background:linear-gradient(0deg,rgba(2,12,6,.99),rgba(2,12,6,.9) 29%,rgba(2,12,6,.2) 73%),linear-gradient(90deg,rgba(2,12,6,.33),transparent);}
  .wildlife-hero__copy{max-width:100%;padding:290px 0 66px;}
  .wildlife-hero__title{font-size:clamp(3.2rem,12vw,4.7rem);margin-bottom:15px;}
  .wildlife-hero__lead{font-size:14px;line-height:1.6;}

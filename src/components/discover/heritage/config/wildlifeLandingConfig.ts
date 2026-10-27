@@ -12,7 +12,7 @@ export const wildlifeLandingConfig = {
     border: "rgba(216,187,122,.24)",
   },
   hero: {
-    image: media.tigerKanhaWalk,
+    image: "/wildlife-landing-images/hero.webp",
     imageAlt: "Bengal tiger moving through a forest in Madhya Pradesh",
     eyebrow: "Discover Wildlife",
     titleTop: "Into the Untamed",
@@ -97,7 +97,7 @@ export const wildlifeLandingConfig = {
     description: "Real trade programmes from the existing package catalogue.",
   },
   closingCTA: {
-    image: media.tigerKanhaRest,
+    image: "/wildlife-landing-images/cta.webp",
     eyebrow: "Tailored Trade Itineraries",
     heading: "Build a Wildlife Journey",
     accent: "into the Heart of India",

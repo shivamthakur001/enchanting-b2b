@@ -10,6 +10,7 @@ import { lazy, Suspense } from 'react';
 import { getGalleryRegistration, buildGalleryOverridesFromManager } from './gallery/galleryManager';
 import { useGalleryContent } from './gallery/hooks/useGalleryContent';
 import { getHeritageDestinationDesign } from './heritageDestinationConfig';
+import { getWildlifeDestinationDesign } from './wildlifeDestinationConfig';
 
 // Lazy-load the heavy gallery bundle — only fetched when destination has a registered gallery
 const CinematicEnvelopeGallery = lazy(() => import('./gallery/components/CinematicEnvelopeGallery'));
@@ -292,8 +293,11 @@ export default function DestinationDetailPage({
   isDemo = false,
 }: DestinationDetailPageProps) {
   const isHeritage = content.themeLabel?.toLowerCase() === 'heritage';
+  const isWildlife = content.themeLabel?.toLowerCase() === 'wildlife';
   const effectiveDesign = isHeritage
     ? getHeritageDestinationDesign(content.id, content.customDesign)
+    : isWildlife
+    ? getWildlifeDestinationDesign(content.id, content.customDesign)
     : content.customDesign;
   const activeConfig = config ? { ...effectiveDesign, ...config } : effectiveDesign;
   const style = {

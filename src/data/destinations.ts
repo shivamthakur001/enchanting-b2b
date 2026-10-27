@@ -146,7 +146,7 @@ export const destinations: Destination[] = [
     name: "Kanha",
     region: "Mandla–Balaghat",
     summary: "Sal meadows, barasingha and one of India's most complete tiger landscapes.",
-    image: media.tigerKanhaRest,
+    image: "/destination-assets/kanha/kanha-hero.webp",
     imageAlt: "Bengal tiger resting on a forest track in Kanha National Park",
     themes: ["wildlife"],
     featured: true,

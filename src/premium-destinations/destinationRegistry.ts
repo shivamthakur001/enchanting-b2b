@@ -28,6 +28,16 @@ import { bhopalContent } from './bhopalContent';
 import { burhanpurContent } from './burhanpurContent';
 import { shivpuriContent } from './shivpuriContent';
 import { morenaContent } from './morenaContent';
+import { kanhaContent } from './kanhaContent';
+import { bandhavgarhContent } from './bandhavgarhContent';
+import { penchContent } from './penchContent';
+import { satpuraContent } from './satpuraContent';
+import { pannaContent } from './pannaContent';
+import { kunoContent } from './kunoContent';
+import { sanjayDubriContent } from './sanjayDubriContent';
+import { nationalChambalContent } from './nationalChambalContent';
+import { madhavContent } from './madhavContent';
+import { nauradehiContent } from './nauradehiContent';
 
 export const destinationRegistry: Record<string, DestinationDetailContent> = {
   pachmarhi: pachmarhiContent,
@@ -54,8 +64,16 @@ export const destinationRegistry: Record<string, DestinationDetailContent> = {
   burhanpur: burhanpurContent,
   shivpuri: shivpuriContent,
   morena: morenaContent,
-  // pench: penchContent,            // add after content + media are ready
-  // kanha: kanhaContent,
+  kanha: kanhaContent,
+  bandhavgarh: bandhavgarhContent,
+  pench: penchContent,
+  satpura: satpuraContent,
+  panna: pannaContent,
+  kuno: kunoContent,
+  'sanjay-dubri': sanjayDubriContent,
+  'national-chambal-sanctuary': nationalChambalContent,
+  'madhav-national-park': madhavContent,
+  nauradehi: nauradehiContent,
   // ujjain: ujjainContent,
 };
 
