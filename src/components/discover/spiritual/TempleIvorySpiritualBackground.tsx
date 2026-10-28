@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 import { spiritualityTempleBackgroundConfig as cfg } from "../../../config/spiritualityTempleBackgroundConfig";
 import "./spiritualityTempleBackground.css";
 
+export { SpiritualityOmOrnament } from "./SpiritualityOmOrnament";
+
 interface TempleIvorySpiritualBackgroundProps {
   className?: string;
 }

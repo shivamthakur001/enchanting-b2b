@@ -9,7 +9,7 @@ import {
 import { spiritualityLandingConfig as cfg } from "./config/spiritualityLandingConfig";
 import { spiritualityTempleBackgroundConfig as bgConfig } from "../../../config/spiritualityTempleBackgroundConfig";
 import { CinematicThemeSwitcher } from "../shared/CinematicThemeSwitcher";
-import { TempleIvorySpiritualBackground } from "./TempleIvorySpiritualBackground";
+import { TempleIvorySpiritualBackground, SpiritualityOmOrnament } from "./TempleIvorySpiritualBackground";
 import "./spiritualityLanding.css";
 
 interface SpiritualityLandingPageProps {
@@ -110,6 +110,7 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
 
       {/* SECTION 1: CINEMATIC HERO */}
       <section className="spirituality-hero" aria-labelledby="spirituality-hero-title">
+        <SpiritualityOmOrnament section="hero" />
         <img
           className="spirituality-hero__image"
           src={cfg.hero.image || theme.heroImage}
@@ -170,6 +171,7 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
 
       {/* MIDDLE CONTENT REGION (Continuous Antique-Gold Side Borders) */}
       <div className="spirituality-middle-region" style={borderStyle}>
+        <SpiritualityOmOrnament section="page" />
         {bgConfig.borders.show && (
           <div
             className={`spirituality-gold-frame${bgConfig.borders.doubleRule ? " spirituality-gold-frame--double" : ""}`}
@@ -192,6 +194,7 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
         className="spirituality-intro spirituality-section"
         aria-labelledby="spirituality-intro-title"
       >
+        <SpiritualityOmOrnament section="intro" />
         <div className="spirituality-shell spirituality-intro__grid">
           <div>
             <p className="spirituality-eyebrow">{cfg.intro.eyebrow}</p>
@@ -211,12 +214,16 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
         </div>
       </section>
 
+      {/* SECTION BOUNDARY: INTRO - EXPRESSIONS */}
+      <SpiritualityOmOrnament boundary="intro-expressions" />
+
       {/* SECTION 4: FOUR SPIRITUAL EXPRESSIONS */}
       <section
         className="spirituality-expressions spirituality-section"
         id="spirituality-expressions"
         aria-labelledby="spirituality-expressions-title"
       >
+        <SpiritualityOmOrnament section="expressions" />
         <div className="spirituality-shell">
           <header className="spirituality-section-heading">
             <p className="spirituality-eyebrow">{cfg.expressions.eyebrow}</p>
@@ -278,12 +285,16 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
         </div>
       </section>
 
+      {/* SECTION BOUNDARY: EXPRESSIONS - DESTINATIONS */}
+      <SpiritualityOmOrnament boundary="expressions-destinations" />
+
       {/* SECTION 5: DESTINATIONS GRID */}
       <section
         id="spirituality-destinations"
         className="spirituality-destinations spirituality-section"
         aria-labelledby="spirituality-destinations-title"
       >
+        <SpiritualityOmOrnament section="destinations" />
         <div className="spirituality-shell">
           <header className="spirituality-section-heading spirituality-section-heading--split">
             <div>
@@ -328,12 +339,16 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
         </div>
       </section>
 
+      {/* SECTION BOUNDARY: DESTINATIONS - PROGRAMMES */}
+      <SpiritualityOmOrnament boundary="destinations-programmes" />
+
       {/* SECTION 6: PROGRAMMES */}
       <section
         id="spirituality-programmes"
         className="spirituality-programmes spirituality-section"
         aria-labelledby="spirituality-programmes-title"
       >
+        <SpiritualityOmOrnament section="programmes" />
         <div className="spirituality-shell">
           <header className="spirituality-section-heading spirituality-section-heading--with-link">
             <div>
@@ -389,10 +404,14 @@ export function SpiritualityLandingPage({ theme, destinations, packages }: Spiri
           )}
         </div>
       </section>
+
+      {/* SECTION BOUNDARY: PROGRAMMES - CTA */}
+      <SpiritualityOmOrnament boundary="programmes-cta" />
       </div>
 
       {/* SECTION 7: FINAL CINEMATIC CTA */}
       <section className="spirituality-cta" aria-labelledby="spirituality-cta-title">
+        <SpiritualityOmOrnament section="cta" />
         <img src={cfg.closingCTA.image} alt={cfg.closingCTA.imageAlt} loading="lazy" />
         <div className="spirituality-cta__shade" aria-hidden="true" />
         <div className="spirituality-shell spirituality-cta__inner">

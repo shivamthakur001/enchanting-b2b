@@ -1,5 +1,26 @@
 {
   "slug": "maihar",
-  "generatedAt": "2026-10-27T11:24:09.275Z",
-  "images": []
+  "generatedAt": "2026-10-28T10:24:33.698Z",
+  "images": [
+    {
+      "filename": "maihar (2).webp",
+      "path": "/destination-gallery/maihar/maihar (2).webp"
+    },
+    {
+      "filename": "maihar (3).webp",
+      "path": "/destination-gallery/maihar/maihar (3).webp"
+    },
+    {
+      "filename": "maihar (4).webp",
+      "path": "/destination-gallery/maihar/maihar (4).webp"
+    },
+    {
+      "filename": "maihar (5).webp",
+      "path": "/destination-gallery/maihar/maihar (5).webp"
+    },
+    {
+      "filename": "maihar.webp",
+      "path": "/destination-gallery/maihar/maihar.webp"
+    }
+  ]
 }

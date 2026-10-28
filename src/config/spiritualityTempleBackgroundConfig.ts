@@ -5,18 +5,126 @@
  * section intensities, and mobile scaling for the Spirituality theme background.
  */
 
-export type SpiritualitySection = 
-  | "page" 
-  | "hero" 
-  | "intro" 
-  | "expressions" 
-  | "destinations" 
-  | "programmes" 
+export type SpiritualitySection =
+  | "page"
+  | "hero"
+  | "intro"
+  | "expressions"
+  | "destinations"
+  | "programmes"
   | "cta";
+
+export type SpiritualitySectionBoundary =
+  | "intro-expressions"
+  | "expressions-destinations"
+  | "destinations-programmes"
+  | "programmes-cta";
+
+export type SpiritualityOmTarget =
+  | SpiritualitySection
+  | SpiritualitySectionBoundary;
+
+export interface OmSymbolPosition {
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  /** Vertical offset from anchor point (e.g. '0px', '-20px', '40px') */
+  offsetY?: string;
+  /** Horizontal offset from anchor point (e.g. '0px', '20px') */
+  offsetX?: string;
+}
+
+export interface OmSymbolConfig {
+  /** Unique ID for this ornament instance (e.g. 'om-symbol-main', 'mandala-accent') */
+  id?: string;
+  /** Master toggle to show/hide this ornament */
+  enabled: boolean;
+  /** Image asset URL path */
+  image: string;
+  /** CSS color applied to the symbol via CSS mask */
+  color: string;
+  /** Symbol opacity from 0.0 (invisible) to 1.0 (opaque) */
+  opacity: number;
+  /** CSS width of the ornament (e.g. '420px', '920px') */
+  width: string;
+  /** Optional CSS height of the ornament (defaults to width if omitted) */
+  height?: string;
+  /** CSS rotation angle (e.g. '0deg') */
+  rotation: string;
+  /** Target section or section boundary for the ornament ('destinations-programmes', 'intro', etc.) */
+  section: SpiritualityOmTarget;
+  /** Explicit section boundary anchor ('destinations-programmes', 'expressions-destinations', etc.) */
+  boundary?: SpiritualitySectionBoundary;
+  /** Anchoring mode: 'section' (within section) or 'boundary' (centered on boundary between sections) */
+  anchor?: "section" | "boundary";
+  /** Vertical offset from anchor point (e.g. '0px', '-20px', '30px') */
+  offsetY?: string;
+  /** Horizontal offset from anchor point (e.g. '0px', '20px', '-30px') */
+  offsetX?: string;
+  /** Semantic position coordinates */
+  position: OmSymbolPosition;
+  /** CSS blend mode (e.g. 'normal', 'multiply') */
+  blendMode:
+  | "normal"
+  | "multiply"
+  | "screen"
+  | "overlay"
+  | "darken"
+  | "lighten"
+  | "color-dodge"
+  | "color-burn"
+  | "hard-light"
+  | "soft-light"
+  | "difference"
+  | "exclusion"
+  | "hue"
+  | "saturation"
+  | "color"
+  | "luminosity"
+  | (string & {});
+  /** Responsive mobile controls */
+  mobile: {
+    /** Show/hide ornament on mobile devices */
+    enabled: boolean;
+    /** Mobile opacity */
+    opacity: number;
+    /** Mobile width */
+    width: string;
+    /** Optional mobile height (defaults to mobile.width if omitted) */
+    height?: string;
+    /** Mobile position coordinates */
+    position: OmSymbolPosition;
+    /** Mobile vertical offset from boundary/anchor */
+    offsetY?: string;
+    /** Mobile horizontal offset */
+    offsetX?: string;
+    /** Mobile rotation angle */
+    rotation: string;
+  };
+}
+
+/** Type alias for any decorative background ornament configuration */
+export type SpiritualityOrnamentConfig = OmSymbolConfig;
 
 export interface SpiritualityTempleBackgroundConfig {
   /** Master on/off toggle for the entire background system */
   enabled: boolean;
+
+  /**
+   * Primary Om (ॐ) Symbol Decorative Background Ornament
+   * Controls the subtle background watermark symbol rendered via transparent CSS mask.
+   */
+  omSymbol: OmSymbolConfig;
+
+  /**
+   * Array of additional independently configurable ornamental background images.
+   * Add any number of decorative images here by copying an existing ornament entry!
+   */
+  ornaments: OmSymbolConfig[];
+
+  /** Backwards compatibility alias for ornaments */
+  omSymbols?: OmSymbolConfig[];
 
   /**
    * Continuous Antique Gold Side Borders Configuration
@@ -169,6 +277,7 @@ export interface SpiritualityTempleBackgroundConfig {
     ghatAtmosphere: boolean;
     lotusMotifs: boolean;
     sectionDividers: boolean;
+    omSymbol: boolean;
   };
 
   /** Responsive controls for mobile and tablet screens */
@@ -187,6 +296,124 @@ export interface SpiritualityTempleBackgroundConfig {
 
 export const spiritualityTempleBackgroundConfig: SpiritualityTempleBackgroundConfig = {
   enabled: true,
+
+  omSymbol: {
+    id: "om-symbol-main",
+    enabled: true,
+    image: "/spirituality-assets/ornaments/om-symbol.png",
+    color: "#887b62",
+    opacity: 0.1,
+    width: "920px",
+    height: "920px",
+    rotation: "0deg",
+    section: "destinations-programmes",
+    boundary: "destinations-programmes",
+    anchor: "boundary",
+    offsetY: "0px",
+    offsetX: "0px",
+    position: {
+      right: "clamp(32px, 5.5vw, 84px)",
+      offsetY: "0px",
+      offsetX: "0px",
+    },
+    blendMode: "normal",
+    mobile: {
+      enabled: true,
+      opacity: 0.12,
+      width: "280px",
+      height: "280px",
+      offsetY: "0px",
+      offsetX: "0px",
+      position: {
+        right: "16px",
+        offsetY: "0px",
+        offsetX: "0px",
+      },
+      rotation: "0deg",
+    },
+  },
+
+  /**
+   * Additional Independently Configurable Decorative Background Ornaments
+   *
+   * Add any number of decorative images by copying an ornament block into this array!
+   * Supports all sections, boundary-anchoring (e.g. 'intro-expressions', 'destinations-programmes'),
+   * offsets, custom sizes, colors, and responsive mobile controls.
+   */
+  ornaments: [
+
+
+    {
+  id: "temple-intro-design",
+  enabled: true,
+
+  image: "/spirituality-assets/ornaments/trisul.png",
+
+  color: "#B89758",
+  opacity: 0.15,
+
+  width: "700px",
+  height: "900px",
+  rotation: "0deg",
+
+  section: "intro",
+  anchor: "section",
+
+  offsetY: "-300px",
+  offsetX: "0px",
+
+  position: {
+    top: "30%",
+    right: "30px",
+  },
+
+  blendMode: "normal",
+
+  mobile: {
+    enabled: true,
+    opacity: 0.08,
+    width: "180px",
+    height: "180px",
+    position: {
+      top: "20%",
+      right: "10px",
+    },
+    rotation: "0deg",
+  },
+},
+    // To add another ornament, copy an existing ornament entry, change its id,
+    // image path, position, size, and settings. Example:
+    // {
+    //   id: "lotus-intro-accent",
+    //   enabled: true,
+    //   image: "/spirituality-assets/ornaments/lotus.svg",
+    //   color: "#B89758",
+    //   opacity: 0.14,
+    //   width: "260px",
+    //   height: "260px",
+    //   rotation: "0deg",
+    //   section: "intro",
+    //   anchor: "section",
+    //   offsetY: "0px",
+    //   offsetX: "0px",
+    //   position: {
+    //     top: "36px",
+    //     left: "clamp(24px, 4vw, 60px)",
+    //   },
+    //   blendMode: "normal",
+    //   mobile: {
+    //     enabled: true,
+    //     opacity: 0.08,
+    //     width: "140px",
+    //     height: "140px",
+    //     position: {
+    //       top: "16px",
+    //       left: "16px",
+    //     },
+    //     rotation: "0deg",
+    //   },
+    // },
+  ],
 
   borders: {
     show: true,
@@ -231,15 +458,15 @@ export const spiritualityTempleBackgroundConfig: SpiritualityTempleBackgroundCon
 
   opacity: {
     heroBackground: 0.32,
-    sidePhotographs: 0.18,
+    sidePhotographs: 0.4,
     templeEngravings: 0.12,
-    borders: 0.50,
-    mandalaPatterns: 0.14,
+    borders: 0.70,
+    mandalaPatterns: 0.3,
     cornerOrnaments: 0.42,
     decorativeColumns: 0.26,
     ghatImagery: 0.20,
-    lotusMotifs: 0.22,
-    textures: 0.16,
+    lotusMotifs: 0.52,
+    textures: 1,
     vignette: 0.85,
   },
 
@@ -324,6 +551,7 @@ export const spiritualityTempleBackgroundConfig: SpiritualityTempleBackgroundCon
     ghatAtmosphere: true,
     lotusMotifs: true,
     sectionDividers: true,
+    omSymbol: true,
   },
 
   mobile: {

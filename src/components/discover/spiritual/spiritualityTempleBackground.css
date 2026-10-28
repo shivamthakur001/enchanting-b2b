@@ -379,3 +379,66 @@
     opacity: 0.12;
   }
 }
+
+/* 15. SACRED OM (ॐ) SYMBOL BACKGROUND ORNAMENT */
+.spirituality-section-boundary {
+  position: relative;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spirituality-om-ornament {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  display: block;
+  background-color: var(--om-color, #B89758);
+  -webkit-mask-image: var(--om-image);
+  mask-image: var(--om-image);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  width: var(--om-width, 220px);
+  height: var(--om-height, var(--om-width, 220px));
+  opacity: var(--om-opacity, 0.10);
+  transform: translate(var(--om-translate-x, 0px), var(--om-offset-y, 0px)) rotate(var(--om-rotation, 0deg));
+  mix-blend-mode: var(--om-blend-mode, normal);
+  top: var(--om-top, auto);
+  bottom: var(--om-bottom, auto);
+  left: var(--om-left, auto);
+  right: var(--om-right, auto);
+  transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Boundary-anchored variant: centered vertically at the boundary (upper 50% in preceding section, lower 50% in following section) */
+.spirituality-om-ornament--boundary {
+  top: 0 !important;
+  bottom: auto !important;
+  transform: translate(var(--om-translate-x, 0px), calc(-50% + var(--om-offset-y, 0px))) rotate(var(--om-rotation, 0deg));
+}
+
+@media (max-width: 768px) {
+  .spirituality-om-ornament {
+    display: var(--om-mobile-display, block);
+    opacity: var(--om-mobile-opacity, 0.08);
+    width: var(--om-mobile-width, 130px);
+    height: var(--om-mobile-height, var(--om-mobile-width, 130px));
+    transform: translate(var(--om-mobile-translate-x, var(--om-translate-x, 0px)), var(--om-mobile-offset-y, var(--om-offset-y, 0px))) rotate(var(--om-mobile-rotation, var(--om-rotation, 0deg)));
+    top: var(--om-mobile-top, auto);
+    bottom: var(--om-mobile-bottom, auto);
+    left: var(--om-mobile-left, auto);
+    right: var(--om-mobile-right, auto);
+  }
+
+  .spirituality-om-ornament--boundary {
+    top: 0 !important;
+    bottom: auto !important;
+    transform: translate(var(--om-mobile-translate-x, var(--om-translate-x, 0px)), calc(-50% + var(--om-mobile-offset-y, var(--om-offset-y, 0px)))) rotate(var(--om-mobile-rotation, var(--om-rotation, 0deg)));
+  }
+}

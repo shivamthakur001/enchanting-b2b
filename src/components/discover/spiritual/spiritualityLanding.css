@@ -11,7 +11,12 @@
 .spirituality-page a { text-decoration: none; }
 .spirituality-page button { font: inherit; }
 .spirituality-page :is(a,button):focus-visible { outline: 2px solid var(--spirituality-gold, #B89758); outline-offset: 4px; }
-.spirituality-shell { width: min(100% - 64px, 1320px); margin-inline: auto; }
+.spirituality-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 64px, 1320px);
+  margin-inline: auto;
+}
 .spirituality-eyebrow {
   margin: 0 0 18px;
   font-size: 11px;
@@ -48,7 +53,7 @@
 .spirituality-section {
   position: relative;
   padding: clamp(68px, 7vw, 110px) 0 0;
-  isolation: isolate;
+  z-index: 2;
 }
 
 /* Button styles */
@@ -784,6 +789,15 @@
 .spirituality-middle-region {
   position: relative;
   width: 100%;
+  isolation: isolate;
+}
+
+.spirituality-section-boundary {
+  position: relative;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .spirituality-gold-frame {
@@ -793,7 +807,7 @@
   left: 0;
   right: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
   overflow: visible;
 }
 
