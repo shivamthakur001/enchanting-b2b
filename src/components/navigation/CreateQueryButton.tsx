@@ -22,7 +22,7 @@ export function CreateQueryButton({ variant = "nav", className, onClick }: Creat
       to="/create-query"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center transition-[background-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+        "inline-flex items-center select-none active:scale-[0.975] active:duration-75 transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none motion-reduce:active:transform-none",
         styles[variant],
         className,
       )}

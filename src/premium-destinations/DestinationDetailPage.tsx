@@ -9,6 +9,8 @@ import './DestinationDetailPage.css';
 import { lazy, Suspense } from 'react';
 import { getGalleryRegistration, buildGalleryOverridesFromManager } from './gallery/galleryManager';
 import { useGalleryContent } from './gallery/hooks/useGalleryContent';
+import { getGalleryTheme } from './gallery/galleryThemeConfig';
+import { getPremiumDestination } from './destinationRegistry';
 import { getHeritageDestinationDesign } from './heritageDestinationConfig';
 import { getWildlifeDestinationDesign } from './wildlifeDestinationConfig';
 import {
@@ -25,11 +27,19 @@ const CinematicEnvelopeGallery = lazy(() => import('./gallery/components/Cinemat
  * fetches its manifest, and renders the CinematicEnvelopeGallery.
  * Renders nothing if the destination has no active gallery registration.
  */
-function DestinationGallerySection({ destinationId }: { destinationId: string }) {
+function DestinationGallerySection({
+  destinationId,
+  themeLabel,
+}: {
+  destinationId: string;
+  themeLabel?: string;
+}) {
+  const canonicalTheme = themeLabel || getPremiumDestination(destinationId)?.themeLabel || 'Nature';
+  const galleryTheme = getGalleryTheme(canonicalTheme);
   const registration = getGalleryRegistration(destinationId);
   // Hook always called — handles undefined registration internally
   const content = useGalleryContent(registration);
-  const baseOverrides = buildGalleryOverridesFromManager();
+  const baseOverrides = buildGalleryOverridesFromManager(canonicalTheme);
 
   // Deep-merge destination-specific styleOverrides on top of manager defaults
   const mergedOverrides = registration?.styleOverrides
@@ -49,7 +59,12 @@ function DestinationGallerySection({ destinationId }: { destinationId: string })
 
   return (
     <Suspense fallback={null}>
-      <CinematicEnvelopeGallery content={content} settings={mergedOverrides} />
+      <CinematicEnvelopeGallery
+        content={content}
+        settings={mergedOverrides}
+        themeConfig={galleryTheme}
+        themeLabel={canonicalTheme}
+      />
     </Suspense>
   );
 }
@@ -484,6 +499,6 @@ export default function DestinationDetailPage({
     {/* CINEMATIC ENVELOPE GALLERY — renders after Final CTA, before the shared app footer.
         Active only for destinations registered in gallery/galleryManager.ts.
         To enable: add destination slug to destinationGalleryRegistry with active: true. */}
-    <DestinationGallerySection destinationId={content.id} />
+    <DestinationGallerySection destinationId={content.id} themeLabel={content.themeLabel} />
   </div>;
 }

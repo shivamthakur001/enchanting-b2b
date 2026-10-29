@@ -283,9 +283,13 @@
     var(--nav-query-text) !important;
 
   transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 180ms ease,
     border-color 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    box-shadow 200ms ease;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .nav-query-button:hover {
@@ -294,6 +298,11 @@
 
   border-color:
     var(--nav-query-hover-bg) !important;
+}
+
+.nav-query-button:active {
+  transform: scale(0.975);
+  transition-duration: 75ms;
 }
 
 
@@ -420,5 +429,6 @@
   .nav-query-button,
   .nav-offer-button {
     transition: none !important;
+    transform: none !important;
   }
 }

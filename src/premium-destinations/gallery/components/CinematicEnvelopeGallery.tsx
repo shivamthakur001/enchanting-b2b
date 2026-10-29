@@ -12,6 +12,8 @@ import { computePhotoLayout, layoutToStyle, mosaicRect } from "../utils/photoLay
 import { Atmosphere } from "./Atmosphere";
 import { Envelope } from "./Envelope";
 import { PhotoPrint } from "./PhotoPrint";
+import { getGalleryTheme } from "../galleryThemeConfig";
+import type { GalleryThemeConfig } from "../galleryThemeConfig";
 import "./CinematicEnvelopeGallery.css";
 
 /**
@@ -22,6 +24,8 @@ import "./CinematicEnvelopeGallery.css";
 export interface CinematicEnvelopeGalleryProps {
   content?: GalleryContent;
   settings?: GalleryOverrides;
+  themeConfig?: GalleryThemeConfig;
+  themeLabel?: string;
 }
 
 function Chevron({ dir }: { dir: "prev" | "next" }) {
@@ -35,7 +39,15 @@ function Chevron({ dir }: { dir: "prev" | "next" }) {
 export default function CinematicEnvelopeGallery({
   content = pachmarhiGallery,
   settings,
+  themeConfig,
+  themeLabel,
 }: CinematicEnvelopeGalleryProps) {
+  const activeTheme = useMemo(() => {
+    if (themeConfig) return themeConfig;
+    if (themeLabel) return getGalleryTheme(themeLabel);
+    return getGalleryTheme("nature");
+  }, [themeConfig, themeLabel]);
+
   const cfg = useMemo(() => getGalleryConfig(settings), [settings]);
   const photos = content.photos;
   const total = photos.length;
@@ -259,19 +271,63 @@ export default function CinematicEnvelopeGallery({
   };
 
   const cssVars = {
-    "--forest": cfg.colors.forest,
-    "--forest-deep": cfg.colors.forestDeep,
+    // Centralized theme color & background controls
+    "--gallery-bg": activeTheme.galleryBg,
+    "--gallery-fullscreen-bg": activeTheme.galleryFullscreenBg,
+    "--gallery-bg-mode": activeTheme.galleryBackgroundMode,
+    "--gallery-gradient": activeTheme.galleryGradient,
+    "--gallery-wash-gradient": activeTheme.galleryGradient,
+    "--gallery-overlay-opacity": activeTheme.galleryOverlayOpacity,
+    "--gallery-texture-opacity": activeTheme.galleryTextureOpacity,
+    "--gallery-text": activeTheme.galleryTextColor,
+    "--gallery-muted": activeTheme.galleryMutedColor,
+    "--gallery-accent": activeTheme.galleryAccentColor,
+    "--gallery-border": activeTheme.galleryBorderColor,
+
+    // Envelope surfaces
+    "--env-body": activeTheme.envelopeBodyColor,
+    "--env-front": activeTheme.envelopeFrontColor,
+    "--env-back": activeTheme.envelopeBackColor,
+    "--env-flap": activeTheme.envelopeFlapColor,
+    "--env-lining": activeTheme.envelopeLiningColor,
+    "--env-border": activeTheme.envelopeBorderColor,
+    "--env-border-bright": activeTheme.envelopeBorderBrightColor,
+    "--env-shadow-color": activeTheme.envelopeShadowColor,
+    "--env-shadow-intensity": activeTheme.envelopeShadowIntensity,
+    "--env-texture-opacity": activeTheme.envelopeTextureOpacity,
+
+    // Wax seal & Monogram
+    "--env-seal": activeTheme.waxSealColor,
+    "--env-seal-mid": activeTheme.waxSealMid,
+    "--env-seal-hi": activeTheme.waxSealHighlight,
+    "--env-seal-text": activeTheme.sealTextColor,
+    "--env-monogram": activeTheme.monogramColor,
+
+    // Accents & glow
+    "--env-accent": activeTheme.envelopeAccentColor,
+    "--env-accent-bright": activeTheme.envelopeAccentBrightColor,
+
+    // Photo frame & navigation chrome
+    "--gallery-frame-border": activeTheme.photoFrameBorder,
+    "--gallery-print-border": activeTheme.printBorderColor,
+    "--gallery-nav-bg": activeTheme.navButtonBg,
+    "--gallery-nav-border": activeTheme.navButtonBorder,
+    "--gallery-nav-color": activeTheme.navButtonColor,
+
+    // Dimensions, timings & typography
+    "--forest": cfg.colors.forest ?? activeTheme.galleryBg,
+    "--forest-deep": cfg.colors.forestDeep ?? activeTheme.galleryFullscreenBg,
     "--moss": cfg.colors.moss,
-    "--copper": cfg.colors.copper,
-    "--copper-bright": cfg.colors.copperBright,
-    "--ivory": cfg.colors.ivory,
-    "--ivory-muted": cfg.colors.ivoryMuted,
-    "--wax": cfg.colors.wax,
-    "--wax-highlight": cfg.colors.waxHighlight,
-    "--wax-mid": cfg.colors.waxMid,
-    "--paper": cfg.colors.paper,
-    "--paper-light": cfg.colors.paperLight,
-    "--lining": cfg.colors.lining,
+    "--copper": cfg.colors.copper ?? activeTheme.galleryAccentColor,
+    "--copper-bright": cfg.colors.copperBright ?? activeTheme.envelopeAccentBrightColor,
+    "--ivory": cfg.colors.ivory ?? activeTheme.galleryTextColor,
+    "--ivory-muted": cfg.colors.ivoryMuted ?? activeTheme.galleryMutedColor,
+    "--wax": cfg.colors.wax ?? activeTheme.waxSealColor,
+    "--wax-highlight": cfg.colors.waxHighlight ?? activeTheme.waxSealHighlight,
+    "--wax-mid": cfg.colors.waxMid ?? activeTheme.waxSealMid,
+    "--paper": cfg.colors.paper ?? activeTheme.envelopeFrontColor,
+    "--paper-light": cfg.colors.paperLight ?? activeTheme.envelopeBackColor,
+    "--lining": cfg.colors.lining ?? activeTheme.envelopeLiningColor,
     "--envelope-width": `${isMobile ? cfg.envelope.widthMobile : cfg.envelope.width}px`,
     "--envelope-height": `${isMobile ? cfg.envelope.heightMobile : cfg.envelope.height}px`,
     "--envelope-perspective": `${cfg.envelope.perspective}px`,
@@ -296,7 +352,7 @@ export default function CinematicEnvelopeGallery({
     "--gallery-layer-z": cfg.section.zIndex,
     "--gallery-hover-zoom": cfg.gallery.hoverZoom,
     "--gallery-dim": cfg.gallery.overlayDarkness,
-    "--gallery-atmosphere-opacity": cfg.section.atmosphereOpacity,
+    "--gallery-atmosphere-opacity": String(activeTheme.galleryOverlayOpacity ?? cfg.section.atmosphereOpacity),
   } as CSSProperties;
 
   const focused = focusedIndex !== null ? photos[focusedIndex] : null;
@@ -304,8 +360,9 @@ export default function CinematicEnvelopeGallery({
   return (
     <>
       <section
-        className={`satpura satpura-section ${isLeavingIntro ? "is-leaving-intro" : ""}`}
+        className={`satpura satpura-section ${isLeavingIntro ? "is-leaving-intro" : ""} ${activeTheme.galleryBackgroundMode === "solid" ? "is-solid-mode" : ""}`}
         data-state={state}
+        data-bg-mode={activeTheme.galleryBackgroundMode}
         style={cssVars}
         aria-label={`${content.collectionName} gallery`}
       >
@@ -335,8 +392,9 @@ export default function CinematicEnvelopeGallery({
       {isGallery && ready && createPortal(
         <div
           ref={galleryLayerRef}
-          className="satpura satpura-overlay is-gallery"
+          className={`satpura satpura-overlay is-gallery ${activeTheme.galleryBackgroundMode === "solid" ? "is-solid-mode" : ""}`}
           data-state={state}
+          data-bg-mode={activeTheme.galleryBackgroundMode}
           style={cssVars}
           onWheel={onWheel}
           onTouchStart={onTouchStart}
@@ -397,7 +455,7 @@ export default function CinematicEnvelopeGallery({
                 height: "60%",
                 width: "3px",
                 borderRadius: "2px",
-                background: "rgba(196, 165, 116, 0.15)",
+                background: "var(--env-border, rgba(196, 165, 116, 0.15))",
                 pointerEvents: "none",
                 zIndex: 52,
               }}
@@ -409,8 +467,8 @@ export default function CinematicEnvelopeGallery({
                   height: "25%",
                   width: "100%",
                   borderRadius: "2px",
-                  background: "var(--copper, #c4a574)",
-                  boxShadow: "0 0 8px rgba(196, 165, 116, 0.5)",
+                  background: "var(--gallery-accent, var(--copper, #c4a574))",
+                  boxShadow: "0 0 8px var(--env-border-bright, rgba(196, 165, 116, 0.5))",
                   transition: "top 120ms ease-out",
                 }}
               />

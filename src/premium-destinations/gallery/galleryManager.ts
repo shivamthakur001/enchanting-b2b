@@ -19,6 +19,25 @@
  */
 
 import type { GalleryOverrides } from "./config/galleryConfig";
+import {
+  getGalleryTheme,
+  galleryThemes,
+  natureGalleryTheme,
+  heritageGalleryTheme,
+  wildlifeGalleryTheme,
+  spiritualityGalleryTheme,
+} from "./galleryThemeConfig";
+import type { GalleryThemeConfig, GalleryBackgroundMode } from "./galleryThemeConfig";
+
+export {
+  getGalleryTheme,
+  galleryThemes,
+  natureGalleryTheme,
+  heritageGalleryTheme,
+  wildlifeGalleryTheme,
+  spiritualityGalleryTheme,
+};
+export type { GalleryThemeConfig, GalleryBackgroundMode };
 
 // ============================================================
 // A. GALLERY SECTION
@@ -871,7 +890,8 @@ export function getGalleryRegistration(slug: string): DestinationGalleryRegistra
   );
 }
 
-export function buildGalleryOverridesFromManager(): GalleryOverrides {
+export function buildGalleryOverridesFromManager(themeSlugOrLabel?: string): GalleryOverrides {
+  const activeTheme = themeSlugOrLabel ? getGalleryTheme(themeSlugOrLabel) : undefined;
   return {
     visibility: {
       showPhotoTitles: photoMetadataSettings.showPhotoTitles,
@@ -889,19 +909,23 @@ export function buildGalleryOverridesFromManager(): GalleryOverrides {
       eyebrowSize: gallerySectionSettings.eyebrowFontSize,
       descriptionSize: gallerySectionSettings.descriptionFontSize,
       zIndex: gallerySectionSettings.fullscreenZIndex,
-      atmosphereOpacity: gallerySectionSettings.atmosphereOpacity,
+      atmosphereOpacity: activeTheme
+        ? String(activeTheme.galleryOverlayOpacity)
+        : gallerySectionSettings.atmosphereOpacity,
     },
     colors: {
-      forest: gallerySectionSettings.sectionBackground,
-      forestDeep: gallerySectionSettings.fullscreenBackground,
-      copper: envelopeDesignSettings.copperColor,
-      copperBright: envelopeDesignSettings.copperBrightColor,
-      wax: envelopeDesignSettings.waxSealColor,
-      waxMid: envelopeDesignSettings.waxSealMid,
-      waxHighlight: envelopeDesignSettings.waxSealHighlight,
-      paper: envelopeDesignSettings.envelopeFrontColor,
-      paperLight: envelopeDesignSettings.backPaperColor,
-      lining: envelopeDesignSettings.insideLiningColor,
+      forest: activeTheme ? activeTheme.galleryBg : gallerySectionSettings.sectionBackground,
+      forestDeep: activeTheme ? activeTheme.galleryFullscreenBg : gallerySectionSettings.fullscreenBackground,
+      copper: activeTheme ? activeTheme.galleryAccentColor : envelopeDesignSettings.copperColor,
+      copperBright: activeTheme ? activeTheme.envelopeAccentBrightColor : envelopeDesignSettings.copperBrightColor,
+      ivory: activeTheme ? activeTheme.galleryTextColor : gallerySectionSettings.headingColor,
+      ivoryMuted: activeTheme ? activeTheme.galleryMutedColor : undefined,
+      wax: activeTheme ? activeTheme.waxSealColor : envelopeDesignSettings.waxSealColor,
+      waxMid: activeTheme ? activeTheme.waxSealMid : envelopeDesignSettings.waxSealMid,
+      waxHighlight: activeTheme ? activeTheme.waxSealHighlight : envelopeDesignSettings.waxSealHighlight,
+      paper: activeTheme ? activeTheme.envelopeFrontColor : envelopeDesignSettings.envelopeFrontColor,
+      paperLight: activeTheme ? activeTheme.envelopeBackColor : envelopeDesignSettings.backPaperColor,
+      lining: activeTheme ? activeTheme.envelopeLiningColor : envelopeDesignSettings.insideLiningColor,
     },
     envelope: {
       width: envelopeDesignSettings.envelopeWidthDesktop,
