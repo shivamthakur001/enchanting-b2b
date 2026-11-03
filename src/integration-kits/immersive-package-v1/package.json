@@ -1,0 +1,11 @@
+{
+  "name":"enchanting-b2b-immersive-package-preview",
+  "version":"1.0.0",
+  "private":true,
+  "description":"Standalone, data-driven package page preview (no live backend and no rates)",
+  "scripts":{
+    "check":"tsc -p tsconfig.json --noEmit && node scripts/validate-public-data.mjs",
+    "build":"tsc -p tsconfig.json && node scripts/build-preview.mjs",
+    "test:data":"node scripts/validate-public-data.mjs"
+  }
+}

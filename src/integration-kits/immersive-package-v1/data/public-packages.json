@@ -1,0 +1,279 @@
+[
+  {
+    "schemaVersion": 1,
+    "code": "EXBHP01",
+    "slug": "exbhp01",
+    "title": "Jewels Of Bhopal",
+    "durationDays": 3,
+    "durationNights": 2,
+    "nightsDerived": true,
+    "routeRaw": "Bhopal - Bhimbetka  - Bhojpur - Sanchi - Bhopal",
+    "highlights": [
+      "Explore Bharat Bhavan: Bhopal's iconic arts hub by Charles Correa, offering diverse galleries, workshops, and theaters since 1982.",
+      "Bhimbetka Caves UNESCO site with ancient rock art spanning eras, revealing India's cultural heritage.",
+      "Bhojpur home to the majestic Bhojeshwar Temple, showcasing ancient craftsmanship and the legacy of King Bhoja."
+    ],
+    "itineraries": [
+      {
+        "dayLabel": "Day 01",
+        "title": "Arrive Bhopal - TOUR BEGINS",
+        "body": "Upon arrival at Bhopal Station or Airport, you will be met by our company representative who will greet you and transfer you to the hotel. Check-in at the hotel.\n\nEmbark on an afternoon exploration of Bhopal, starting with the majestic Taj-ul-Masajid, one of India's largest mosques, showcasing its impressive architecture and expansive courtyard. Continue to Bharat Bhavan, a multi-arts complex designed by Charles Correa, where you can delve into tribal and folk art. Conclude your tour at Bhojtal (Upper Lake), enjoying a serene boat ride (On direct payment basis) amidst the beautiful surroundings, making for a perfect end to your Bhopal city tour.\n\nMeals : NA"
+      },
+      {
+        "dayLabel": "Day 02",
+        "title": "Bhopal (Excursion to Bhimbetka, Bhojpur & Sanchi)",
+        "body": "Morning after breakfast proceed to explore the ancient rock shelters of Bhimbetka, a UNESCO World Heritage Site renowned for its prehistoric rock art dating back 30,000 years. Nestled in the Vindhya mountains, Bhimbetka showcases over 750 rock shelters with diverse paintings depicting hunting, dancing, and daily life. This site, named after Bhima from the Mahabharata, offers a unique glimpse into the evolution of human culture and the natural beauty of its surroundings, making it an unmissable destination for history and nature enthusiasts.\n\nLater discover the historical marvel of Bhojpur, renowned for the magnificent, unfinished Bhojeshwar Temple, which houses one of India's largest lingams, measuring 7.5 feet high and 17.8 feet in circumference. Attributed to the legendary Raja Bhoj, this site showcases advanced medieval engineering with its monolithic constructions and ancient dam remnants. Additionally, explore intricate Jain temples and enjoy the serene natural beauty of the surrounding landscapes, making Bhojpur a must-visit destination for history and architecture enthusiasts.\n\nAfternoon explore the ancient marvel of Sanchi, a UNESCO World Heritage Site renowned for its Great Stupa, commissioned by Emperor Ashoka in the 3rd century BCE. Discover the intricately carved gateways depicting Buddha's life and Jataka tales, and wander through the vast monastic complex with its stupas, temples, and pillars. Sanchi's rich history and stunning Buddhist art make it an essential destination for heritage and spiritual enthusiasts.\" After visit drive back to Bhopal, Overnight stay at hotel.\n\nMeals : Breakfast"
+      },
+      {
+        "dayLabel": "Day 03",
+        "title": "Departure from Bhopal- TOUR ENDS",
+        "body": "Morning after breakfast check-out from the hotel  transfer to the railway station or airport for your onward destination.\n\nMeals : Breakfast"
+      }
+    ],
+    "inclusions": [
+      "Meeting and assistance on arrival/departure at Airport/hotel by our representative.",
+      "Accommodation for Total 02 nights on sharing basis on Room plus breakfast on fixed menu/buffet basis.",
+      "Total 02 Breakfasts as mentioned in the program.",
+      "Arrival / Departure transfers, sightseeing/ excursions and surface travel as per the above program by Air-Conditioned Vehicle.",
+      "Mineral water 02 (250 Ml.) Water bottles Per Person, Per Day, Tissues, Hand Sanitizers, Masks etc. in vehicle during the tour."
+    ],
+    "exclusions": [
+      "Any services other than the ones mentioned above or air fares, train or flight tickets, guides, entrances fee, activities, meals other than those mentioned above or any items of Personal nature like, telephone calls, laundry, drinks, Camera fees or tips etc."
+    ],
+    "facts": [
+      {
+        "title": "Transportation",
+        "description": "Various modes of transportation are available for this trip, including AC sedans / Innova Crysta and large coaches, catering to different group sizes."
+      },
+      {
+        "title": "Accommodation",
+        "description": "Accommodation options on this trip range from excellent budget hotels to luxury hotels, providing choices to suit different preferences and budgets."
+      },
+      {
+        "title": "Weather",
+        "description": "Best time to visit Bhopal is October to March; monsoon starts late June to September with ~1,200 mm rain and 24–28°C temperature."
+      },
+      {
+        "title": "Nearest Airport",
+        "description": "Raja Bhoj Airport , Bhopal"
+      },
+      {
+        "title": "Nearest Railway Station",
+        "description": "Bhopal Junction railway station (BPL)"
+      }
+    ],
+    "publicNotes": [
+      "The chauffeur-driven private transport is for the client’s exclusive use.",
+      "The vehicle will be provided for the exact itinerary specified.",
+      "Our vehicle includes the following services for the comfort and safety of the guests:",
+      "The confirmation of rooms at desired hotels will be subject to availability on the day of making the booking. In case rooms are not available at the hotel foreseen/desired, bookings will be made in an alternate or similar category, or the next best available hotel. Any supplement/reduction applicable in such cases will be payable accordingly."
+    ],
+    "media": {
+      "hero": null,
+      "highlights": [],
+      "itinerary": []
+    },
+    "status": "preview",
+    "source": {
+      "workbook": "EXBHP01.xlsx",
+      "revision": 1,
+      "importMode": "sample-snapshot-no-importer"
+    },
+    "reviewFlags": [
+      "Nights are derived from days - 1; cross-check accommodation."
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "code": "EXBHP02",
+    "slug": "exbhp02",
+    "title": "Bhopal-Pachmarhi Sojourn",
+    "durationDays": 4,
+    "durationNights": 3,
+    "nightsDerived": true,
+    "routeRaw": "Bhopal - Sanchi - Bhopal - Bhimbetka - Bhojpur - Pachmarhi - Bhopal",
+    "highlights": [
+      "Bhopal: Where ancient history meets modern charm amidst the tranquil lakes, vibrant culture, and culinary delights of the City of Lakes.",
+      "Bhimbetka Rock Shelters: Ancient cave art unveiling humanity's earliest creativity, a mesmerizing journey through time.",
+      "A colossal testament to ancient engineering, housing the unfinished marvel of one of the world's largest Shiva lingam, leaving travelers in awe of its architectural ambition.",
+      "Sanchi Stupa: Timeless marvel of Buddhist grandeur, a symbol of serenity and architectural brilliance, captivating travelers with its spiritual aura.",
+      "Pachmarhi: The Queen of Satpura, where waterfalls, ancient caves, and panoramic vistas create a magical hill station escape."
+    ],
+    "itineraries": [
+      {
+        "dayLabel": "Day 01",
+        "title": "Arrive Bhopal (Excursion to Sanchi stupa) - TOUR BEGINS",
+        "body": "Upon arriving at Bhopal railway station or airport, you will be met by our company representative, who will greet you and transfer you to the hotel. Check-in at the hotel.\n\nAfter some rest, enjoy your excursion to Sanchi Stupa.Explore the ancient marvel of Sanchi, a UNESCO World Heritage Site renowned for its Great Stupa, commissioned by Emperor Ashoka in the 3rd century BCE. Discover the intricately carved gateways depicting Buddha's life and Jataka tales, and wander through the vast monastic complex with its stupas, temples, and pillars. Sanchi's rich history and stunning Buddhist art make it an essential destination for heritage and spiritual enthusiasts..\n\nAfternoon drive back to the city to embark on an exploration of Bhopal, starting with the majestic Taj-ul-Masajid, one of India's largest mosques, showcasing its impressive architecture and expansive courtyard. Continue to Bharat Bhavan, a multi-arts complex designed by Charles Correa, where you can delve into tribal and folk art. Conclude your tour at Bhojtal (Upper Lake), enjoying a serene boat ride (On direct payment basis) amidst the beautiful surroundings, making for a perfect end to your Bhopal city tour. After visit return to your hotel & Overnight stay. Overnight at Bhopal.\n\nMeals : NA"
+      },
+      {
+        "dayLabel": "Day 02",
+        "title": "Bhopal - Bhojpur temple - Bhimbetka rocks shelter caves - Pachmarhi by road (205 kms & 5.5 Hours approx.)",
+        "body": "Morning, after breakfast, check out from the hotel. Drive to Pachmarhi, via-visiting Bhimbetka Rock Shelter Caves & Bhojpur Temple en route.\n\nDiscover the historical marvel of Bhojpur, renowned for the magnificent, unfinished Bhojeshwar Temple, which houses one of India's largest lingams, measuring 7.5 feet high and 17.8 feet in circumference. Attributed to the legendary Raja Bhoj, this site showcases advanced medieval engineering with its monolithic constructions and ancient dam remnants. Additionally, explore intricate Jain temples and enjoy the serene natural beauty of the surrounding landscapes, making Bhojpur a must-visit destination for history and architecture enthusiasts.\n\nExplore the ancient rock shelters of Bhimbetka, a UNESCO World Heritage Site renowned for its prehistoric rock art dating back 30,000 years. Nestled in the Vindhya mountains, Bhimbetka showcases over 750 rock shelters with diverse paintings depicting hunting, dancing, and daily life. This site, named after Bhima from the Mahabharata, offers a unique glimpse into the evolution of human culture and the natural beauty of its surroundings, making it an unmissable destination for history and nature enthusiasts.\n\nAfter visits drive to Pachmarhi, known as \"The Queen of Satpura.\" Check in at the hotel and enjoy leisure time for the day. Dinner will be served at the hotel. Overnight at the hotel.\n\nMeals : Breakfast (Lunch in 3 Star Deluxe and 4 Star) & Dinner"
+      },
+      {
+        "dayLabel": "Day 03",
+        "title": "Pachmarhi (local sightseeing by open Gypsy)",
+        "body": "Morning, after breakfast at your hotel, proceed with the local sightseeing of Pachmarhi, including Pandav Caves, Apsara Vihar, Silver Waterfall, and Panchali Kund.\n\nEmbark on a captivating journey of local sightseeing in Pachmarhi, a picturesque hill station nestled amidst the lush forests of Madhya Pradesh. Begin your exploration with a visit to the ancient Pandav Caves, steeped in mythology and history, where legends of the Pandavas are said to echo through the cavernous halls. Next, marvel at the natural beauty of Apsara Vihar, a tranquil waterfall cascading into a serene pool, offering a refreshing escape from the summer heat. Then, make your way to the Silver Waterfall, where shimmering streams cascade down rocky cliffs, creating a mesmerizing spectacle.\n\nIn the afternoon, continue your exploration with a visit to Bee Fall, a majestic waterfall surrounded by verdant forests and rocky cliffs. For the adventurous at heart, there's the option to try parasailing (at your own expense), soaring high above the treetops for a bird's-eye view of the breathtaking landscapes below. Delve into the ancient mysteries of Reechgarh Caves, a labyrinth of caverns and passageways carved into the rocky cliffs, where echoes of the past resonate through the silent chambers. Finally, visit Eco Points, where panoramic views of Pachmarhi's scenic vistas await, offering the perfect backdrop for a leisurely stroll or some quiet contemplation.\n\nAs the day draws to a close, retreat to your accommodation in Pachmarhi, where you can unwind and reflect on the day's adventures amidst the tranquil beauty of this enchanting hill station. Enjoy dinner at the hotel and overnight at the hotel\n\nMeals : Breakfast, (Lunch In 3 Star Deluxe & 4 Star Hotel) & Dinner"
+      },
+      {
+        "dayLabel": "Day 04",
+        "title": "Departure from Bhopal - TOUR ENDS",
+        "body": "Morning, after breakfast, check out from the hotel. Drive to Bhopal. Arrive in Bhopal. In time, transfer to the railway station/airport to board the train/flight for onward journey.\n\nMeals : Breakfast"
+      }
+    ],
+    "inclusions": [
+      "Meeting and assistance on arrival/departure at Airport/hotel by our representative.",
+      "Accommodation for Total 03 nights on sharing basis on Room plus breakfast on fixed menu/buffet basis. Except in Pachmarhi where the stay is on Plan / Half board basis that is with breakfast and dinner in Pachmarhi  (3 Star Deluxe & 4 Star hotel) where the stay is on APAI Plan / full board basis that is with breakfast, lunch and dinner on fixed menu / buffet basis.",
+      "Total 03 Breakfasts, (02 Lunch In 3 Star Deluxe & 4 Star Hotel) & 02 Dinners as mentioned in the program.",
+      "Arrival / Departure transfers, sightseeing/ excursions and surface travel as per the above program by Air-Conditioned Vehicle.",
+      "Experience Full day Pachmarhi Sightseeing by Open Gypsy with Naturalist / Guide.",
+      "Mineral water 02 (250 Ml.) Water bottles Per Person, Per Day, Tissues, Hand Sanitizers, Masks etc. in vehicle during the tour."
+    ],
+    "exclusions": [
+      "Any services other than the ones mentioned above or air fares, train or flight tickets, guides, entrances fee, activities, meals other than those mentioned above or any items of Personal nature like, telephone calls, laundry, drinks, Camera fees or tips etc."
+    ],
+    "facts": [
+      {
+        "title": "Transportation",
+        "description": "Various modes of transportation are available for this trip, including AC sedans / Innova Crysta and Tempo Traveller, catering to different group sizes."
+      },
+      {
+        "title": "Accommodation",
+        "description": "Accommodation options on this trip range from excellent budget hotels to luxury hotels, providing choices to suit different preferences and budgets."
+      },
+      {
+        "title": "Weather",
+        "description": "Best time to visit Bhopal and Pachmarhi is October to March; monsoon lasts from late June to September with ~1,200 mm rain and temperatures around 24–28°C."
+      },
+      {
+        "title": "Nearest Airport",
+        "description": "Raja Bhoj Airport , Bhopal"
+      },
+      {
+        "title": "Nearest Railway Station",
+        "description": "Bhopal Junction railway station (BPL)"
+      }
+    ],
+    "publicNotes": [
+      "The chauffeur-driven private transport is for the client’s exclusive use.",
+      "The vehicle will be provided for the exact itinerary specified.",
+      "Our vehicle includes the following services for the comfort and safety of the guests:",
+      "The confirmation of rooms at desired hotels will be subject to availability on the day of making the booking. In case rooms are not available at the hotel foreseen/desired, bookings will be made in an alternate or similar category, or the next best available hotel. Any supplement/reduction applicable in such cases will be payable accordingly."
+    ],
+    "media": {
+      "hero": null,
+      "highlights": [],
+      "itinerary": []
+    },
+    "status": "preview",
+    "source": {
+      "workbook": "EXBHP02.xlsx",
+      "revision": 1,
+      "importMode": "sample-snapshot-no-importer"
+    },
+    "reviewFlags": [
+      "Nights are derived from days - 1; cross-check accommodation."
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "code": "EXBHP03",
+    "slug": "exbhp03",
+    "title": "Wilderness Getaway from Bhopal",
+    "durationDays": 5,
+    "durationNights": 4,
+    "nightsDerived": true,
+    "routeRaw": "Bhopal - Bhimbetka - Bhojpur - Sanchi - Tawa Reservoir - Madai - Satpura National Park - Pachmarhi - Bhopal",
+    "highlights": [
+      "Bhopal: Where ancient history meets modern charm amidst the tranquil lakes, vibrant culture, and culinary delights of the City of Lakes.",
+      "Bhimbetka Rock Shelters: Ancient cave art unveiling humanity's earliest creativity, a mesmerizing journey through time.",
+      "A colossal testament to ancient engineering, housing the unfinished marvel of one of the world's largest Shiva lingam, leaving travelers in awe of its architectural ambition.",
+      "Sanchi Stupa: Timeless marvel of Buddhist grandeur, a symbol of serenity and architectural brilliance, captivating travelers with its spiritual aura.",
+      "Tawa Reservoir: A nature lover's paradise, where scenic waters and vibrant birdlife converge amidst the majestic Satpura Range.",
+      "Jeep Safari at Tiger Reserve: Dive into the heart of the wild, roaring through untamed terrain in pursuit of majestic predators.",
+      "Pachmarhi: The Queen of Satpura, where waterfalls, ancient caves, and panoramic vistas create a magical hill station escape."
+    ],
+    "itineraries": [
+      {
+        "dayLabel": "Day 01",
+        "title": "Arrive Bhopal  & (Excursion to Bhimbetka Rock Shelter Caves, Bhojpur Temple, & Sanchi Stupa)  - TOUR BEGINS",
+        "body": "Upon arrival at Bhopal airport / railway station meet by our company representative who will meet and greet you and will transfer to hotel. Check-in at the hotel & Enjoy your excursion Bhimbetka Rock Shelter Caves, Bhojpur temple & Sanchi Stupa.\n\nExplore the ancient rock shelters of Bhimbetka, a UNESCO World Heritage Site renowned for its prehistoric rock art dating back 30,000 years. Nestled in the Vindhya mountains, Bhimbetka showcases over 750 rock shelters with diverse paintings depicting hunting, dancing, and daily life. This site, named after Bhima from the Mahabharata, offers a unique glimpse into the evolution of human culture and the natural beauty of its surroundings, making it an unmissable destination for history and nature enthusiasts.\n\nLater discover the historical marvel of Bhojpur, renowned for the magnificent, unfinished Bhojeshwar Temple, which houses one of India's largest lingams, measuring 7.5 feet high and 17.8 feet in circumference. Attributed to the legendary Raja Bhoj, this site showcases advanced medieval engineering with its monolithic constructions and ancient dam remnants. Additionally, explore intricate Jain temples and enjoy the serene natural beauty of the surrounding landscapes, making Bhojpur a must-visit destination for history and architecture enthusiasts.\n\nAfternoon explore the ancient marvel of Sanchi, a UNESCO World Heritage Site renowned for its Great Stupa, commissioned by Emperor Ashoka in the 3rd century BCE. Discover the intricately carved gateways depicting Buddha's life and Jataka tales, and wander through the vast monastic complex with its stupas, temples, and pillars. Sanchi's rich history and stunning Buddhist art make it an essential destination for heritage and spiritual enthusiasts. later return to your hotel & Overnight stay at hotel.\n\nMeals : NA"
+      },
+      {
+        "dayLabel": "Day 02",
+        "title": "Bhopal - Tawa Reserver - Madhaii by road (153 kms & 3.5 Hours approx.)",
+        "body": "Morning after breakfast, check out from the hotel and proceed to visit Bhopal for a local city tour.\n\nEmbark on a morning exploration of Bhopal, starting with the majestic Taj-ul-Masajid, one of India's largest mosques, showcasing its impressive architecture and expansive courtyard. Continue to Bharat Bhavan, a multi-arts complex designed by Charles Correa, where you can delve into tribal and folk art. Explore the architectural marvels of Shaukat Mahal and Sadar Manzil, soaking in their historical significance. Conclude your tour with a visit to Bhojtal (Upper Lake), where you can enjoy a serene boat ride (On direct payment basis) amidst the picturesque surroundings, offering a perfect start to your day in Bhopal.\n\nAfter the visits, drive to Tawa Reservoir. Upon arrival at Tawa Dam, check-in at the hotel.\n\nguests can enjoy water activities at Tawa Reservoir (available on a direct payment basis). Nestled on the serene banks of the Tawa Reservoir in Madhya Pradesh, Tawa offers travelers a tranquil retreat amidst picturesque landscapes. Formed by the Tawa Dam on the Tawa River, this destination is perfect for boating, fishing, and picnicking enthusiasts. Surrounded by lush forests and wildlife sanctuaries, it’s an ideal haven for nature lovers seeking peace and adventure.\n\nA highlight of visiting Tawa is embarking on a mini cruise or boat ride across the calm waters of the reservoir (On direct payment basis). Whether you opt for a leisurely cruise or an adventurous ride, the scenic vistas and serene atmosphere promise a memorable experience.\n\nAfter exploring Tawa, extend your adventure with a boat ride to Madhai (Optional), where more outdoor recreation and wildlife encounters await. Tawa promises an unforgettable experience, blending tranquility and excitement in a beautiful natural setting. Later return to your hotel & Overnight at Madai\n\nMeals : Breakfast, Lunch & Dinner"
+      },
+      {
+        "dayLabel": "Day 03",
+        "title": "Madai / Satpura National Pak - Pachmarhi by road (95 kms & 2.5 Hour approx.)",
+        "body": "Early morning, embark on a jeep safari into the Satpura National Park / Tiger Reserve have breakfast.\n\nEmbark on an exhilarating morning jeep safari through the pristine wilderness of Satpura National Park, a hidden gem nestled in the heart of central India. Named after the majestic Satpura Range that surrounds it, this biodiverse sanctuary offers a haven for wildlife enthusiasts and nature lovers alike. As the sun rises over the rugged landscapes, immerse yourself in the untamed beauty of this lesser-known tiger reserve, renowned for its diverse habitats and abundant wildlife. Led by experienced naturalists, venture deep into the jungle, where elusive tigers, leopards, and sloth bears roam freely amidst dense forests and meandering streams. Keep your eyes peeled for sightings of rare species like the Indian giant squirrel and Malabar pied hornbill, as well as a myriad of other bird and mammal species. With each passing moment, you'll unravel the mysteries of the jungle and create memories to cherish for a lifetime.\n\nAfter visit return to the hotel and drive to Pachmarhi, known as \"The Queen of Satpura.\" Check in at the hotel and enjoy leisure time for the day. Dinner will be served at the hotel. Overnight at the hotel.\n\nMeals : Breakfast, (Lunch In 3 Star Deluxe & 4 Star Hotel) & Dinner"
+      },
+      {
+        "dayLabel": "Day 04",
+        "title": "Pachmarhi (local sightseeing by open Gypsy)",
+        "body": "Morning, after breakfast at your hotel, proceed with the local sightseeing of Pachmarhi, including Pandav Caves, Apsara Vihar, Silver Waterfall, and Panchali Kund.\n\nEmbark on a captivating journey of local sightseeing in Pachmarhi, a picturesque hill station nestled amidst the lush forests of Madhya Pradesh. Begin your exploration with a visit to the ancient Pandav Caves, steeped in mythology and history, where legends of the Pandavas are said to echo through the cavernous halls. Next, marvel at the natural beauty of Apsara Vihar, a tranquil waterfall cascading into a serene pool, offering a refreshing escape from the summer heat. Then, make your way to the Silver Waterfall, where shimmering streams cascade down rocky cliffs, creating a mesmerizing spectacle.\n\nIn the afternoon, continue your exploration with a visit to Bee Fall, a majestic waterfall surrounded by verdant forests and rocky cliffs. For the adventurous at heart, there's the option to try parasailing (at your own expense), soaring high above the treetops for a bird's-eye view of the breathtaking landscapes below. Delve into the ancient mysteries of Reechgarh Caves, a labyrinth of caverns and passageways carved into the rocky cliffs, where echoes of the past resonate through the silent chambers. Finally, visit Eco Points, where panoramic views of Pachmarhi's scenic vistas await, offering the perfect backdrop for a leisurely stroll or some quiet contemplation.\n\nAs the day draws to a close, retreat to your accommodation in Pachmarhi, where you can unwind and reflect on the day's adventures amidst the tranquil beauty of this enchanting hill station. Enjoy dinner at the hotel and overnight at the hotel\n\nMeals : Breakfast, (Lunch In 3 Star Deluxe & 4 Star Hotel) & Dinner"
+      },
+      {
+        "dayLabel": "Day 05",
+        "title": "Pachmarhi - Bhopal by road (192 kms & 5 Hours approx.) - TOUR ENDS",
+        "body": "Morning, after breakfast, check out from the hotel. Drive to Bhopal. Upon arrival in Bhopal, transfer to the railway station or airport to board your train or flight for your onward journey.\n\nMeals : Breakfast"
+      }
+    ],
+    "inclusions": [
+      "Meeting and assistance on arrival/departure at Airport/hotel by our representative Or driver.",
+      "Accommodation for Total 04 nights on sharing basis on Room plus breakfast on fixed menu/buffet basis. Madhai/Pachmarhi (3 Star Deluxe & 4 Star Hotel Option) where the stay is on APAI Plan / Full board basis that is with breakfast, lunch & dinner on fixed menu in Pachmarhi where the stay is on MAPAI Plan / Half board basis that is with breakfast and dinner in Pachmarhi on fixed menu / buffet basis.",
+      "Total 04 Breakfasts, 01 Lunch, (03 Lunches In 03 Star Deluxe & 4 Star Hotel) & 03 Dinners as mentioned in the program.",
+      "Arrival / Departure transfers, sightseeing/ excursions and surface travel as per the above program by Air-Conditioned Vehicle.",
+      "Experience early morning Jeep Safari at Satpura National Park on private basis with naturalist.",
+      "Experience Full day Pachmarhi Sightseeing by Open Gypsy with Naturalist / Guide.",
+      "Mineral water 02 (250 Ml.) Water bottles Per Person, Per Day, Tissues, Hand Sanitizers, Masks etc. in vehicle during the tour.",
+      "All presently applicable taxes."
+    ],
+    "exclusions": [
+      "Any services other than the ones mentioned above or air fares, train or flight tickets, guides, entrances fee, activities, meals other than those mentioned above or any items of Personal nature like, telephone calls, laundry, drinks, Camera fees or tips etc."
+    ],
+    "facts": [
+      {
+        "title": "Transportation",
+        "description": "Various modes of transportation are available for this trip, including AC sedans / Innova Crysta and large coaches, catering to different group sizes."
+      },
+      {
+        "title": "Accommodation",
+        "description": "Accommodation options on this trip range from excellent budget hotels to luxury hotels, providing choices to suit different preferences and budgets."
+      },
+      {
+        "title": "Weather",
+        "description": "Best time to visit Bhopal, Bhimbetka, Bhojpur, Sanchi, Tawa, Madai, Satpura National Park, and Pachmarhi is October to March; monsoon spans late June to September with ~1,200 mm rainfall and pleasant 24–28°C temperatures."
+      },
+      {
+        "title": "Nearest Airport",
+        "description": "Raja Bhoj Airport , Bhopal"
+      },
+      {
+        "title": "Nearest Railway Station",
+        "description": "Bhopal Junction railway station (BPL)"
+      }
+    ],
+    "publicNotes": [
+      "The chauffeur-driven private transport is for the client’s exclusive use.",
+      "The vehicle will be provided for the exact itinerary specified.",
+      "Our vehicle includes the following services for the comfort and safety of the guests:",
+      "The confirmation of rooms at desired hotels will be subject to availability on the day of making the booking. In case rooms are not available at the hotel foreseen/desired, bookings will be made in an alternate or similar category, or the next best available hotel. Any supplement/reduction applicable in such cases will be payable accordingly."
+    ],
+    "media": {
+      "hero": null,
+      "highlights": [],
+      "itinerary": []
+    },
+    "status": "preview",
+    "source": {
+      "workbook": "EXBHP03.xlsx",
+      "revision": 1,
+      "importMode": "sample-snapshot-no-importer"
+    },
+    "reviewFlags": [
+      "Nights are derived from days - 1; cross-check accommodation."
+    ]
+  }
+]

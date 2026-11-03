@@ -193,7 +193,7 @@ export const destinationDetailConfig: DestinationDetailConfig = {
   heroObjectFit: "cover",
   heroObjectPositionX: "center",
   heroObjectPositionY: "60%",
-  heroBrightness: 0.88,
+  heroBrightness: 1,
   heroContrast: 1.05,
   heroBlur: "0px",
   // Gradient: dense dark at bottom where text sits, fading upward

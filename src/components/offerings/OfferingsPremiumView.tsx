@@ -1,5 +1,7 @@
 import { type CSSProperties, type ReactNode } from 'react';
 import { offeringsVisualConfig } from '../../config/offeringsVisualConfig';
+import type { PublicPackage } from '../../features/package-detail/types';
+import { getPackagePhotos } from '../../features/package-detail/photoMapping';
 import './premiumOfferings.css';
 
 /** A presentation model; the integration adapter maps the site's real TravelPackage here. */
@@ -26,6 +28,10 @@ export type OfferingsPremiumViewProps = {
   packages: OfferingCardData[];
   categories: OfferingCategoryLink[];
   activeCategory: string;
+  pilotPackages?: PublicPackage[];
+  pilotLoading?: boolean;
+  pilotError?: string | null;
+  onRetryPilotPackages?: () => void;
   /** Links use the site's router if supplied; otherwise ordinary links in the demo. */
   onNavigate?: (href: string) => void;
 };
@@ -46,8 +52,8 @@ function Icon({ name, size = 17 }: { name: 'search'|'calendar'|'pin'|'arrow'|'sp
   return <svg {...common}>{parts[name]}</svg>;
 }
 
-function UiLink({ to, children, className, onNavigate, ariaLabel }: { to: string; children: ReactNode; className?: string; onNavigate?: (to: string) => void; ariaLabel?: string }) {
-  return <a href={to} className={className} aria-label={ariaLabel} onClick={(event) => {
+function UiLink({ to, children, className, onNavigate, ariaLabel, style }: { to: string; children: ReactNode; className?: string; onNavigate?: (to: string) => void; ariaLabel?: string; style?: CSSProperties }) {
+  return <a href={to} className={className} style={style} aria-label={ariaLabel} onClick={(event) => {
     if (!onNavigate || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault(); onNavigate(to);
   }}>{children}</a>;
@@ -74,7 +80,53 @@ function PackageCard({ pkg, onNavigate }: { pkg: OfferingCardData; onNavigate?: 
   );
 }
 
-export function OfferingsPremiumView({ packages: items, categories, activeCategory, onNavigate }: OfferingsPremiumViewProps) {
+function PilotPackageCard({ pkg, onNavigate }: { pkg: PublicPackage; onNavigate?: (href: string) => void }) {
+  const photos = getPackagePhotos(pkg);
+  const routeStops = pkg.routeRaw.split(/\s+-\s+/).map((s) => s.trim()).filter(Boolean);
+  const destinationsLabel = routeStops.slice(0, 4).join(" · ");
+  const tone = pkg.slug === 'exbhp03' ? 'wildlife' : pkg.slug === 'exbhp02' ? 'nature' : 'heritage';
+
+  return (
+    <article className="op-package-card">
+      <div className="op-package-image-wrap">
+        <img className="op-package-image" src={photos.hero.src} alt={photos.hero.alt} loading="lazy" />
+        <span className={`op-package-badge op-package-badge--${tone}`}>{pkg.code} · Detailed Itinerary</span>
+      </div>
+      <div className="op-package-body">
+        <div className="op-package-meta">
+          <span><Icon name="calendar" size={12}/>{pkg.durationDays} Days / {pkg.durationNights} Nights</span>
+          <span className="op-package-meta-dot">·</span>
+          <span className="op-destinations-text"><Icon name="pin" size={12}/>{destinationsLabel}</span>
+        </div>
+        <h3>
+          <UiLink onNavigate={onNavigate} to={`/packages/${pkg.slug}`}>{pkg.title}</UiLink>
+        </h3>
+        <p className="op-package-summary">
+          {pkg.highlights[0] ?? `A comprehensive ${pkg.durationDays}-day trade-ready journey with complete day-by-day programme.`}
+        </p>
+        <div className="op-package-bottom" style={{ alignItems: 'center' }}>
+          <UiLink onNavigate={onNavigate} to={`/packages/${pkg.slug}`} style={{ fontWeight: 700, fontSize: '12px', color: 'var(--op-forest, #285C41)', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+            View Programme Itinerary <Icon name="arrow" size={13}/>
+          </UiLink>
+          <UiLink onNavigate={onNavigate} to={`/create-query?package=${encodeURIComponent(pkg.slug)}`} className="op-package-enquire">
+            Enquire <Icon name="arrow" size={15}/>
+          </UiLink>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function OfferingsPremiumView({
+  packages: items,
+  categories,
+  activeCategory,
+  pilotPackages,
+  pilotLoading = false,
+  pilotError,
+  onRetryPilotPackages,
+  onNavigate,
+}: OfferingsPremiumViewProps) {
   const config = offeringsVisualConfig;
   const visualStyles = {
     '--op-page': config.palette.page,
@@ -135,6 +187,35 @@ export function OfferingsPremiumView({ packages: items, categories, activeCatego
           </nav>
           <div className="op-discovery-corner" aria-hidden="true">❀</div>
         </section>
+
+        {isAll && (pilotLoading || pilotError || pilotPackages) && (
+          <section className="op-pilot-collection" aria-labelledby="op-pilot-heading" style={{ marginBottom: '56px' }}>
+            <div className="op-section-heading">
+              <div>
+                <p className="op-eyebrow">Verified Programme Itineraries</p>
+                <h2 id="op-pilot-heading">Featured <em>Immersive Journeys</em></h2>
+              </div>
+              <span className="op-section-heading-aside">Full Excel-derived day-by-day programme pages</span>
+            </div>
+            {pilotLoading && <p role="status">Loading published journeys...</p>}
+            {pilotError && (
+              <div role="alert">
+                <p>{pilotError}</p>
+                {onRetryPilotPackages && <button type="button" onClick={onRetryPilotPackages}>Retry</button>}
+              </div>
+            )}
+            {!pilotLoading && !pilotError && pilotPackages && pilotPackages.length === 0 && (
+              <p>No published journeys are available yet.</p>
+            )}
+            {!pilotLoading && !pilotError && pilotPackages && pilotPackages.length > 0 && (
+              <div className="op-package-grid">
+                {pilotPackages.map((p) => (
+                  <PilotPackageCard key={p.code} pkg={p} onNavigate={onNavigate} />
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         <section className="op-main-collection" aria-labelledby="op-results-heading">
           <div className="op-results-bar"><div><span className="op-results-number">{items.length}</span> {items.length === 1 ? 'programme' : 'programmes'} found <span className="op-results-sub">· real existing collection</span></div><div className="op-results-right">{!isAll && <span className="op-current-filter">Selected: {categories.find(c=>c.id === activeCategory)?.label ?? activeCategory}</span>}<span className="op-results-sorting">Advanced sorting arrives with filters</span></div></div>

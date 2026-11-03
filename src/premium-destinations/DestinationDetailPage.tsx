@@ -38,7 +38,7 @@ function DestinationGallerySection({
   const galleryTheme = getGalleryTheme(canonicalTheme);
   const registration = getGalleryRegistration(destinationId);
   // Hook always called — handles undefined registration internally
-  const content = useGalleryContent(registration);
+  const gallery = useGalleryContent(registration);
   const baseOverrides = buildGalleryOverridesFromManager(canonicalTheme);
 
   // Deep-merge destination-specific styleOverrides on top of manager defaults
@@ -55,12 +55,21 @@ function DestinationGallerySection({
     : baseOverrides;
 
   // No registered gallery for this destination, or manifest not loaded yet, or no photos
-  if (!registration || !content || content.photos.length === 0) return null;
+  if (!registration || gallery.status === 'loading' || gallery.status === 'unconfigured') return null;
+  if (gallery.status === 'error') {
+    return (
+      <div role="alert">
+        Gallery temporarily unavailable.
+        <button type="button" onClick={gallery.retry}>Retry</button>
+      </div>
+    );
+  }
+  if (!gallery.content || gallery.status === 'empty' || gallery.content.photos.length === 0) return null;
 
   return (
     <Suspense fallback={null}>
       <CinematicEnvelopeGallery
-        content={content}
+        content={gallery.content}
         settings={mergedOverrides}
         themeConfig={galleryTheme}
         themeLabel={canonicalTheme}

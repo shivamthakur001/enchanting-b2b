@@ -1,73 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import type { GalleryContent } from "../data/galleryContent";
-import type { DestinationPhoto } from "../types/gallery";
-import type { DestinationGalleryRegistration, PhotoMetadataEntry } from "../galleryManager";
-
-interface ManifestImage {
-  filename: string;
-  path: string;
-}
-
-interface GalleryManifest {
-  slug: string;
-  generatedAt: string;
-  images: ManifestImage[];
-}
-
-/** Converts filename to readable title if ever needed internally */
-function filenameToTitle(filename: string): string {
-  return filename
-    .replace(/\.[^.]+$/, "")
-    .replace(/[-_]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function buildPhotos(
-  manifestImages: ManifestImage[],
-  metadata: PhotoMetadataEntry[],
-  slug: string
-): DestinationPhoto[] {
-  const metaMap = new Map(metadata.map((m) => [m.filename, m]));
-
-  const photos = manifestImages
-    .filter((img) => {
-      const meta = metaMap.get(img.filename);
-      return !meta?.hidden;
-    })
-    .map((img, idx) => {
-      const meta = metaMap.get(img.filename);
-      const title = meta?.title ?? filenameToTitle(img.filename);
-      // Safe fallback alt text for accessibility when no metadata exists
-      const fallbackAlt = `Photograph ${idx + 1} of ${slug.charAt(0).toUpperCase() + slug.slice(1)}`;
-      const alt = meta?.alt ?? (meta?.title ? `${meta.title} photograph` : fallbackAlt);
-      const safeId =
-        img.filename
-          .replace(/\.[^.]+$/, "")
-          .replace(/[^a-zA-Z0-9_-]/g, "-")
-          .toLowerCase() + `-${idx}`;
-
-      return {
-        id: safeId,
-        title,
-        category: meta?.category ?? "Photograph",
-        image: img.path,
-        alt,
-        caption: meta?.caption ?? "",
-        focal: meta?.focal ?? "center center",
-        aspect: meta?.aspect ?? "landscape",
-        _order: meta?.displayOrder ?? idx + 100,
-      } as DestinationPhoto & { _order: number };
-    });
-
-  photos.sort((a, b) => (a as any)._order - (b as any)._order);
-  return photos.map((item) => {
-    const { _order, ...photo } = item as DestinationPhoto & { _order: number };
-    void _order;
-    return photo;
-  });
-}
+import type { DestinationGalleryRegistration } from "../galleryManager";
+import {
+  createGalleryRepository,
+  LocalManifestGalleryRepository,
+  type GalleryRepository,
+} from "../../../features/destination-gallery/galleryRepository";
 
 /**
  * useGalleryContent
@@ -75,14 +13,24 @@ function buildPhotos(
  * and handles dynamic image counts.
  */
 export function useGalleryContent(
-  registration: DestinationGalleryRegistration | undefined
-): GalleryContent | null {
-  const [manifest, setManifest] = useState<GalleryManifest | null>(null);
+  registration: DestinationGalleryRegistration | undefined,
+  backendRepository?: GalleryRepository
+): GalleryContentState {
+  const [content, setContent] = useState<GalleryContent | null>(null);
   const [version, setVersion] = useState<number>(0);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState<GalleryLoadStatus>("loading");
 
   const manifestPath = registration?.manifestPath ?? null;
   const slug = registration?.slug ?? null;
+  const repository = useMemo(
+    () => registration
+      ? createGalleryRepository(
+          new LocalManifestGalleryRepository("/destination-gallery", registration.photoMetadata),
+          backendRepository
+        )
+      : null,
+    [backendRepository, registration]
+  );
 
   // 1. Listen for Vite HMR custom events emitted by viteGalleryPlugin
   useEffect(() => {
@@ -117,55 +65,57 @@ export function useGalleryContent(
     if (!manifestPath) return;
 
     let cancelled = false;
-    setError(false);
+    setStatus("loading");
 
-    const cacheBuster = version ? `?v=${version}` : `?t=${Date.now()}`;
-    const url = `${manifestPath}${cacheBuster}`;
-
-    fetch(url, { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json() as Promise<GalleryManifest>;
-      })
+    void repository
+      ?.getGalleryByDestinationSlug(slug ?? "")
       .then((data) => {
         if (!cancelled) {
-          setManifest(data);
+          if (data.publicationState === "error") {
+            setContent(null);
+            setStatus("error");
+            return;
+          }
+          const photos = data.items.length
+            ? data.items
+            : [];
+          setContent({
+            id: data.destinationSlug,
+            eyebrow: registration?.eyebrow ?? `${data.destinationSlug.toUpperCase()} COLLECTION`,
+            heading: registration?.heading ?? `Discover ${data.destinationSlug.charAt(0).toUpperCase() + data.destinationSlug.slice(1)}.`,
+            tagline: registration?.tagline ?? "Unfold the Extraordinary.",
+            description: registration?.description ?? `${photos.length} extraordinary frames. One unforgettable journey.`,
+            collectionName: `${data.destinationSlug} photographic collection`,
+            envelopeMonogram: registration?.monogram ?? data.destinationSlug.charAt(0).toUpperCase(),
+            photos,
+          });
+          setStatus(data.publicationState);
         }
       })
       .catch((err) => {
         if (!cancelled) {
           console.warn("[useGalleryContent] Failed to fetch manifest:", err);
-          setError(true);
+          setContent(null);
+          setStatus("error");
         }
       });
 
     return () => {
       cancelled = true;
     };
-  }, [manifestPath, version]);
+  }, [manifestPath, repository, slug, version]);
 
-  return useMemo(() => {
-    if (!registration) return null;
-    if (error) return null;
-    if (!manifest) return null;
+  return {
+    content,
+    status: registration ? status : "unconfigured",
+    retry: () => setVersion((current) => current + 1),
+  };
+}
 
-    const photos = buildPhotos(manifest.images, registration.photoMetadata ?? [], registration.slug);
-    const monogram =
-      registration.monogram ?? registration.slug.charAt(0).toUpperCase();
+export type GalleryLoadStatus = "loading" | "published" | "empty" | "unconfigured" | "error";
 
-    const countText = `${photos.length} extraordinary frame${photos.length === 1 ? "" : "s"}.`;
-
-    return {
-      id: registration.slug,
-      eyebrow: registration.eyebrow ?? `${registration.slug.toUpperCase()} COLLECTION`,
-      heading:
-        registration.heading ??
-        `Discover ${registration.slug.charAt(0).toUpperCase() + registration.slug.slice(1)}.`,
-      tagline: registration.tagline ?? "Unfold the Extraordinary.",
-      description: registration.description ?? `${countText} One unforgettable journey.`,
-      collectionName: `${registration.slug} photographic collection`,
-      envelopeMonogram: monogram,
-      photos,
-    } satisfies GalleryContent;
-  }, [manifest, error, registration]);
+export interface GalleryContentState {
+  content: GalleryContent | null;
+  status: GalleryLoadStatus;
+  retry: () => void;
 }

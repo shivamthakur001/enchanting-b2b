@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "../router/Router";
 import { packageCategoryLabels, packages } from "../data/packages";
 import { offeringsNavigation } from "../data/navigation";
 import { discoverThemes } from "../data/themes";
 import { getDestination } from "../data/destinations";
+import { listPublishedPackages } from "../features/package-detail/packageService";
+import type { PublicPackage } from "../features/package-detail/types";
 import type { PackageCategory, TravelPackage } from "../types";
 import {
   OfferingsPremiumView,
@@ -80,6 +83,35 @@ export function PackagesPage() {
   const params = useSearchParams();
   const navigate = useNavigate();
   const category = params.get("category") ?? "all";
+  const [pilotPackages, setPilotPackages] = useState<PublicPackage[]>([]);
+  const [pilotLoading, setPilotLoading] = useState(true);
+  const [pilotError, setPilotError] = useState<string | null>(null);
+  const [pilotRequest, setPilotRequest] = useState(0);
+
+  useEffect(() => {
+    let active = true;
+    setPilotLoading(true);
+    setPilotError(null);
+
+    void listPublishedPackages({ offset: 0, limit: 12 })
+      .then((result) => {
+        if (active) setPilotPackages(result);
+      })
+      .catch((error) => {
+        if (active) {
+          console.error("[PackagesPage] Failed to load published packages", error);
+          setPilotPackages([]);
+          setPilotError("Published journeys are temporarily unavailable.");
+        }
+      })
+      .finally(() => {
+        if (active) setPilotLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [pilotRequest]);
 
   const filtered =
     category === "all"
@@ -97,6 +129,10 @@ export function PackagesPage() {
       packages={cardData}
       categories={allFilters}
       activeCategory={category}
+      pilotPackages={pilotPackages}
+      pilotLoading={pilotLoading}
+      pilotError={pilotError}
+      onRetryPilotPackages={() => setPilotRequest((request) => request + 1)}
       onNavigate={navigate}
     />
   );

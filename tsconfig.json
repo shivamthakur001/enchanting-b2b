@@ -37,6 +37,7 @@
     "vite.config.ts"
   ],
   "exclude": [
-    "src/top-activities-reference"
+    "src/top-activities-reference",
+    "src/integration-kits"
   ]
 }
