@@ -67,3 +67,17 @@ export interface PackagePhotoConfig {
   highlights: ResolvedPhoto[];
   itinerary: ResolvedPhoto[];
 }
+
+/**
+ * Dedicated contract for future backend-supplied day-wise itinerary photographs.
+ * Accepts real image src, alt text, optional caption and stable day ID.
+ * Strictly decoupled from local destination-gallery photos.
+ */
+export interface PackageDayPhoto {
+  id?: string;
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+export type PackageDayPhotoMap = Record<string, PackageDayPhoto[]>;
